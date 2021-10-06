@@ -1,0 +1,10 @@
+npm init
+npm install --save mysql express
+npm install -g nodemon
+npm install cors --save
+
+// cd to folder nodeApp
+npx create-react-app client
+
+//clone project
+git clone https://github.com/KhornSokheng/buu_t_shirt.git
