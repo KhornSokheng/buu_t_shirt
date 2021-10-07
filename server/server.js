@@ -216,7 +216,7 @@ app.get('/getProductcolor', (req, res) =>{
 app.post('/insertBuy', (req,res)=>{
     try {
         const {buy_id, buy_date, buy_status} = req.body;
-        const sql = `INSERT INTO buy VALUES ('${buy_id}','${buy_date}','${buy_status}') RETURNING *`;
+        const sql = `INSERT INTO buy VALUES ('${buy_id}','${buy_date}','${buy_status}')`;
         pool.query(sql, (err,results)=>{
             if(err){
                 throw err;
@@ -225,7 +225,7 @@ app.post('/insertBuy', (req,res)=>{
             res.send(results)
             
         });
-        console.log(req.body)
+        // console.log(req.body)
         
     } catch (err) {
         console.error(err.message);
