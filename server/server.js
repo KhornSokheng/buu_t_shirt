@@ -294,6 +294,7 @@ app.put('/updateCustomer/:id', (req,res) => {
 
 // --------------------------------------------
 // Delete method (OK)
+// Delete customer 
 app.delete('/deleteCustomer/:id', (req, res) =>{
 
     try {
@@ -301,6 +302,27 @@ app.delete('/deleteCustomer/:id', (req, res) =>{
         let {id} = req.params;
 
         const sql = `DELETE FROM customer where cust_id = "${id}"`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+// Delete buy
+app.delete('/deleteBuy/:id', (req, res) =>{
+
+    try {
+
+        let {id} = req.params;
+
+        const sql = `DELETE FROM buy where buy_id = "${id}"`;
         pool.query(sql, (err,results)=>{
             if(err){
                 throw err;
