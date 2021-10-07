@@ -216,7 +216,7 @@ app.get('/getProductcolor', (req, res) =>{
 app.post('/insertBuy', (req,res)=>{
     try {
         const {buy_id, buy_date, buy_status} = req.body;
-        const sql = `INSERT INTO buy VALUES ('${buy_id}','${buy_date}','${buy_status}')`;
+        const sql = `INSERT INTO buy(buy_id,buy_date,  buy_status) VALUES ('${buy_id}','${buy_date}','${buy_status}')`;
         pool.query(sql, (err,results)=>{
             if(err){
                 throw err;
@@ -323,6 +323,90 @@ app.delete('/deleteBuy/:id', (req, res) =>{
         let {id} = req.params;
 
         const sql = `DELETE FROM buy where buy_id = "${id}"`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+// Delete sale
+app.delete('/deleteSale/:id', (req, res) =>{
+
+    try {
+
+        let {id} = req.params;
+
+        const sql = `DELETE FROM sale where sale_id = "${id}"`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+// Delete product
+app.delete('/deleteProduct/:id', (req, res) =>{
+
+    try {
+
+        let {id} = req.params;
+
+        const sql = `DELETE FROM product where prod_id = "${id}"`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+// Delete product color
+app.delete('/deleteProductcolor/:id', (req, res) =>{
+
+    try {
+
+        let {id} = req.params;
+
+        const sql = `DELETE FROM prod_color where prod_color_id = "${id}"`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+// Delete warehouse
+app.delete('/deleteWarehouse/:id', (req, res) =>{
+
+    try {
+
+        let {id} = req.params;
+
+        const sql = `DELETE FROM warehouse where full_prod_id = "${id}"`;
         pool.query(sql, (err,results)=>{
             if(err){
                 throw err;
