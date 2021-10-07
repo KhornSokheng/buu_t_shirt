@@ -94,6 +94,120 @@ app.get('/getSizeChart', (req, res) =>{
         console.error(err.message);
     }
 })
+// get all buy (OK)
+app.get('/getBuy', (req, res) =>{
+
+    try {
+
+        const sql = `SELECT * from buy`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+// get all buy detail (OK)
+app.get('/getBuydetail', (req, res) =>{
+
+    try {
+
+        const sql = `SELECT * from buy_detail`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+// get all sale (OK)
+app.get('/getSale', (req, res) =>{
+
+    try {
+
+        const sql = `SELECT * from sale`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+// get all sale detail (OK)
+app.get('/getSaledetail', (req, res) =>{
+
+    try {
+
+        const sql = `SELECT * from sale_detail`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+// get all product (OK)
+app.get('/getProduct', (req, res) =>{
+
+    try {
+
+        const sql = `SELECT * from product`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+// get all product color (OK)
+app.get('/getProductcolor', (req, res) =>{
+
+    try {
+
+        const sql = `SELECT * from prod_color`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
 
 
 // --------------------------------------------
