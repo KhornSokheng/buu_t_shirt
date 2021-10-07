@@ -6,7 +6,6 @@ export default function Header() {
     <div>
       {/* Header strat */}
       <header className="header">
-        
         <div className="container">
           <nav className="navbar">
             {/* Site logo */}
@@ -18,33 +17,43 @@ export default function Header() {
             </a>
             <ul className="navbar-nav">
               <li className="current-menu-item has-menu-child">
-                <a href="#">Home</a><i class="menu-dropdown ti-angle-down"></i>
+                <a href="#">Home</a>
+              </li>
+              <li>
+                <a href="#">Product</a>
+              </li>
+              <li>
+                <a href="#">Buy</a>
+                <i class="menu-dropdown ti-angle-down"></i>
                 <ul className="sub-menu">
                   <li>
-                    <a href="home-01.html">Home 01</a>
+                    <a href="home-01.html">Buy report</a>
                   </li>
                   <li>
-                    <a href="home-02.html">Home 02</a>
-                  </li>
-                  <li>
-                    <a href="home-03.html">Home 03</a>
+                    <a href="home-02.html">Buy detail</a>
                   </li>
                 </ul>
               </li>
               <li>
-                <a href="#">About</a>
+                <a href="#">Sale</a>
+                <i class="menu-dropdown ti-angle-down"></i>
+                <ul className="sub-menu">
+                  <li>
+                    <a href="home-01.html">Sale report</a>
+                  </li>
+                  <li>
+                    <a href="home-02.html">Sale detail</a>
+                  </li>
+                </ul>
               </li>
               <li>
-                <a href="#">Services</a>
+                <a href="#">Customer</a>
               </li>
               <li>
-                <a href="#">Projects</a>
+                <a href="#">Size</a>
               </li>
               <li>
-                <a href="#">Blog</a>
-              </li>
-              <li>
-                <a href="#">Contact</a>
+                <a href="#">Register</a>
               </li>
             </ul>
             <div className="d-inline-flex align-items-center">
@@ -65,7 +74,6 @@ export default function Header() {
           </nav>
         </div>
       </header>
-
     </div>
   );
 }
