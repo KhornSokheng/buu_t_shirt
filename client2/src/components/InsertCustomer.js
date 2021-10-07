@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Input() {
+export default function Customer() {
   const [cust_id, setID] = useState("C0000");
   const [cust_name, setName] = useState("Name");
   const [cust_lname, setLName] = useState("LastName");
@@ -9,14 +9,13 @@ export default function Input() {
     e.preventDefault();
     try {
       // console.log(name, price);
-      const bodyStr = { cust_id,cust_name,cust_lname };
+      const bodyStr = { cust_id, cust_name, cust_lname };
       const resp = fetch("http://localhost:5000/insertCustomer", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(bodyStr),
-      })
+      });
       window.location = "/";
-      
     } catch (err) {
       console.error(err.message);
     }
@@ -25,8 +24,7 @@ export default function Input() {
   return (
     <div className="container">
       <form onSubmit={doInsertForm}>
-
-      <div className="form-group">
+        <div className="form-group">
           <label htmlFor="name">Cust ID:</label>
           <input
             type="name"
@@ -38,7 +36,7 @@ export default function Input() {
             }}
           />
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="name">Cust name:</label>
           <input
@@ -50,7 +48,6 @@ export default function Input() {
               setName(e.target.value);
             }}
           />
-          
         </div>
         <div className="form-group">
           <label htmlFor="name">Cust lastname:</label>
