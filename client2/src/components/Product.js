@@ -5,7 +5,7 @@ export default function Product() {
     return (
         <div>
             <h1>This is product</h1>
-            <Banner/>
+            {/* <Banner/> */}
         </div>
     )
 }
