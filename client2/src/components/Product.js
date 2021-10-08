@@ -1,9 +1,11 @@
 import React from 'react'
+import Banner from './Banner'
 
 export default function Product() {
     return (
         <div>
-            <h1>Product</h1>
+            <h1>This is product</h1>
+            <Banner/>
         </div>
     )
 }
