@@ -1,4 +1,5 @@
 import React from "react";
+
 // import EditComp from "./EditComp";
 
 export default function Header() {
@@ -10,7 +11,7 @@ export default function Header() {
           <nav className="navbar">
             {/* Site logo */}
             <a href="home-01.html" className="logo">
-              <img src="images/logo.png" alt />
+              <img src="images/1.png" high="1%" alt  />
             </a>
             <a href="javascript:void(0);" id="mobile-menu-toggler">
               <i className="ti-align-justify" />
