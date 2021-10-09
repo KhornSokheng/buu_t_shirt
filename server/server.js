@@ -55,12 +55,12 @@ app.get('/getWarehouse/:id', (req, res) =>{
 })
 
 // get all products in warehouse view (OK)
-app.get('/getWarehouseView', (req, res) =>{
+app.get('/getWarehouseView', async (req, res) =>{
 
     try {
 
         const sql = "SELECT * from warehouse_view";
-        pool.query(sql, (err,results)=>{
+        await pool.query(sql, (err,results)=>{
             if(err){
                 throw err;
             }

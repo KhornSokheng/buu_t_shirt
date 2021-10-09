@@ -6,7 +6,7 @@ export default function Product() {
 
   const loadList = async () => {
     try {
-      const resp = await fetch("http://localhost:5000/getWarehouseView");
+      const resp = await fetch("http://localhost:5000/getProductcolor");
       const jsonData = await resp.json();
 
       setList(jsonData);
@@ -43,7 +43,7 @@ export default function Product() {
                   <div className="product-item">
                     <figure className="product-thumb">
                       <img
-                        src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/433031/item/goods_09_433031.jpg?width=1600&impolicy=quality_75"
+                        src= {prod.image_url}
                         alt
                       />
                       <div className="action-links">
@@ -63,7 +63,7 @@ export default function Product() {
                     </figure>
                     <div className="product-content">
                       <h5 className="product-name">
-                        <a href="#">{prod.prod_name}</a>
+                        <a href="#">{prod.prod_color_id}</a>
                       </h5>
                       <div className="ratings">
                         <a href="#">
