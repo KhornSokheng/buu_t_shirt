@@ -54,6 +54,26 @@ app.get('/getWarehouse/:id', (req, res) =>{
     }
 })
 
+// get all products in warehouse view (OK)
+app.get('/getWarehouseView', (req, res) =>{
+
+    try {
+
+        const sql = "SELECT * from warehouse_view";
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+        });
+       
+
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
 // get all customers (OK)
 app.get('/getCustomer', (req, res) =>{
 
@@ -232,6 +252,27 @@ app.post('/insertBuy', (req,res)=>{
     }
 })
 
+// insert buy detail
+// trigger will be called to update product in warehouse
+app.post('/insertBuyDetail', (req,res)=>{
+    try {
+        const {buy_id, full_prod_id, buy_amount,buy_cost} = req.body;
+        const sql = `CALL insert_buy_detail('${buy_id}','${full_prod_id}','${buy_amount}','${buy_cost}')`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+        // console.log(req.body)
+        
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
 // insert customer (OK)
 app.post('/insertCustomer', (req,res)=>{
     try {
@@ -264,9 +305,7 @@ app.put('/updateCustomer/:id', (req,res) => {
     try {
         let {id} = req.params;
         let {cust_id,cust_name,cust_lname, phone_num,credit_card} = req.body;
-        // const sql = `UPDATE customer SET cust_lname = "${cust_lname}" where cust_id="${cust_id}"`;
         
-        // const sql = `UPDATE customer SET cust_name='${cust_name}' where cust_id = '${id}'`; 
         // const sql = `UPDATE customer SET ('${cust_id}','${cust_name}','${cust_lname}', '${phone_num}','${credit_card}')`;
 
         // call store procedure

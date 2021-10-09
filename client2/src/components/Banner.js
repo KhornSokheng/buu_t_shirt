@@ -14,7 +14,7 @@ export default function Banner() {
               <div className="banner-content">
                 <span className="tagline">ultimate collection</span>
                 <h1>Men&Women Fashion Here</h1>
-                <a href="#" className="btn-default">
+                <a href="/product" className="btn-default">
                   shop now
                 </a>
               </div>

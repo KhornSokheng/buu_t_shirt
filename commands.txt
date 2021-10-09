@@ -8,3 +8,5 @@ npx create-react-app client
 
 //clone project
 git clone https://github.com/KhornSokheng/buu_t_shirt.git
+
+npm install react-router-dom
