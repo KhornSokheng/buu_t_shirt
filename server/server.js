@@ -252,6 +252,27 @@ app.post('/insertBuy', (req,res)=>{
     }
 })
 
+// insert buy detail
+// trigger will be called to update product in warehouse
+app.post('/insertBuyDetail', (req,res)=>{
+    try {
+        const {buy_id, full_prod_id, buy_amount,buy_cost} = req.body;
+        const sql = `CALL insert_buy_detail('${buy_id}','${full_prod_id}','${buy_amount}','${buy_cost}')`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+        // console.log(req.body)
+        
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
 // insert customer (OK)
 app.post('/insertCustomer', (req,res)=>{
     try {
