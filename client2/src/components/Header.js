@@ -1,5 +1,4 @@
 import React from "react";
-// import EditComp from "./EditComp";
 
 export default function Header() {
   return (
@@ -9,7 +8,7 @@ export default function Header() {
         <div className="container">
           <nav className="navbar">
             {/* Site logo */}
-            <a href="home-01.html" className="logo">
+            <a href="/" className="logo">
               <img src="images/logo.png" alt />
             </a>
             <a href="javascript:void(0);" id="mobile-menu-toggler">
@@ -17,13 +16,13 @@ export default function Header() {
             </a>
             <ul className="navbar-nav">
               <li className="current-menu-item has-menu-child">
-                <a href="#">Home</a>
+                <a href="/">Home</a>
               </li>
               <li>
-                <a href="#">Product</a>
+                <a href="/product">Product</a>
               </li>
               <li>
-                <a href="#">Buy</a>
+                <a href="/buy">Buy</a>
                 <i class="menu-dropdown ti-angle-down"></i>
                 <ul className="sub-menu">
                   <li>
@@ -35,7 +34,7 @@ export default function Header() {
                 </ul>
               </li>
               <li>
-                <a href="#">Sale</a>
+                <a href="/sale">Sale</a>
                 <i class="menu-dropdown ti-angle-down"></i>
                 <ul className="sub-menu">
                   <li>
@@ -50,10 +49,10 @@ export default function Header() {
                 <a href="/customer">Customer</a>
               </li>
               <li>
-                <a href="#">Size</a>
+                <a href="/size">Size</a>
               </li>
               <li>
-                <a href="#">Register</a>
+                <a href="/register">Register</a>
               </li>
             </ul>
             <div className="d-inline-flex align-items-center">
@@ -61,14 +60,14 @@ export default function Header() {
                 {/* <img src="images/icons/search.png" alt=""> */}
                 <i className="ti-search" />
               </a>
-              <a href="#" className="cart-bag icon">
+              <a href="/cart" className="cart-bag icon">
                 {/* <img src="images/icons/bag.png" alt=""> */}
                 <i className="ti-shopping-cart" />
-                <span className="itemCount">0</span>
+                <span className="itemCount">n</span>
               </a>
-              <a href="#" className="wishlist icon">
+              <a href="/wishlist" className="wishlist icon">
                 <i className="ti-heart" />
-                <span className="itemCount">09</span>
+                <span className="itemCount">n</span>
               </a>
             </div>
           </nav>
