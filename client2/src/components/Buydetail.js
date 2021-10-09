@@ -1,10 +1,12 @@
 import React,{useState,useEffect} from 'react'
 
 export default function Buydetail() {
+    // const id = props.id;
+    
     const [list,setList] = useState([]);
     const loadList = async()=>{
         try {
-            const resp = await fetch("http://localhost:5000/getBuydetail")
+            const resp = await fetch(`http://localhost:5000/getBuydetail`)
             const jsonData = await resp.json();
 
             setList(jsonData);

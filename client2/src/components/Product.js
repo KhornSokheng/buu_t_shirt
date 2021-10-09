@@ -6,7 +6,7 @@ export default function Product() {
 
   const loadList = async () => {
     try {
-      const resp = await fetch("http://localhost:5000/getProductcolor");
+      const resp = await fetch("http://localhost:5000/getProductColor");
       const jsonData = await resp.json();
 
       setList(jsonData);
@@ -64,7 +64,7 @@ export default function Product() {
                     </figure>
                     <div className="product-content">
                       <h5 className="product-name">
-                        <a href="#">{prod.prod_color_id}</a>
+                        <a href="#">{prod.prod_name}</a>
                       </h5>
                       <div className="ratings">
                         <a href="#">

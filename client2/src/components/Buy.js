@@ -33,6 +33,7 @@ export default function Buy() {
                 <tbody>
                         {
                             list.map(elt=>{
+                                
                                 return(
                                     <tr>
                                     <td>{elt.buy_date.slice(0, 10)}</td>

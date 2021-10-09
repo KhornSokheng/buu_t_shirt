@@ -23,40 +23,42 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/customer">
+          <Route exact path="/customer">
             <Customer />
           </Route>
-          <Route path="/customer/:id">
+          <Route exact path="/customer/:id">
             <Customer />
           </Route>
-          <Route path="/product">
+          <Route exact path="/product">
             <Product />
           </Route>
-          <Route path="/buy">
+          <Route exact path="/buy">
             <Buy />
           </Route>
-          <Route path="/buy/:id">
+          <Route exact path="/buy/:id">
             <Buy />
-            </Route>
-            <Route path="/buydetail">
+          </Route>
+          <Route exact path="/buydetail">
             <Buydetail />
           </Route>
-          <Route path="/sale">
+          {/* <Route exact path="/buydetail/:id">
+            <Buydetail/>
+          </Route> */}
+          <Route exact path="/sale">
             <Sale />
           </Route>
-          <Route path="/size">
+          <Route exact path="/size">
             <Size />
           </Route>
-          <Route path="/register">
-            <Register/>
+          <Route exact path="/register">
+            <Register />
           </Route>
-          <Route path="/cart">
-            <Cart/>
+          <Route exact path="/cart">
+            <Cart />
           </Route>
-          <Route path="/wishlist">
-            <Wishlist/>
+          <Route exact path="/wishlist">
+            <Wishlist />
           </Route>
-
         </Switch>
 
         <Footer />
