@@ -54,6 +54,26 @@ app.get('/getWarehouse/:id', (req, res) =>{
     }
 })
 
+// get all products in warehouse view (OK)
+app.get('/getWarehouseView', (req, res) =>{
+
+    try {
+
+        const sql = "SELECT * from warehouse_view";
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+        });
+       
+
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
 // get all customers (OK)
 app.get('/getCustomer', (req, res) =>{
 
@@ -264,9 +284,7 @@ app.put('/updateCustomer/:id', (req,res) => {
     try {
         let {id} = req.params;
         let {cust_id,cust_name,cust_lname, phone_num,credit_card} = req.body;
-        // const sql = `UPDATE customer SET cust_lname = "${cust_lname}" where cust_id="${cust_id}"`;
         
-        // const sql = `UPDATE customer SET cust_name='${cust_name}' where cust_id = '${id}'`; 
         // const sql = `UPDATE customer SET ('${cust_id}','${cust_name}','${cust_lname}', '${phone_num}','${credit_card}')`;
 
         // call store procedure
