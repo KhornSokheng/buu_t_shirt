@@ -28,6 +28,9 @@ export default function Buydetail() {
                         <th>Buy Id</th>
                         <th>Item</th>
                         <th>Full Product Id</th>
+                        <th>Product Name</th>
+                        <th>Color</th>
+                        <th>Size</th>
                         <th>Buy Amount</th>
                         <th>Buy Cost</th>
                     </tr>
@@ -40,6 +43,9 @@ export default function Buydetail() {
                                     <td>{elt.buy_id}</td>
                                     <td><a>{elt.item}</a></td>
                                     <td>{elt.full_prod_id}</td>
+                                    <td>{elt.prod_name}</td>
+                                    <td>{elt.color}</td>
+                                    <td>{elt.size}</td>
                                     <td>{elt.buy_amount}</td>
                                     <td>{elt.buy_cost}</td>
                                     </tr>
