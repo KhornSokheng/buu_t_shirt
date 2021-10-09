@@ -12,6 +12,7 @@ import Customer from "./components/Customer";
 import Register from "./components/Register";
 import Cart from "./components/Cart";
 import Wishlist from "./components/Wishlist";
+import Buydetail from "./components/Buydetail";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/buy/:id">
             <Buy />
+            </Route>
+            <Route path="/buydetail">
+            <Buydetail />
           </Route>
           <Route path="/sale">
             <Sale />

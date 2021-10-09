@@ -22,7 +22,7 @@ export default function Buy() {
       },[])
     return (
         <div className="container">
-            <table className="table">
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th>Buy date</th>

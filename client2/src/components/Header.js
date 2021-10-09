@@ -22,14 +22,14 @@ export default function Header() {
                 <a href="/product">Product</a>
               </li>
               <li>
-                <a href="/buy">Buy</a>
+                <a>Buy</a>
                 <i class="menu-dropdown ti-angle-down"></i>
                 <ul className="sub-menu">
                   <li>
-                    <a href="home-01.html">Buy report</a>
+                    <a href="/buy">Buy report</a>
                   </li>
                   <li>
-                    <a href="home-02.html">Buy detail</a>
+                    <a href="/buydetail">Buy detail</a>
                   </li>
                 </ul>
               </li>
