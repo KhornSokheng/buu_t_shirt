@@ -4,7 +4,7 @@ export default function Buy() {
     const [list,setList] = useState([]);
     const loadList = async()=>{
         try {
-            const resp = await fetch("http://localhost:3000/getBuy")
+            const resp = await fetch("http://localhost:5000/getBuy")
             const jsonData = await resp.json();
 
             setList(jsonData);
@@ -19,10 +19,10 @@ export default function Buy() {
       useEffect(()=>{
           console.log("Enter useEffect()");
           loadList();
-      })
+      },[])
     return (
         <div className="container">
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th>Buy date</th>
@@ -31,19 +31,18 @@ export default function Buy() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
                         {
                             list.map(elt=>{
                                 return(
                                     <tr>
-                                    <td>{elt.buy_date}</td>
+                                    <td>{elt.buy_date.slice(0, 10)}</td>
                                     <td>{elt.buy_id}</td>
                                     <td>{elt.buy_status}</td>
                                     </tr>
                                 )
                             })
                         }
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>
