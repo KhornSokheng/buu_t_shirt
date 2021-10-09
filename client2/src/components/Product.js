@@ -36,9 +36,10 @@ export default function Product() {
             </div>
           </div>
 
+          <div className="row">
           {prod_list.map(prod => {
             return (
-              <div className="row">
+              
                 <div className="col-sm-4">
                   <div className="product-item">
                     <figure className="product-thumb">
@@ -86,9 +87,10 @@ export default function Product() {
                     </div>
                   </div>
                 </div>
-              </div>
+              
             );
           })}
+          </div>
         </div>
       </section>
       {/* Featured Product end */}
