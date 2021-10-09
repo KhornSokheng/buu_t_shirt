@@ -1,10 +1,10 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 
-export default function Buy() {
+export default function Buydetail() {
     const [list,setList] = useState([]);
     const loadList = async()=>{
         try {
-            const resp = await fetch("http://localhost:5000/getBuy")
+            const resp = await fetch("http://localhost:5000/getBuydetail")
             const jsonData = await resp.json();
 
             setList(jsonData);
@@ -25,9 +25,9 @@ export default function Buy() {
             <table className="table">
                 <thead>
                     <tr>
-                        <th>Buy date</th>
                         <th>Buy id</th>
-                        <th>Buy status</th>
+                        <th>Item</th>
+                        <th>full product id</th>
                     </tr>
                 </thead>
                 <tbody>
