@@ -55,12 +55,12 @@ app.get('/getWarehouse/:id', (req, res) =>{
 })
 
 // get all products in warehouse view (OK)
-app.get('/getWarehouseView', (req, res) =>{
+app.get('/getWarehouseView', async (req, res) =>{
 
     try {
 
         const sql = "SELECT * from warehouse_view";
-        pool.query(sql, (err,results)=>{
+        await pool.query(sql, (err,results)=>{
             if(err){
                 throw err;
             }
@@ -138,12 +138,37 @@ app.get('/getBuydetail', (req, res) =>{
 
     try {
 
-        const sql = `SELECT * from buy_detail`;
+        const sql = `SELECT BD.buy_id,BD.item,BD.full_prod_id,BD.buy_amount,BD.buy_cost,WV.prod_name,WV.color,WV.size FROM buy_detail BD
+        JOIN warehouse_view WV
+        ON BD.full_prod_id = WV.full_prod_id ORDER BY buy_id, item;`;
         pool.query(sql, (err,results)=>{
             if(err){
                 throw err;
             }
             console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+// get all buy detail with buy_id (OK)
+app.get('/getBuydetail/:id', (req, res) =>{
+
+    try {
+
+        const {id} = req.params;
+        const sql = `SELECT BD.buy_id,BD.item,BD.full_prod_id,BD.buy_amount,BD.buy_cost,WV.prod_name,WV.color,WV.size FROM buy_detail BD
+        JOIN warehouse_view WV
+        ON BD.full_prod_id = WV.full_prod_id WHERE buy_id like "%`+`${id}" ORDER BY buy_id, item;`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            console.log(sql);
             res.send(results)
             
         });
@@ -210,11 +235,11 @@ app.get('/getProduct', (req, res) =>{
     }
 })
 // get all product color (OK)
-app.get('/getProductcolor', (req, res) =>{
+app.get('/getProductColor', (req, res) =>{
 
     try {
 
-        const sql = `SELECT * from prod_color`;
+        const sql = `SELECT * FROM warehouse_view GROUP BY prod_color_id`;
         pool.query(sql, (err,results)=>{
             if(err){
                 throw err;

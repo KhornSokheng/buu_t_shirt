@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Buydetail() {
+  // const id = props.id;
+
   const [list, setList] = useState([]);
   const loadList = async () => {
     try {
-      const resp = await fetch("http://localhost:5000/getBuydetail");
+      const resp = await fetch(`http://localhost:5000/getBuydetail`);
       const jsonData = await resp.json();
 
       setList(jsonData);
@@ -21,23 +23,33 @@ export default function Buydetail() {
   }, []);
   return (
     <div className="container">
-      <table className="table">
+      <table className="table table-striped">
         <thead>
           <tr>
-            <th>Buy id</th>
+            <th>Buy Id</th>
             <th>Item</th>
-            <th>full product id</th>
+            <th>Full Product Id</th>
+            <th>Product Name</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Buy Amount</th>
+            <th>Buy Cost</th>
           </tr>
         </thead>
         <tbody>
           {list.map((elt) => {
             return (
               <tr>
-                <td>{elt.buy_date.slice(0, 10)}</td>
+                <td>{elt.buy_id}</td>
                 <td>
-                  <a href="#">{elt.buy_id}</a>
+                  <a>{elt.item}</a>
                 </td>
-                <td>{elt.buy_status}</td>
+                <td>{elt.full_prod_id}</td>
+                <td>{elt.prod_name}</td>
+                <td>{elt.color}</td>
+                <td>{elt.size}</td>
+                <td>{elt.buy_amount}</td>
+                <td>{elt.buy_cost}</td>
               </tr>
             );
           })}

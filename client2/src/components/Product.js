@@ -6,7 +6,7 @@ export default function Product() {
 
   const loadList = async () => {
     try {
-      const resp = await fetch("http://localhost:5000/getWarehouseView");
+      const resp = await fetch("http://localhost:5000/getProductColor");
       const jsonData = await resp.json();
 
       setList(jsonData);
@@ -36,14 +36,15 @@ export default function Product() {
             </div>
           </div>
 
+          <div className="row">
           {prod_list.map(prod => {
             return (
-              <div className="row">
+              
                 <div className="col-sm-4">
                   <div className="product-item">
                     <figure className="product-thumb">
                       <img
-                        src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/433031/item/goods_09_433031.jpg?width=1600&impolicy=quality_75"
+                        src= {prod.image_url}
                         alt
                       />
                       <div className="action-links">
@@ -86,9 +87,10 @@ export default function Product() {
                     </div>
                   </div>
                 </div>
-              </div>
+              
             );
           })}
+          </div>
         </div>
       </section>
       {/* Featured Product end */}
