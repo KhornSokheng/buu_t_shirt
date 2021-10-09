@@ -9,7 +9,7 @@ export default function Header() {
           <nav className="navbar">
             {/* Site logo */}
             <a href="/" className="logo">
-              <img src="images/logo.png" alt />
+              <img src="images/1.png" alt />
             </a>
             <a href="javascript:void(0);" id="mobile-menu-toggler">
               <i className="ti-align-justify" />
