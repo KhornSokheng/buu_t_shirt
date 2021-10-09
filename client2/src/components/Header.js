@@ -47,7 +47,7 @@ export default function Header() {
                 </ul>
               </li>
               <li>
-                <a href="#">Customer</a>
+                <a href="/customer">Customer</a>
               </li>
               <li>
                 <a href="#">Size</a>
