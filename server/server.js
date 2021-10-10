@@ -374,6 +374,29 @@ app.put('/updateCustomer/:id', (req,res) => {
         console.error(err.message);
     }
 })
+app.put('/updateBuy/:id', (req,res) => {
+    try {
+        let {id} = req.params;
+        let {buy_date,buy_id,buy_status} = req.body;
+    
+        const sql = `CALL update_buy('${buy_date}','${buy_id}','${buy_status}')`
+        pool.query(sql, (err,results)=>{
+            if(err){
+                res.send(err.message);
+                throw err;
+            }
+            console.log(sql);
+            console.log(results);
+            res.send("updated successfully")
+            
+        });
+       
+
+    } catch (err) {
+        
+        console.error(err.message);
+    }
+})
 
 // --------------------------------------------
 // Delete method (OK)

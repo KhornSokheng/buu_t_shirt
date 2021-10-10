@@ -27,7 +27,7 @@ export default function EditBuy(props) {
                       แก้ไข
                     </button>
                     {/* The Modal */}
-                    <div className="modal" id="myModal">
+                    <div className="modal fade" id="myModal">
                       <div className="modal-dialog">
                         <div className="modal-content">
                           {/* Modal Header */}

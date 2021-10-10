@@ -14,6 +14,7 @@ import Cart from "./components/Cart";
 import Wishlist from "./components/Wishlist";
 import Buydetail from "./components/Buydetail";
 import ViewProduct from "./components/ViewProduct";
+import InsertBuy from "./components/InsertBuy";
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route exact path="/buy">
             <Buy />
+          </Route>
+          <Route exact path="/insertbuy">
+            <InsertBuy/>
           </Route>
           <Route exact path="/buy/:id">
             <Buy />
