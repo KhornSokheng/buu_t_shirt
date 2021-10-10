@@ -234,6 +234,28 @@ app.get('/getProduct', (req, res) =>{
         console.error(err.message);
     }
 })
+// get product with id (OK)
+app.get('/getProduct/:id',  (req, res) =>{
+
+    try {
+
+        const id = req.params.id;
+        const sql = `SELECT * from warehouse_view where prod_color_id = "${id}" GROUP BY prod_color_id`;
+        console.log(sql)
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
 // get all product color (OK)
 app.get('/getProductColor', (req, res) =>{
 
