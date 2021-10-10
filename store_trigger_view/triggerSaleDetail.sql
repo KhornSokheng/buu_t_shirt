@@ -10,7 +10,7 @@ BEGIN
         -- find sale_status from table sale 
         SELECT sale_status INTO _sale_status
         FROM sale
-        WHERE sale_id = NEW.sale_id;
+        WHERE sale.sale_id = NEW.sale_id;
 
         IF _sale_status = "completed" THEN 
             UPDATE warehouse
