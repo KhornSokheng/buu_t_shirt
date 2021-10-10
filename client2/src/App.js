@@ -13,6 +13,7 @@ import Register from "./components/Register";
 import Cart from "./components/Cart";
 import Wishlist from "./components/Wishlist";
 import Buydetail from "./components/Buydetail";
+import ViewProduct from "./components/ViewProduct";
 
 function App() {
   return (
@@ -31,6 +32,12 @@ function App() {
           </Route>
           <Route exact path="/product">
             <Product />
+          </Route>
+          <Route exact path="/viewproduct">
+            <ViewProduct/>
+          </Route>
+          <Route exact path="/viewproduct/:id">
+            <ViewProduct />
           </Route>
           <Route exact path="/buy">
             <Buy />

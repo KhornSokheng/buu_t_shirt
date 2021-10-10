@@ -38,6 +38,8 @@ export default function Product() {
 
           <div className="row">
           {prod_list.map(prod => {
+            const prodLink="/viewproduct/"+prod.prod_color_id;
+            console.log(prodLink)
             return (
               
                 <div className="col-sm-4">
@@ -48,7 +50,7 @@ export default function Product() {
                         alt
                       />
                       <div className="action-links">
-                        <a href="#" className="quick-view icon">
+                        <a href="/viewproduct" className="quick-view icon">
                           <i className="ti-eye" />
                         </a>
                         <a href="#" className="wishlist icon">
@@ -65,6 +67,9 @@ export default function Product() {
                     <div className="product-content">
                       <h5 className="product-name">
                         <a href="#">{prod.prod_name}</a>
+                      </h5>
+                      <h5 className="product-name">
+                        <a href="#">{prod.color}</a>
                       </h5>
                       <div className="ratings">
                         <a href="#">
@@ -83,7 +88,7 @@ export default function Product() {
                           <i className="ti-star" />
                         </a>
                       </div>
-                      <p className="price">$35</p>
+                      <p className="price text-danger">฿{prod.prod_price}</p>
                     </div>
                   </div>
                 </div>
