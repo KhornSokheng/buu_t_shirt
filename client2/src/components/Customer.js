@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Edit from "./EditCustomer";
 import Table from "react-bootstrap/Table";
 
 export default function Customer() {
@@ -7,7 +8,7 @@ export default function Customer() {
   const deleteItem = async (id) => {
     try {
       // console.log("ID:",id)
-      const del = await fetch(`http://localhost:5000/delete/${id}`, {
+      const del = await fetch(`http://localhost:5000/deleteCustomer/${id}`, {
         method: "DELETE",
       });
       setList(
@@ -46,6 +47,7 @@ export default function Customer() {
             <th>Cust Lname</th>
             <th>Phone Num</th>
             <th>Cust Card</th>
+            <th>Edit</th>
             <th>Del</th>
           </tr>
         </thead>
@@ -58,6 +60,15 @@ export default function Customer() {
                 <td>{elt.cust_lname}</td>
                 <td>{elt.phone_num}</td>
                 <td>{elt.credit_card}</td>
+                <td>
+                  <Edit
+                    cust_id={elt.cust_id}
+                    cust_name={elt.cust_name}
+                    cust_lname={elt.cust_lname}
+                    phone_num={elt.phone_num}
+                    credit_card={elt.credit_card}
+                  />
+                </td>
                 <td>
                   <button
                     className="btn btn-danger"
