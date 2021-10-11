@@ -65,7 +65,7 @@ export default function Buy() {
           {list.map((elt) => {
             return (
               <tr>
-                <td>{elt.buy_date.slice(0, 10)}</td>
+                <td>{elt.buy_date}</td>
                 <td>
                   <a href="/buydetail">{elt.buy_id}</a>
                 </td>
@@ -79,9 +79,7 @@ export default function Buy() {
                   <button
                     className="btn btn-danger"
                     onClick={() => deleteItem(elt.buy_id)}
-                  >
-                    ลบ
-                  </button>
+                  >ลบ</button>
                 </td>
               </tr>
             );

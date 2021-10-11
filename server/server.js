@@ -119,7 +119,7 @@ app.get('/getBuy', (req, res) =>{
 
     try {
 
-        const sql = `SELECT * from buy`;
+        const sql = `SELECT DATE_FORMAT(buy_date, "%W %e %M %Y") AS buy_date, buy_id, buy_status FROM buy`;
         pool.query(sql, (err,results)=>{
             if(err){
                 throw err;
@@ -429,6 +429,27 @@ app.delete('/deleteBuy/:id', (req, res) =>{
         let {id} = req.params;
 
         const sql = `DELETE FROM buy where buy_id = "${id}"`;
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+// Delete Buy Detail
+app.delete('/deleteBuydetail/:id', (req, res) =>{
+
+    try {
+
+        let {id} = req.params;
+
+        const sql = `DELETE FROM buy_detail where full_prod_id = "${id}"`;
         pool.query(sql, (err,results)=>{
             if(err){
                 throw err;

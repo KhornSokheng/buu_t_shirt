@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import Buy from "./Buy"
 
 export default function InsertBuy() {
   const [buy_id,setID] = useState();
@@ -18,28 +19,29 @@ export default function InsertBuy() {
       console.error(err.message)
     }
   }
-
   return (
-    <div className = "container">
+    <div className = "container" >
       <h2>Buy Insert</h2>
-      <form onSubmit={doInsert}>
+      <form action={doInsert} novalidate>
       <div className="form-group mt-5">
           <input
-            type="name"
+            type="text"
             className="form-control"
             placeholder="Enter Buy Id"
             id="id"
+            required
             onChange={e=>{
               setID(e.target.value)
             }}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group" >
           <input
             type="date"
             className="form-control"
             placeholder="Enter Buy Date"
             id="date"
+            required
             onChange={e=>{
               setDate(e.target.value)
             }}
@@ -47,10 +49,11 @@ export default function InsertBuy() {
         </div>
         <div className="form-group">
           <input
-            type="type"
+            type="text"
             className="form-control"
             placeholder="Enter Buy Status"
             id="status"
+            required
             onChange={e=>{
               setStatus(e.target.value)
             }}
@@ -58,12 +61,9 @@ export default function InsertBuy() {
         </div>
         <div className="form-group form-check">
         </div>
-        <button  type="submit" className="btn btn-success">
-          Submit
-        </button>
+        <button className="btn btn-success m-3">Submit</button>
+        <a class="btn btn-danger" href="/buy" role="button">Cancel</a>
       </form>
-      
-        <a href="/buy"><button className="btn btn-danger mt-1">Cancel</button></a>
     </div>
   );
 }
