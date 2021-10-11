@@ -39,7 +39,7 @@ export default function Customer() {
   }, []);
   return (
     <div className="container mt-5">
-      <Table striped bordered hover variant="dark">
+      <Table striped bordered hover variant="white">
         <thead>
           <tr>
             <th>Cust Id</th>
