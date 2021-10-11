@@ -21,7 +21,7 @@ export default function InsertBuy() {
   }
   return (
     <div className = "container" >
-      <h2>Buy Insert</h2>
+      <h2>Insert Buy</h2>
       <form action={doInsert} novalidate>
       <div className="form-group mt-5">
           <input
