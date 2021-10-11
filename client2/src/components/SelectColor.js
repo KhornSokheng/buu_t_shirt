@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 
-export default function SelectSize(props) {
+export default function SelectColor(props) {
   const [prod_id, setProdId] = useState([props.prod_id]);
   const [color, setColor] = useState([props.color]);
   // const color ="Brown"
   
-  const [size_list, setList] = useState([]);
+  const [color_list, setList] = useState([]);
 
   const loadList = async () => {
     try {
       const bodyData = {prod_id, color}
-      const resp = await fetch(`http://localhost:5000/getSizeRemain`,{
+      const resp = await fetch(`http://localhost:5000/getColorRemain`,{
         method:"POST",
         headers:{"Content-Type": "application/json"},
         body: JSON.stringify(bodyData)
@@ -23,7 +23,7 @@ export default function SelectSize(props) {
       setList(jsonData);
 
       console.log("Response", resp);
-      console.log("List: ", size_list);
+      console.log("List: ", color_list);
     } catch (err) {
       console.error(err.message);
     }
@@ -36,23 +36,15 @@ export default function SelectSize(props) {
 
   return (
     <>
-      {/* <Form.Select aria-label="Default select">
-        
-        <option value="S">S</option>
-        <option value="M">M</option>
-        <option value="L">L</option>
-        <option value="XL">XL</option>
-        <option value="XXL">XXL</option>
-        
-      </Form.Select> */}
+      
       <Form.Select aria-label="Default select"  className="form-control">
-        <option value="Size detail">Select Size</option>
-      {size_list.map((sz)=>{
+        <option value="Size detail">Select Color</option>
+      {color_list.map((colors)=>{
         return (
           <>
             
-            <option value={sz.size} placeholder="Size">{sz.size}</option>
-            {/* <h2>{sz.size}</h2> */}
+            <option value={colors.color} placeholder="Color">{colors.color}</option>
+            
             
          </>
         )

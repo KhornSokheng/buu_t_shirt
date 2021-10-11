@@ -3,6 +3,7 @@ import AddCart from "./AddCart";
 import AddQty from "./AddQty";
 import Banner from "./Banner";
 import SelectSize from "./SelectSize";
+import SelectColor from "./SelectColor";
 
 export default function ViewProduct() {
   const id = "P001-BK";
@@ -117,7 +118,23 @@ export default function ViewProduct() {
                       </div>
                       <div className="">
                         <h5 className="prod_id">Product ID: {prod.prod_id}</h5>
-                        <h5 className="color">Color: {prod.color}</h5>
+                        {/* <h5 className="color">Color: {prod.color}</h5> */}
+
+                        <div
+                          className="form-group quantity"
+                          onChange={(e) => {
+                            setColor(e.target.value);
+                          }}
+                        >
+                          <label
+                            className="font-weight-bold h5 mr-3"
+                            htmlFor="price"
+                          >
+                            Color:
+                          </label>
+                          <SelectColor prod_id={prod.prod_id} color={color} />
+                          {/* <SelectSize /> */}
+                        </div>
                         {/* <h5 className="size">
                           Size: <SelectSize onChange={(e) => {
                               setSize(e.target.value);
@@ -169,7 +186,7 @@ export default function ViewProduct() {
                       </button> */}
                       <AddCart
                         prod_id={prod.prod_id}
-                        color={prod.color}
+                        color={color}
                         size={size}
                         sale_amount={amount}
                         prod_price={prod.prod_price}

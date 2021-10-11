@@ -140,6 +140,33 @@ app.post('/getSizeRemain', (req, res) =>{
         console.error(err.message);
     }
 })
+
+// get all remaining size using prod-id and color (OK)
+// Switch from GET to POST method
+app.post('/getColorRemain', (req, res) =>{
+
+    try {
+
+        // const {color} = req.params;
+        const {prod_id} = req.body;
+        const sql = `SELECT DISTINCT prod_id,color FROM warehouse_view
+        WHERE total_amount - sold_amount >0
+        AND prod_id = "${prod_id}"`;
+        console.log(sql)
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
 // get all buy (OK)
 app.get('/getBuy', (req, res) =>{
 
