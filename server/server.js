@@ -114,6 +114,30 @@ app.get('/getSizeChart', (req, res) =>{
         console.error(err.message);
     }
 })
+// get all size (OK)
+app.get('/getSizeRemain/:color', (req, res) =>{
+
+    try {
+
+        const {color} = req.params;
+        const sql = `SELECT color, size FROM warehouse_view
+        WHERE total_amount - sold_amount >0
+        AND prod_id = "P001"
+        AND color = "${color}"`;
+        console.log(sql)
+        pool.query(sql, (err,results)=>{
+            if(err){
+                throw err;
+            }
+            console.log(results);
+            res.send(results)
+            
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
 // get all buy (OK)
 app.get('/getBuy', (req, res) =>{
 

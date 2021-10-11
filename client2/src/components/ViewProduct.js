@@ -10,7 +10,7 @@ export default function ViewProduct() {
   const [prod_name, setProdName] = useState([]);
   const [size, setSize] = useState([]);
   const [amount, setAmount] = useState([]);
-  const [color, setColor] = useState([]);
+  const [color, setColor] = useState(["BLACK"]);
   const [prod_id, setProdId] = useState([]);
   const [cust_id, setCustId] = useState([]);
   const [prod_price, setProdPrice] = useState([]);
@@ -127,7 +127,7 @@ export default function ViewProduct() {
                           className="form-group quantity"
                           onChange={(e) => {
                             setSize(e.target.value);
-                          }} 
+                          }}
                         >
                           <label
                             className="font-weight-bold h5 mr-3"
@@ -135,13 +135,19 @@ export default function ViewProduct() {
                           >
                             Size:
                           </label>
-                          <SelectSize />
+                          <SelectSize prod_id={prod_id} color={color} />
+                          {/* <SelectSize /> */}
                         </div>
                         {/* <h5 className="quantity">
                           QTY: <AddQty />
                         </h5> */}
                         <div className="form-group quantity">
-                          {/* <label className="font-weight-bold h5" htmlFor="price">Quantity:</label> */}
+                          <label
+                            className="font-weight-bold h5"
+                            htmlFor="price"
+                          >
+                            Quantity:
+                          </label>
                           {/* <h5 className="quantity d-inline">Quantity</h5> */}
 
                           <input
