@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 
-export default function SelectSize() {
+export default function SelectSize(props) {
+  const [prod_id, setProdId] = useState([props.prod_id]);
+  const [color, setColor] = useState([props.color]);
+  // const color ="Brown"
+  
   const [size_list, setList] = useState([]);
 
   const loadList = async () => {
     try {
-      const resp = await fetch(`http://localhost:5000/getSizeChart`);
+      // const bodyData = {prod_id, color}
+      const resp = await fetch(`http://localhost:5000/getSizeRemain/${color}`
+      
+      );
       const jsonData = await resp.json();
 
       setList(jsonData);
@@ -25,7 +32,7 @@ export default function SelectSize() {
 
   return (
     <>
-      <Form.Select aria-label="Default select">
+      {/* <Form.Select aria-label="Default select">
         
         <option value="S">S</option>
         <option value="M">M</option>
@@ -33,6 +40,19 @@ export default function SelectSize() {
         <option value="XL">XL</option>
         <option value="XXL">XXL</option>
         
+      </Form.Select> */}
+      <Form.Select aria-label="Default select"  className="form-control">
+        <option value="Size detail">Select Size</option>
+      {size_list.map((sz)=>{
+        return (
+          <>
+            
+            <option value={sz.size} placeholder="Quantity">{sz.size}</option>
+            {/* <h2>{sz.size}</h2> */}
+            
+         </>
+        )
+      })}
       </Form.Select>
     </>
   );

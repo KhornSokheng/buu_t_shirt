@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Edit from "./EditCustomer";
-import Table from "react-bootstrap/Table";
+import EditCustomer from "./EditCustomer";
 
 export default function Customer() {
   const [list, setList] = useState([]);
 
   const deleteItem = async (id) => {
     try {
-      // console.log("ID:",id)
       const del = await fetch(`http://localhost:5000/deleteCustomer/${id}`, {
         method: "DELETE",
       });
@@ -38,8 +36,31 @@ export default function Customer() {
     loadList();
   }, []);
   return (
-    <div className="container mt-5">
-      <Table striped bordered hover variant="dark">
+    <div className="container">
+      <h3>CUSTOMER</h3>
+      <tr className="btn mt-5">
+        {/* <td>
+          <input></input>
+          <button className="btn btn-secondary ">ค้นหา</button>
+        </td> */}
+
+        <div className="d-flex">
+          <button
+            type="search"
+            placeholder="Search"
+            className="me-2"
+            aria-label="Search"
+          />
+          <button variant="outline-success">Search</button>
+        </div>
+
+        <td>
+          <a href="/insertCustomer">
+            <button className="btn btn-success ml-5 ">เพิ่มข้อมูล</button>
+          </a>
+        </td>
+      </tr>
+      <table className="table table-striped mt-5">
         <thead>
           <tr>
             <th>Cust Id</th>
@@ -61,7 +82,7 @@ export default function Customer() {
                 <td>{elt.phone_num}</td>
                 <td>{elt.credit_card}</td>
                 <td>
-                  <Edit
+                  <EditCustomer
                     cust_id={elt.cust_id}
                     cust_name={elt.cust_name}
                     cust_lname={elt.cust_lname}
@@ -72,7 +93,7 @@ export default function Customer() {
                 <td>
                   <button
                     className="btn btn-danger"
-                    onClick={() => deleteItem(elt.id)}
+                    onClick={() => deleteItem(elt.buy_id)}
                   >
                     Del
                   </button>
@@ -81,7 +102,7 @@ export default function Customer() {
             );
           })}
         </tbody>
-      </Table>
+      </table>
     </div>
   );
 }
