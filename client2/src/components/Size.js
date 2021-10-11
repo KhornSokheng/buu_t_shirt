@@ -5,7 +5,7 @@ export default function Size() {
   const [list, setList] = useState([]);
   const loadList = async () => {
     try {
-      const resp = await fetch(`http://localhost:5000/getSize`);
+      const resp = await fetch(`http://localhost:5000/getSizeChart`);
       const jsonData = await resp.json();
 
       setList(jsonData);
@@ -26,7 +26,7 @@ export default function Size() {
       <div href="size" className="shirt">
         <img src="images/shirt.png" alt />
 
-        <table className="table table-striped mt-5">
+        <table className="table table-striped container mt-5">
           <thead>
             <tr>
               <th>Size</th>

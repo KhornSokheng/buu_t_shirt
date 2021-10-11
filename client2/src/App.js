@@ -9,6 +9,7 @@ import Sale from "./components/Sale";
 import Size from "./components/Size";
 import Product from "./components/Product";
 import Customer from "./components/Customer";
+import InsertCustomer from "./components/InsertCustomer";
 import Register from "./components/Register";
 import Cart from "./components/Cart";
 import Wishlist from "./components/Wishlist";
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route exact path="/customer/:id">
             <Customer />
+          </Route>
+          <Route exact path="/insertCustomer">
+            <InsertCustomer />
           </Route>
           <Route exact path="/product">
             <Product />

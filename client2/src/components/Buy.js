@@ -4,9 +4,6 @@ import InsertBuy from "./InsertBuy";
 
 export default function Buy() {
   const [list, setList] = useState([]);
-  
-
-  
 
   const deleteItem = async (buy_id) => {
     try {
@@ -48,7 +45,9 @@ export default function Buy() {
           <button className="btn btn-secondary ">ค้นหา</button>
         </td>
         <td>
-        <a href = "/insertbuy"><button className="btn btn-success ml-5 ">เพิ่มข้อมูล</button></a>
+          <a href="/insertbuy">
+            <button className="btn btn-success ml-5 ">เพิ่มข้อมูล</button>
+          </a>
         </td>
       </tr>
       <table className="table table-striped mt-5">
@@ -70,11 +69,13 @@ export default function Buy() {
                   <a href="/buydetail">{elt.buy_id}</a>
                 </td>
                 <td>{elt.buy_status}</td>
-                <td><EditBuy
-                buy_date={elt.buy_date}
-                buy_id={elt.buy_id}
-                buy_status={elt.buy_status}
-                /></td>
+                <td>
+                  <EditBuy
+                    buy_date={elt.buy_date}
+                    buy_id={elt.buy_id}
+                    buy_status={elt.buy_status}
+                  />
+                </td>
                 <td>
                   <button
                     className="btn btn-danger"
