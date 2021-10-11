@@ -25,7 +25,7 @@ export default function SelectSize() {
 
   return (
     <>
-      <Form.Select aria-label="Default select">
+      {/* <Form.Select aria-label="Default select">
         
         <option value="S">S</option>
         <option value="M">M</option>
@@ -33,6 +33,19 @@ export default function SelectSize() {
         <option value="XL">XL</option>
         <option value="XXL">XXL</option>
         
+      </Form.Select> */}
+      <Form.Select aria-label="Default select"  className="form-control">
+        <option value="Size detail">Select Size</option>
+      {size_list.map((sz)=>{
+        return (
+          <>
+            
+            <option value={sz.size} placeholder="Quantity">{sz.size}</option>
+            {/* <h2>{sz.size}</h2> */}
+            
+         </>
+        )
+      })}
       </Form.Select>
     </>
   );
