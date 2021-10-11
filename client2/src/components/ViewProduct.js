@@ -135,7 +135,7 @@ export default function ViewProduct() {
                           >
                             Size:
                           </label>
-                          <SelectSize prod_id={prod_id} color={color} />
+                          <SelectSize prod_id={prod.prod_id} color={color} />
                           {/* <SelectSize /> */}
                         </div>
                         {/* <h5 className="quantity">

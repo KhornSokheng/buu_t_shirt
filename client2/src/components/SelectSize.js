@@ -10,8 +10,12 @@ export default function SelectSize(props) {
 
   const loadList = async () => {
     try {
-      // const bodyData = {prod_id, color}
-      const resp = await fetch(`http://localhost:5000/getSizeRemain/${color}`
+      const bodyData = {prod_id, color}
+      const resp = await fetch(`http://localhost:5000/getSizeRemain`,{
+        method:"POST",
+        headers:{"Content-Type": "application/json"},
+        body: JSON.stringify(bodyData)
+      }
       
       );
       const jsonData = await resp.json();

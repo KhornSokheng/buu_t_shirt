@@ -114,15 +114,17 @@ app.get('/getSizeChart', (req, res) =>{
         console.error(err.message);
     }
 })
-// get all size (OK)
-app.get('/getSizeRemain/:color', (req, res) =>{
+// get all remaining size using prod-id and color (OK)
+// Switch from GET to POST method
+app.post('/getSizeRemain', (req, res) =>{
 
     try {
 
-        const {color} = req.params;
+        // const {color} = req.params;
+        const {prod_id,color} = req.body;
         const sql = `SELECT color, size FROM warehouse_view
         WHERE total_amount - sold_amount >0
-        AND prod_id = "P001"
+        AND prod_id = "${prod_id}"
         AND color = "${color}"`;
         console.log(sql)
         pool.query(sql, (err,results)=>{
