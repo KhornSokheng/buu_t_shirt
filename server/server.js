@@ -379,7 +379,7 @@ app.put('/updateBuy/:id', (req,res) => {
         let {id} = req.params;
         let {buy_date,buy_id,buy_status} = req.body;
     
-        const sql = `CALL update_buy('${buy_date}','${buy_id}','${buy_status}')`
+        const sql = `CALL update_buy('${buy_id}','${buy_date}','${buy_status}')`
         pool.query(sql, (err,results)=>{
             if(err){
                 res.send(err.message);

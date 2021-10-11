@@ -2,15 +2,20 @@ import React,{useState} from 'react'
 
 export default function EditBuy(props) {
 
-    const buy_id = props.buy_id;
+    const [buy_id,setId]=useState(props.buy_id);
     const [buy_date,setDate]=useState(props.buy_date);
     const [buy_status,setStatus]=useState(props.buy_status);
 
     const onUpdateData = (e)=>{
         e.preventDefault();
         try{      
-            console.log(buy_date,buy_status);    
-          const res = fetch(`http://localhost:5000/`)
+            const bodyIn = {buy_id,buy_date,buy_status}  
+          const res = fetch(`http://localhost:5000/updateBuy/${buy_id}`,{
+            method:"put",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(bodyIn)
+          })
+          window.location="/buy";
         }catch (err){
             console.error(err.message);
         }
@@ -22,12 +27,12 @@ export default function EditBuy(props) {
                       type="button"
                       className="btn btn-warning"
                       data-toggle="modal"
-                      data-target="#myModal"
+                      data-target={`#buy_id${buy_id}`}
                     >
                       แก้ไข
                     </button>
                     {/* The Modal */}
-                    <div className="modal fade" id="myModal">
+                    <div className="modal fade" id={`buy_id${buy_id}`}>
                       <div className="modal-dialog">
                         <div className="modal-content">
                           {/* Modal Header */}
@@ -44,6 +49,15 @@ export default function EditBuy(props) {
                           {/* Modal body */}
                           <div className="modal-body">
                             <div>
+                            <div className="form-group">
+                                <input
+                                  type="name"
+                                  className="form-control"
+                                  id="id"
+                                  value = {buy_id}
+                                  onChange={e=>{setId(e.target.value)}}
+                                />
+                              </div>
                               <div className="form-group">
                                 <input
                                   type="date"

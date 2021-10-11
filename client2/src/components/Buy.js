@@ -48,7 +48,7 @@ export default function Buy() {
           <button className="btn btn-secondary ">ค้นหา</button>
         </td>
         <td>
-        <a href = "/insertbuy"><button className="btn btn-success ml-5 ">ค้นหา</button></a>
+        <a href = "/insertbuy"><button className="btn btn-success ml-5 ">เพิ่มข้อมูล</button></a>
         </td>
       </tr>
       <table className="table table-striped mt-5">
