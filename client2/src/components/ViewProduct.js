@@ -11,7 +11,7 @@ export default function ViewProduct() {
   const [prod_name, setProdName] = useState([]);
   const [size, setSize] = useState([]);
   const [amount, setAmount] = useState([]);
-  const [color, setColor] = useState(["BLACK"]);
+  const [color, setColor] = useState([]);
   const [prod_id, setProdId] = useState([]);
   const [cust_id, setCustId] = useState([]);
   const [prod_price, setProdPrice] = useState([]);
@@ -30,12 +30,12 @@ export default function ViewProduct() {
     }
   };
 
-  const insertCart = (e) => {
+  const insertCart = async (e) => {
     e.preventDefault();
     try {
       console.log(prod_id, color, size, amount);
       const bodyStr = { prod_id, color, size, amount };
-      const resp = fetch("http://localhost:4000/insertCart", {
+      const resp = await fetch("http://localhost:4000/insertCart", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(bodyStr),
@@ -69,26 +69,10 @@ export default function ViewProduct() {
                       <div className="product-item">
                         <figure className="product-thumb">
                           <img src={prod.image_url} alt />
-                          {/* <div className="action-links">
-                          <a href="/viewproduct" className="quick-view icon">
-                            <i className="ti-eye" />
-                          </a>
-                          <a href="#" className="wishlist icon">
-                            <i className="ti-write" />
-                          </a>
                           
-                          <a href="#" className="add-cart icon">
-                            <i className="ti-shopping-cart" />
-                          </a>
-                        </div> */}
                         </figure>
                         <div className="product-content">
-                          {/* <h5 className="product-name">
-                          <a href="#">{prod.prod_name}</a>
-                        </h5>
-                        <h5 className="product-name">
-                          <a href="#">{prod.color}</a>
-                        </h5> */}
+                          
                           <div className="ratings">
                             <a href="#">
                               <i className="ti-star" />
@@ -123,7 +107,7 @@ export default function ViewProduct() {
                         <div
                           className="form-group quantity"
                           onChange={(e) => {
-                            setColor(e.target.value);
+                            setColor(e.target.value); 
                           }}
                         >
                           <label
