@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Banner from "./Banner";
 import ViewIcon from "./ViewIcon";
+import ViewProduct from "./ViewProduct";
 
 export default function Product() {
   const [prod_list, setList] = useState([]);
@@ -54,7 +55,7 @@ export default function Product() {
                         {/* <a href="/viewproduct" className="quick-view icon">
                           <i className="ti-eye" />
                         </a> */}
-                        <ViewIcon prod_id={prod.prod_id} color={prod.color}/>
+                        <ViewIcon prod_id={prod.prod_id} color={prod.color} />
                         <a href="#" className="wishlist icon">
                           <i className="ti-write" />
                         </a>

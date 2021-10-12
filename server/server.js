@@ -242,8 +242,10 @@ app.get('/getProduct/:id',  (req, res) =>{
     try {
 
         const id = req.params.id;
+        // const color = req.params.color;
         // const sql = `SELECT * from warehouse_view where prod_color_id = "${id}" GROUP BY prod_color_id`;
-        const sql = `SELECT * from warehouse_view where prod_id = "${id}"  GROUP BY color`;
+        // const sql = `SELECT * from warehouse_view where prod_id = "${id}" and color="${color}"  GROUP BY color LIMIT 1`;
+        const sql = `SELECT * from warehouse_view where prod_id = "${id}" GROUP BY color LIMIT 1`;
         console.log(sql)
         pool.query(sql, (err,results)=>{
             if(err){

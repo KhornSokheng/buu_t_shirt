@@ -40,10 +40,10 @@ function App() {
           <Route exact path="/product">
             <Product />
           </Route>
-          <Route exact path="/viewproduct">
+          {/* <Route exact path="/viewproduct">
             <ViewProduct/>
-          </Route>
-          <Route exact path="/viewproduct/:id">
+          </Route> */}
+          <Route exact path="/viewproduct/:id/:color">
             <ViewProduct />
           </Route>
           <Route exact path="/buy">

@@ -47,7 +47,7 @@ export default function SelectSize(props) {
         
       </Form.Select> */}
       <Form.Select aria-label="Default select"  className="form-control">
-        <option value="Size detail">Select Size</option>
+        <option value="L">Select Size</option>
       {size_list.map((sz)=>{
         return (
           <>
