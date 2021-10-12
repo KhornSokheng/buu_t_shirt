@@ -4,14 +4,14 @@ import EditCustomer from "./EditCustomer";
 export default function Customer() {
   const [list, setList] = useState([]);
 
-  const deleteItem = async (id) => {
+  const deleteItem = async (cust_id) => {
     try {
-      const del = await fetch(`http://localhost:5000/deleteCustomer/${id}`, {
+      const del = await fetch(`http://localhost:5000/deleteCustomer/${cust_id}`, {
         method: "DELETE",
       });
       setList(
         list.filter((elt) => {
-          return elt.id !== id;
+          return elt.cust_id !== cust_id;
         })
       );
     } catch (err) {
@@ -93,7 +93,7 @@ export default function Customer() {
                 <td>
                   <button
                     className="btn btn-danger"
-                    onClick={() => deleteItem(elt.buy_id)}
+                    onClick={() => deleteItem(elt.cust_id)}
                   >
                     Del
                   </button>

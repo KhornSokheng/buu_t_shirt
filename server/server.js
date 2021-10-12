@@ -461,6 +461,7 @@ app.delete('/deleteCustomer/:id', (req, res) =>{
         let {id} = req.params;
 
         const sql = `DELETE FROM customer where cust_id = "${id}"`;
+        console.log(sql)
         pool.query(sql, (err,results)=>{
             if(err){
                 throw err;
@@ -482,6 +483,7 @@ app.delete('/deleteBuy/:id', (req, res) =>{
         let {id} = req.params;
 
         const sql = `DELETE FROM buy where buy_id = "${id}"`;
+        console.log(sql)
         pool.query(sql, (err,results)=>{
             if(err){
                 throw err;
