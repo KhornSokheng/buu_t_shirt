@@ -21,8 +21,8 @@ export default function InsertBuy() {
   }
   return (
     <div className = "container" >
-      <h2>Buy Insert</h2>
-      <form action={doInsert} novalidate>
+      <h2>Insert Buy</h2>
+      <form onSubmit={doInsert} novalidate>
       <div className="form-group mt-5">
           <input
             type="text"
@@ -61,7 +61,7 @@ export default function InsertBuy() {
         </div>
         <div className="form-group form-check">
         </div>
-        <button className="btn btn-success m-3">Submit</button>
+        <button type="submit" className="btn btn-success m-3">Submit</button>
         <a class="btn btn-danger" href="/buy" role="button">Cancel</a>
       </form>
     </div>

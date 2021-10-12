@@ -16,6 +16,8 @@ import Wishlist from "./components/Wishlist";
 import Buydetail from "./components/Buydetail";
 import ViewProduct from "./components/ViewProduct";
 import InsertBuy from "./components/InsertBuy";
+import InsertBuyDetail from "./components/InsertBuyDetail";
+import LogIn from "./components/LogIn";
 
 function App() {
   return (
@@ -52,6 +54,9 @@ function App() {
           </Route>
           <Route exact path="/buy/:id">
             <Buy />
+            </Route>
+          <Route exact path="/insertbuydetail">
+            <InsertBuyDetail/>
           </Route>
           <Route exact path="/buydetail">
             <Buydetail />
@@ -67,6 +72,9 @@ function App() {
           </Route>
           <Route exact path="/register">
             <Register />
+          </Route>
+          <Route exact path="/login">
+            <LogIn/>
           </Route>
           <Route exact path="/cart">
             <Cart />

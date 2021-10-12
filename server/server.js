@@ -93,16 +93,18 @@ app.get("/getSizeChart", (req, res) => {
     console.error(err.message);
   }
 });
-// get all size (OK)
-app.get("/getSizeRemain/:color", (req, res) => {
+// get all remaining size using prod-id and color (OK)
+// Switch from GET to POST method
+app.post("/getSizeRemain", async (req, res) => {
   try {
-    const { color } = req.params;
+    // const {color} = req.params;
+    const { prod_id, color } = req.body;
     const sql = `SELECT color, size FROM warehouse_view
         WHERE total_amount - sold_amount >0
-        AND prod_id = "P001"
+        AND prod_id = "${prod_id}"
         AND color = "${color}"`;
     console.log(sql);
-    pool.query(sql, (err, results) => {
+    await pool.query(sql, (err, results) => {
       if (err) {
         throw err;
       }
@@ -113,6 +115,29 @@ app.get("/getSizeRemain/:color", (req, res) => {
     console.error(err.message);
   }
 });
+
+// get all remaining size using prod-id and color (OK)
+// Switch from GET to POST method
+app.post("/getColorRemain", async (req, res) => {
+  try {
+    // const {color} = req.params;
+    const { prod_id } = req.body;
+    const sql = `SELECT DISTINCT prod_id,color FROM warehouse_view
+        WHERE total_amount - sold_amount >0
+        AND prod_id = "${prod_id}"`;
+    console.log(sql);
+    await pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 // get all buy (OK)
 app.get("/getBuy", (req, res) => {
   try {
@@ -311,7 +336,7 @@ app.post("/insertCustomer", (req, res) => {
 // use get when working with browser and put(or get) with postman (?)
 app.put("/updateCustomer/:id", (req, res) => {
   try {
-    let { id } = req.params;
+    // let {cust_id} = req.params;  //undefined
     let { cust_id, cust_name, cust_lname, phone_num, credit_card } = req.body;
 
     // const sql = `UPDATE customer SET ('${cust_id}','${cust_name}','${cust_lname}', '${phone_num}','${credit_card}')`;
@@ -324,6 +349,7 @@ app.put("/updateCustomer/:id", (req, res) => {
         throw err;
       }
       console.log(sql);
+      console.log(cust_id);
       console.log(results);
       res.send("updated successfully");
     });
@@ -337,6 +363,7 @@ app.put("/updateBuy/:id", (req, res) => {
     let { buy_date, buy_id, buy_status } = req.body;
 
     const sql = `CALL update_buy('${buy_id}','${buy_date}','${buy_status}')`;
+    console.log(id);
     pool.query(sql, (err, results) => {
       if (err) {
         res.send(err.message);
@@ -359,6 +386,7 @@ app.delete("/deleteCustomer/:id", (req, res) => {
     let { id } = req.params;
 
     const sql = `DELETE FROM customer where cust_id = "${id}"`;
+    console.log(sql);
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;
@@ -376,6 +404,7 @@ app.delete("/deleteBuy/:id", (req, res) => {
     let { id } = req.params;
 
     const sql = `DELETE FROM buy where buy_id = "${id}"`;
+    console.log(sql);
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;

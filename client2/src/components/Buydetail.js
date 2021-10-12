@@ -78,7 +78,17 @@ export default function Buydetail() {
                 <td>{elt.size}</td>
                 <td>{elt.buy_amount}</td>
                 <td>{elt.buy_cost}</td>
-                <td><EditBuyDetail/></td>
+                <td><EditBuyDetail
+                buy_id={elt.buy_id}
+                item={elt.item}
+                full_prod_id={elt.full_prod_id}
+                prod_name={elt.prod_name}
+                color={elt.color}
+                size={elt.size}
+                buy_amount={elt.buy_amount}
+                buy_cost={elt.buy_cost}
+                />
+                </td>
                 <td>
                   <button
                     className="btn btn-danger"
