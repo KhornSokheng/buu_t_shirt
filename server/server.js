@@ -403,7 +403,7 @@ app.post('/insertCustomer', (req,res)=>{
 // use get when working with browser and put(or get) with postman (?)
 app.put('/updateCustomer/:id', (req,res) => {
     try {
-        // let {cust_id} = req.params;
+        // let {cust_id} = req.params;  //undefined
         let {cust_id,cust_name,cust_lname, phone_num,credit_card} = req.body;
         
         // const sql = `UPDATE customer SET ('${cust_id}','${cust_name}','${cust_lname}', '${phone_num}','${credit_card}')`;
