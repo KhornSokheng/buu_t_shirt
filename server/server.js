@@ -243,7 +243,7 @@ app.get('/getProduct/:id',  (req, res) =>{
 
         const id = req.params.id;
         // const sql = `SELECT * from warehouse_view where prod_color_id = "${id}" GROUP BY prod_color_id`;
-        const sql = `SELECT * from warehouse_view where prod_id = "${id}" GROUP BY prod_id`;
+        const sql = `SELECT * from warehouse_view where prod_id = "${id}"  GROUP BY color`;
         console.log(sql)
         pool.query(sql, (err,results)=>{
             if(err){
