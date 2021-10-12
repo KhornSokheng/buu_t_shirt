@@ -31,6 +31,7 @@ export default function SelectSize(props) {
 
   useEffect(() => {
     console.log("Enter useEffect");
+    // setColor([{color}])
     loadList();
   }, []);
 

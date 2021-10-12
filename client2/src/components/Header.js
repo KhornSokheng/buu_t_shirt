@@ -65,9 +65,9 @@ export default function Header() {
               <li>
                 <a href="/size">Size</a>
               </li>
-              <li>
+              {/* <li>
                 <a href="/register">Register</a>
-              </li>
+              </li> */}
             </ul>
             <div className="d-inline-flex align-items-center">
               <a href="#" className="search-icon icon">
@@ -79,9 +79,10 @@ export default function Header() {
                 <i className="ti-shopping-cart" />
                 <span className="itemCount">n</span>
               </a>
-              <a href="/wishlist" className="wishlist icon">
-                <i className="ti-heart" />
-                <span className="itemCount">n</span>
+              <a href="/login" className="wishlist icon">
+                <i className="ti-user" />
+                {/* <span className="itemCount">*</span> */}
+                {/* <button className="btn btn-danger" type="button">Log In</button> */}
               </a>
             </div>
           </nav>

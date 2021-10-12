@@ -35,6 +35,7 @@ export default function InsertCustomer(props) {
           <input
             type="text"
             className="form-control"
+            placeholder="Enter Cust Id"
             id="id"
             value={cust_id}
             onChange={(e) => {
@@ -46,6 +47,7 @@ export default function InsertCustomer(props) {
           <input
             type="text"
             className="form-control"
+            placeholder="Enter Cust Name"
             id="usr"
             value={cust_name}
             onChange={(e) => {
@@ -58,6 +60,7 @@ export default function InsertCustomer(props) {
             <input
               type="text"
               className="form-control"
+              placeholder="Enter Cust Lname"
               id="usr"
               value={cust_lname}
               onChange={(e) => {
@@ -69,6 +72,7 @@ export default function InsertCustomer(props) {
             <input
               type="text"
               className="form-control"
+              placeholder="Enter Phone Num"
               id="pwd"
               value={phone_num}
               onChange={(e) => {
@@ -80,19 +84,7 @@ export default function InsertCustomer(props) {
             <input
               type="text"
               className="form-control"
-              id="pwd"
-              value={credit_card}
-              onChange={(e) => {
-                setCredit_Card(e.target.value);
-              }}
-            />
-          </div>
-
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Enter Buy Status"
+              placeholder="Enter Credit Card"
               id="status"
               onChange={(e) => {
                 setCredit_Card(e.target.value);
@@ -105,8 +97,7 @@ export default function InsertCustomer(props) {
           Submit
         </button>
       </form>
-
-      <a href="/buy">
+      <a href="/customer">
         <button className="btn btn-danger mt-1">Cancel</button>
       </a>
     </div>

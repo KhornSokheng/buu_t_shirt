@@ -5,20 +5,20 @@ import Banner from "./Banner";
 import SelectSize from "./SelectSize";
 import SelectColor from "./SelectColor";
 
-export default function ViewProduct() {
-  const id = "P001-BK";
+export default function ViewProduct(props) {
+  const [prod_id, setProdId] = useState([props.prod_id]);
   const [prod_list, setList] = useState([]);
   const [prod_name, setProdName] = useState([]);
   const [size, setSize] = useState([]);
   const [amount, setAmount] = useState([]);
   const [color, setColor] = useState([]);
-  const [prod_id, setProdId] = useState([]);
+  // const [prod_id, setProdId] = useState([]);
   const [cust_id, setCustId] = useState([]);
   const [prod_price, setProdPrice] = useState([]);
 
   const loadList = async () => {
     try {
-      const resp = await fetch(`http://localhost:5000/getProduct/${id}`);
+      const resp = await fetch(`http://localhost:5000/getProduct/${prod_id}`);
       const jsonData = await resp.json();
 
       setList(jsonData);

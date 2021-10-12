@@ -17,6 +17,7 @@ import Buydetail from "./components/Buydetail";
 import ViewProduct from "./components/ViewProduct";
 import InsertBuy from "./components/InsertBuy";
 import InsertBuyDetail from "./components/InsertBuyDetail";
+import LogIn from "./components/LogIn";
 
 function App() {
   return (
@@ -71,6 +72,9 @@ function App() {
           </Route>
           <Route exact path="/register">
             <Register />
+          </Route>
+          <Route exact path="/login">
+            <LogIn/>
           </Route>
           <Route exact path="/cart">
             <Cart />

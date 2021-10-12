@@ -4,14 +4,17 @@ import EditCustomer from "./EditCustomer";
 export default function Customer() {
   const [list, setList] = useState([]);
 
-  const deleteItem = async (id) => {
+  const deleteItem = async (cust_id) => {
     try {
-      const del = await fetch(`http://localhost:5000/deleteCustomer/${id}`, {
-        method: "DELETE",
-      });
+      const del = await fetch(
+        `http://localhost:5000/deleteCustomer/${cust_id}`,
+        {
+          method: "DELETE",
+        }
+      );
       setList(
         list.filter((elt) => {
-          return elt.id !== id;
+          return elt.cust_id !== cust_id;
         })
       );
     } catch (err) {
@@ -39,21 +42,10 @@ export default function Customer() {
     <div className="container">
       <h3>CUSTOMER</h3>
       <tr className="btn mt-5">
-        {/* <td>
+        <td>
           <input></input>
           <button className="btn btn-secondary ">ค้นหา</button>
-        </td> */}
-
-        <div className="d-flex">
-          <button
-            type="search"
-            placeholder="Search"
-            className="me-2"
-            aria-label="Search"
-          />
-          <button variant="outline-success">Search</button>
-        </div>
-
+        </td>
         <td>
           <a href="/insertCustomer">
             <button className="btn btn-success ml-5 ">เพิ่มข้อมูล</button>
@@ -67,7 +59,7 @@ export default function Customer() {
             <th>Cust Name</th>
             <th>Cust Lname</th>
             <th>Phone Num</th>
-            <th>Cust Card</th>
+            <th>Credit Card</th>
             <th>Edit</th>
             <th>Del</th>
           </tr>
@@ -93,7 +85,7 @@ export default function Customer() {
                 <td>
                   <button
                     className="btn btn-danger"
-                    onClick={() => deleteItem(elt.buy_id)}
+                    onClick={() => deleteItem(elt.cust_id)}
                   >
                     Del
                   </button>
