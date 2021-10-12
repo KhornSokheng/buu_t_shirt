@@ -3,9 +3,9 @@ import EditCustomer from "./EditCustomer";
 
 export default function Customer() {
   const [list, setList] = useState([]);
-
   const deleteItem = async (id) => {
     try {
+      // console.log("ID:",id)
       const del = await fetch(`http://localhost:5000/deleteCustomer/${id}`, {
         method: "DELETE",
       });
@@ -18,6 +18,7 @@ export default function Customer() {
       console.error(err.message);
     }
   };
+
   const loadList = async () => {
     try {
       const resp = await fetch("http://localhost:5000/getCustomer");
@@ -35,32 +36,22 @@ export default function Customer() {
     console.log("Enter useEffect()");
     loadList();
   }, []);
+
   return (
     <div className="container">
       <h3>CUSTOMER</h3>
       <tr className="btn mt-5">
-        {/* <td>
+        <td>
           <input></input>
           <button className="btn btn-secondary ">ค้นหา</button>
-        </td> */}
-
-        <div className="d-flex">
-          <button
-            type="search"
-            placeholder="Search"
-            className="me-2"
-            aria-label="Search"
-          />
-          <button variant="outline-success">Search</button>
-        </div>
-
+        </td>
         <td>
-          <a href="/insertCustomer">
+          <a href="/insertcustomer">
             <button className="btn btn-success ml-5 ">เพิ่มข้อมูล</button>
           </a>
         </td>
       </tr>
-      <table className="table table-striped mt-5">
+      <table className="table table-hover mt-5">
         <thead>
           <tr>
             <th>Cust Id</th>
@@ -93,7 +84,7 @@ export default function Customer() {
                 <td>
                   <button
                     className="btn btn-danger"
-                    onClick={() => deleteItem(elt.buy_id)}
+                    onClick={() => deleteItem(elt.cust_id)}
                   >
                     Del
                   </button>

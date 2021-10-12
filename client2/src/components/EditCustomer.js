@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Edit(props) {
+export default function EditCustomer(props) {
   const cust_id = props.cust_id;
   const [cust_name, setCust_Name] = useState(props.cust_name);
   const [cust_lname, setCust_Lname] = useState(props.cust_lname);
