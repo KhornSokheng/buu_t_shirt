@@ -116,7 +116,7 @@ app.get('/getSizeChart', (req, res) =>{
 })
 // get all remaining size using prod-id and color (OK)
 // Switch from GET to POST method
-app.post('/getSizeRemain', (req, res) =>{
+app.post('/getSizeRemain', async (req, res) =>{
 
     try {
 
@@ -127,7 +127,7 @@ app.post('/getSizeRemain', (req, res) =>{
         AND prod_id = "${prod_id}"
         AND color = "${color}"`;
         console.log(sql)
-        pool.query(sql, (err,results)=>{
+        await pool.query(sql, (err,results)=>{
             if(err){
                 throw err;
             }
@@ -143,7 +143,7 @@ app.post('/getSizeRemain', (req, res) =>{
 
 // get all remaining size using prod-id and color (OK)
 // Switch from GET to POST method
-app.post('/getColorRemain', (req, res) =>{
+app.post('/getColorRemain', async(req, res) =>{
 
     try {
 
@@ -153,7 +153,7 @@ app.post('/getColorRemain', (req, res) =>{
         WHERE total_amount - sold_amount >0
         AND prod_id = "${prod_id}"`;
         console.log(sql)
-        pool.query(sql, (err,results)=>{
+        await pool.query(sql, (err,results)=>{
             if(err){
                 throw err;
             }

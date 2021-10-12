@@ -10,10 +10,11 @@ export default function AddCart(params) {
     // const [prod_id,color, size, sale_amount,prod_price] = params;
   return (
     <div>
+        <h5>Detail:[{prod_id},{color}, {size}, {sale_amount},{prod_price}]</h5>
       <button type="submit" className="btn btn-success text-center">
         Add to cart
       </button>
-      <h1>{prod_id},{color}, {size}, {sale_amount},{prod_price}</h1>
+      
     </div>
   );
 }

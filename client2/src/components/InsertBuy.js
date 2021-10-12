@@ -60,7 +60,7 @@ export default function InsertBuy() {
         </div>
         <div className="form-group form-check">
         </div>
-        <button  className="btn btn-success m-3">Submit</button>
+        <button className="btn btn-success m-3">Submit</button>
         <a class="btn btn-danger" href="/buy" role="button">Cancel</a>
       </form>
     </div>
