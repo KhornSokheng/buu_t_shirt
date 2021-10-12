@@ -6,9 +6,12 @@ export default function Customer() {
 
   const deleteItem = async (cust_id) => {
     try {
-      const del = await fetch(`http://localhost:5000/deleteCustomer/${cust_id}`, {
-        method: "DELETE",
-      });
+      const del = await fetch(
+        `http://localhost:5000/deleteCustomer/${cust_id}`,
+        {
+          method: "DELETE",
+        }
+      );
       setList(
         list.filter((elt) => {
           return elt.cust_id !== cust_id;
@@ -39,21 +42,10 @@ export default function Customer() {
     <div className="container">
       <h3>CUSTOMER</h3>
       <tr className="btn mt-5">
-        {/* <td>
+        <td>
           <input></input>
           <button className="btn btn-secondary ">ค้นหา</button>
-        </td> */}
-
-        <div className="d-flex">
-          <button
-            type="search"
-            placeholder="Search"
-            className="me-2"
-            aria-label="Search"
-          />
-          <button variant="outline-success">Search</button>
-        </div>
-
+        </td>
         <td>
           <a href="/insertCustomer">
             <button className="btn btn-success ml-5 ">เพิ่มข้อมูล</button>
