@@ -67,7 +67,7 @@ export default function Customer() {
             <th>Cust Name</th>
             <th>Cust Lname</th>
             <th>Phone Num</th>
-            <th>Cust Card</th>
+            <th>Credit Card</th>
             <th>Edit</th>
             <th>Del</th>
           </tr>

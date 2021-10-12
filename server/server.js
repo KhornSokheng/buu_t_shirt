@@ -403,7 +403,7 @@ app.post('/insertCustomer', (req,res)=>{
 // use get when working with browser and put(or get) with postman (?)
 app.put('/updateCustomer/:id', (req,res) => {
     try {
-        let {id} = req.params;
+        // let {cust_id} = req.params;
         let {cust_id,cust_name,cust_lname, phone_num,credit_card} = req.body;
         
         // const sql = `UPDATE customer SET ('${cust_id}','${cust_name}','${cust_lname}', '${phone_num}','${credit_card}')`;
@@ -416,6 +416,7 @@ app.put('/updateCustomer/:id', (req,res) => {
                 throw err;
             }
             console.log(sql);
+            console.log(cust_id);
             console.log(results);
             res.send("updated successfully")
             
@@ -433,6 +434,7 @@ app.put('/updateBuy/:id', (req,res) => {
         let {buy_date,buy_id,buy_status} = req.body;
     
         const sql = `CALL update_buy('${buy_id}','${buy_date}','${buy_status}')`
+        console.log(id)
         pool.query(sql, (err,results)=>{
             if(err){
                 res.send(err.message);

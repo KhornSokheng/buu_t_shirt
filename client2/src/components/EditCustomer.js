@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 export default function Edit(props) {
-  const cust_id = props.cust_id;
+  // const cust_id = props.cust_id;
+  const [cust_id, setCust_id] = useState(props.cust_id);
   const [cust_name, setCust_Name] = useState(props.cust_name);
   const [cust_lname, setCust_Lname] = useState(props.cust_lname);
   const [phone_num, setPhone_Num] = useState(props.phone_num);
@@ -10,7 +11,8 @@ export default function Edit(props) {
   const onUpdateData = async (e) => {
     e.preventDefault();
     try {
-      const bodyData = { cust_name,cust_lname,phone_num,credit_card };
+      const bodyData = { cust_id,cust_name,cust_lname,phone_num,credit_card };
+      console.log("Edit Cust ID: ",cust_id)
       const res = await fetch(
         `http://localhost:5000/updateCustomer/${cust_id}`,
         {
