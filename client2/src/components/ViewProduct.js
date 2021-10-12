@@ -11,7 +11,7 @@ export default function ViewProduct(props) {
   const [prod_name, setProdName] = useState([]);
   const [size, setSize] = useState([]);
   const [amount, setAmount] = useState([]);
-  const [color, setColor] = useState([]);
+  const [color, setColor] = useState([props.color]);
   // const [prod_id, setProdId] = useState([]);
   const [cust_id, setCustId] = useState([]);
   const [prod_price, setProdPrice] = useState([]);
