@@ -5,6 +5,7 @@ export default function InsertBuyDetail() {
     const [prod_name,setName] = useState();
     const [color,setColor] = useState();
     const [size,setSize] = useState();
+    const [amount,setAmount] = useState();
     const doInsert = (e)=>{
         e.preventDefault();
         try {
@@ -57,6 +58,18 @@ export default function InsertBuyDetail() {
             required
             onChange={e=>{
               setSize(e.target.value)
+            }}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="number"
+            className="form-control"
+            placeholder="Enter Amount"
+            id="amount"
+            required
+            onChange={e=>{
+              setAmount(e.target.value)
             }}
           />
         </div>
