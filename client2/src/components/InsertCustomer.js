@@ -30,7 +30,7 @@ export default function InsertCustomer(props) {
   return (
     <div className="container">
       <h2>Customer</h2>
-      <form onSubmit={doInsert}>
+      <form onSubmit={doInsert} novalidate>
         <div className="form-group mt-5">
           <input
             type="text"
@@ -38,6 +38,7 @@ export default function InsertCustomer(props) {
             placeholder="Enter Cust Id"
             id="id"
             value={cust_id}
+            required
             onChange={(e) => {
               setCust_Id(e.target.value);
             }}
@@ -50,6 +51,7 @@ export default function InsertCustomer(props) {
             placeholder="Enter Cust Name"
             id="usr"
             value={cust_name}
+            required
             onChange={(e) => {
               setCust_Name(e.target.value);
             }}
@@ -63,6 +65,7 @@ export default function InsertCustomer(props) {
               placeholder="Enter Cust Lname"
               id="usr"
               value={cust_lname}
+              required
               onChange={(e) => {
                 setCust_Lname(e.target.value);
               }}
@@ -75,6 +78,7 @@ export default function InsertCustomer(props) {
               placeholder="Enter Phone Num"
               id="pwd"
               value={phone_num}
+              required
               onChange={(e) => {
                 setPhone_Num(e.target.value);
               }}
@@ -86,6 +90,8 @@ export default function InsertCustomer(props) {
               className="form-control"
               placeholder="Enter Credit Card"
               id="status"
+              value={credit_card}
+              required
               onChange={(e) => {
                 setCredit_Card(e.target.value);
               }}
@@ -93,13 +99,13 @@ export default function InsertCustomer(props) {
           </div>
         </div>
         <div className="form-group form-check"></div>
-        <button type="submit" className="btn btn-success">
+        <button type="submit" className="btn btn-success m-3">
           Submit
         </button>
+        <a class="btn btn-danger" href="/customer" role="button">
+          Cancel
+        </a>
       </form>
-      <a href="/customer">
-        <button className="btn btn-danger mt-1">Cancel</button>
-      </a>
     </div>
   );
 }
