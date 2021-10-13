@@ -141,6 +141,49 @@ app.post("/getColorRemain", async (req, res) => {
   }
 });
 
+app.get("/getColor", (req, res) => {
+  try {
+    const sql = `SELECT color from prod_color`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.get("/getSize", (req, res) => {
+  try {
+    const sql = `SELECT size from size_chart`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.get("/getBuyID", (req, res) => {
+  try {
+    const sql = `SELECT buy_id FROM buy`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 // get all buy (OK)
 app.get("/getBuy", (req, res) => {
   try {

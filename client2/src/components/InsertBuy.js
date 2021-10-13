@@ -1,5 +1,4 @@
 import React,{useState} from "react";
-import Buy from "./Buy"
 
 export default function InsertBuy() {
   const [buy_id,setID] = useState();
@@ -23,7 +22,7 @@ export default function InsertBuy() {
     <div className = "container" >
       <h2>Insert Buy</h2>
       <form onSubmit={doInsert} novalidate>
-      <div className="form-group mt-5">
+      <div className="form-group mt-5" >
           <input
             type="text"
             className="form-control"
@@ -61,7 +60,7 @@ export default function InsertBuy() {
         </div>
         <div className="form-group form-check">
         </div>
-        <button type="submit" className="btn btn-success m-3">Submit</button>
+        <button className="btn btn-success m-3">Submit</button>
         <a class="btn btn-danger" href="/buy" role="button">Cancel</a>
       </form>
     </div>
