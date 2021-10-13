@@ -323,6 +323,20 @@ app.get("/getProductColor", (req, res) => {
     console.error(err.message);
   }
 });
+app.get("/getCostTotal", (req, res) => {
+  try {
+    const sql = `SELECT sum(buy_cost)total FROM buy_detail;`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 // --------------------------------------------
 // post method
@@ -477,6 +491,26 @@ app.put("/updateBuy/:id", (req, res) => {
     let { buy_date, buy_id, buy_status } = req.body;
 
     const sql = `CALL update_buy('${buy_id}','${buy_date}','${buy_status}')`;
+    console.log(id);
+    pool.query(sql, (err, results) => {
+      if (err) {
+        res.send(err.message);
+        throw err;
+      }
+      console.log(sql);
+      console.log(results);
+      res.send("updated successfully");
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.put("/updateBuyDetail/:id", (req, res) => {
+  try {
+    let { id } = req.params;
+    let { buy_id,item,buy_amount,buy_cost } = req.body;
+
+    const sql = `UPDATE buy_detail SET buy_amount=${buy_amount},buy_cost=${buy_cost} WHERE buy_id="${buy_id} " AND item = ${item}`;
     console.log(id);
     pool.query(sql, (err, results) => {
       if (err) {

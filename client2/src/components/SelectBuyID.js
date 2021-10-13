@@ -29,8 +29,8 @@ export default function SelectColorBuy() {
         {buy_id_list.map((ids) => {
           return (
             <>
-              <option value={ids.id} placeholder="Name">
-                {ids.id}
+              <option value={ids.buy_id} placeholder="Name">
+                {ids.buy_id}
               </option>
             </>
           );
