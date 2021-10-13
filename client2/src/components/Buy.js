@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import EditBuy from "./EditBuy";
-import InsertBuy from "./InsertBuy";
 
 export default function Buy() {
   const [list, setList] = useState([]);
-
+  // const [cost, setCost] = useState();
+  let cost
   const deleteItem = async (buy_id) => {
     try {
       const del = await fetch(`http://localhost:5000/deleteBuy/${buy_id}`, {
@@ -32,25 +32,42 @@ export default function Buy() {
       console.error(err.message);
     }
   };
+  const loadCost = async () => {
+    try {
+      const resp = await fetch("http://localhost:5000/getCostTotal");
+      const jsonData = await resp.json();
+
+      // setCost(jsonData);
+      cost = jsonData[0].total
+
+      console.log("Resp", resp);
+      console.log("List:", cost);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
   useEffect(() => {
     console.log("Enter useEffect()");
     loadList();
+    loadCost();
   }, []);
   return (
     <div className="container">
       <h3>BUY REPORT</h3>
-      <tr className="btn mt-5">
+      <p>Total Cost:{cost}</p>
+      
+      <tr className="btn mt-1">
         <td>
           <input></input>
-          <button className="btn btn-secondary ">ค้นหา</button>
+          <button className="btn btn-secondary ml-1">ค้นหา</button>
         </td>
         <td>
           <a href="/insertbuy">
-            <button className="btn btn-success ml-5 ">เพิ่มข้อมูล</button>
+            <button className="btn btn-success ml-3">เพิ่มข้อมูล</button>
           </a>
         </td>
       </tr>
-      <table className="table table-striped mt-5">
+      <table className="table table-striped">
         <thead>
           <tr>
             <th>Buy date</th>

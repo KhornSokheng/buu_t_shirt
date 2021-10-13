@@ -22,7 +22,7 @@ export default function InsertBuyDetail() {
         body: JSON.stringify(bodybuy),
         
       });
-      window.location = "/buy";
+      window.location = "/buydetail";
     } catch (err) {
       console.error(err.message);
     }

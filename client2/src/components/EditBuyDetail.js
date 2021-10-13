@@ -14,7 +14,7 @@ export default function EditBuyDetail(props) {
     const onUpdateData = (e)=>{
         e.preventDefault();
         try{      
-            const bodyIn = {buy_id,item,full_prod_id,prod_name,color,size,buy_amount,buy_cost}  
+            const bodyIn = {buy_id,item,buy_amount,buy_cost}  
           const res = fetch(`http://localhost:5000/updateBuyDetail/${full_prod_id}`,{
             method:"put",
             headers:{"Content-Type":"application/json"},
@@ -73,7 +73,7 @@ export default function EditBuyDetail(props) {
                                   onChange={e=>{setItem(e.target.value)}}
                                 />
                               </div>
-                              <div className="form-group">
+                              {/* <div className="form-group">
                                 <input
                                   type="text"
                                   className="form-control"
@@ -81,8 +81,8 @@ export default function EditBuyDetail(props) {
                                   value = {full_prod_id}
                                   onChange={e=>{setFull(e.target.value)}}
                                 />
-                              </div>
-                              <div className="form-group">
+                              </div> */}
+                              {/* <div className="form-group">
                                 <input
                                   type="text"
                                   className="form-control"
@@ -90,8 +90,8 @@ export default function EditBuyDetail(props) {
                                   value = {prod_name}
                                   onChange={e=>{setName(e.target.value)}}
                                 />
-                              </div>
-                              <div className="form-group">
+                              </div> */}
+                              {/* <div className="form-group">
                                 <input
                                   type="text"
                                   className="form-control"
@@ -99,8 +99,8 @@ export default function EditBuyDetail(props) {
                                   value = {color}
                                   onChange={e=>{setColor(e.target.value)}}
                                 />
-                              </div>
-                              <div className="form-group">
+                              </div> */}
+                              {/* <div className="form-group">
                                 <input
                                   type="text"
                                   className="form-control"
@@ -108,7 +108,7 @@ export default function EditBuyDetail(props) {
                                   value = {size}
                                   onChange={e=>{setSize(e.target.value)}}
                                 />
-                              </div>
+                              </div> */}
                               <div className="form-group">
                                 <input
                                   type="number"
