@@ -40,8 +40,8 @@ export default function Product() {
 
           <div className="row">
           {prod_list.map(prod => {
-            const prodLink="/viewproduct/"+prod.prod_color_id;
-            console.log(prodLink)
+            // const prodLink="/viewproduct/"+prod.prod_color_id;
+            // console.log(prodLink)
             return (
               
                 <div className="col-sm-4">
@@ -55,7 +55,7 @@ export default function Product() {
                         {/* <a href="/viewproduct" className="quick-view icon">
                           <i className="ti-eye" />
                         </a> */}
-                        <ViewIcon prod_id={prod.prod_id} color={prod.color} />
+                        <ViewIcon prod_id={prod.prod_id} color={prod.color} prod_color_id={prod.prod_color_id}/>
                         <a href="#" className="wishlist icon">
                           <i className="ti-write" />
                         </a>

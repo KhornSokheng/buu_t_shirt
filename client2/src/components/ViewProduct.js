@@ -7,27 +7,29 @@ import SelectColor from "./SelectColor";
 import { useLocation } from "react-router";
 
 export default function ViewProduct(props) {
- let [prod_id, setProdId] = useState([props.prod_id]);
-  const [prod_list, setList] = useState([]);
-  const [prod_name, setProdName] = useState([]);
-  const [size, setSize] = useState([]);
-  const [amount, setAmount] = useState([]);
+  let [prod_id, setProdId] = useState([props.prod_id]);
+  let [prod_color_id, setProdColorId] = useState([props.prod_color_id]);
+  let [prod_list, setList] = useState([]);
+  let [prod_name, setProdName] = useState([]);
+  let [size, setSize] = useState([]);
+  let [amount, setAmount] = useState([]);
   let [color, setColor] = useState([props.color]);
-  // const [prod_id, setProdId] = useState([]);
-  const [cust_id, setCustId] = useState([]);
-  const [prod_price, setProdPrice] = useState([]);
+
+  let [cust_id, setCustId] = useState([]);
+  let [prod_price, setProdPrice] = useState([]);
 
   // use location hook to get the prod_id
-  // ex: "/viewproduct/P001/Black"
-  const location = useLocation();
+  // ex: "/viewproduct/P001-Bl"
+  // ex: "/viewproduct/P001-Black"
+  let location = useLocation();
   console.log(location.pathname.split("/")[2]);
-  prod_id = location.pathname.split("/")[2];
-  color = location.pathname.split("/")[3];
+  prod_color_id = location.pathname.split("/")[2];
+  prod_id = prod_color_id.split("-")[1];
+  // color = prod_color_id.split("-")[2]; //"BL"
 
   const loadList = async () => {
-    try {      
-
-      const resp = await fetch(`http://localhost:5000/getProduct/${prod_id}`);
+    try {
+      const resp = await fetch(`http://localhost:5000/getProduct/${prod_color_id}`);
       // const resp = await fetch(`http://localhost:5000/getProduct/P001`);
       const jsonData = await resp.json();
 
@@ -56,12 +58,12 @@ export default function ViewProduct(props) {
     }
   };
 
-  
-
   useEffect(() => {
     console.log("Enter useEffect");
     loadList();
   }, []);
+
+  
 
   return (
     <div>
@@ -147,7 +149,7 @@ export default function ViewProduct(props) {
                           >
                             Size:
                           </label>
-                          <SelectSize prod_id={prod.prod_id} color={color} />
+                          <SelectSize prod_id={prod.prod_id} color={color} prod_color_id={prod.prod_color_id} />
                           {/* <SelectSize /> */}
                         </div>
                         {/* <h5 className="quantity">
