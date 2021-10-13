@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Banner from "./Banner";
+import SelectSize2 from "./SelectSize2";
 import ViewIcon from "./ViewIcon";
 import ViewProduct from "./ViewProduct";
 
@@ -74,6 +75,7 @@ export default function Product() {
                       <h5 className="product-name">
                         <a href="#">{prod.color}</a>
                       </h5>
+                      <SelectSize2 prod_id={prod.prod_id} color={prod.color} prod_color_id={prod.prod_color_id}/>
                       <div className="ratings">
                         <a href="#">
                           <i className="ti-star" />
