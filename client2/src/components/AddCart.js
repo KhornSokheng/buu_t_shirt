@@ -13,13 +13,14 @@ export default function AddCart(props) {
   const sale_amount = props.sale_amount;
   const prod_price = props.prod_price;
   const [cust_id, setCustId] = useState([]);
+  const [sale_id, setSaleId] = useState([]);
   // const [prod_id,color, size, sale_amount,prod_price] = props;
 
   const insertCart = async (e) => {
     e.preventDefault();
     try {
-      const bodyData = { prod_id, color, size, sale_amount, prod_price };
-      const res = await fetch(`http://localhost:5000/insertToCart`, {
+      const bodyData = { sale_id,cust_id,prod_id, color, size, sale_amount, prod_price };
+      const res = await fetch(`http://localhost:5000/insertCart`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bodyData),
@@ -50,7 +51,7 @@ export default function AddCart(props) {
             <div className="modal-content bg-primary">
               {/* Modal Header */}
               <div className="modal-header">
-                <h4 className="modal-title">Please Enter Customer ID</h4>
+                <h4 className="modal-title">Enter Sale and Customer ID</h4>
                 <button type="button" className="close" data-dismiss="modal">
                   ×
                 </button>
@@ -58,26 +59,29 @@ export default function AddCart(props) {
               {/* Modal body */}
               <div className="modal-body">
                 <div>
+                <div className="form-group">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="sale"
+                      placeholder="sale_id"
+                    //   value={price}
+                      onChange={e=>{setSaleId(e.target.value)}}
+                    />
+                  </div>
                   <div className="form-group">
                     <input
                       type="text"
                       className="form-control"
-                      id="usr"
-                      value={"C0000"}
+                      id="cust"
+                      placeholder="cust_id"
+                    //   value="C0000"
                       onChange={(e) => {
                         setCustId(e.target.value);
                       }}
                     />
                   </div>
-                  {/* <div className="form-group">
-                    <input
-                      type="number"
-                      className="form-control"
-                      id="pwd"
-                      value={price}
-                      onChange={e=>{setPrice(e.target.value)}}
-                    />
-                  </div> */}
+                  
                 </div>
               </div>
               {/* Modal footer */}
@@ -90,7 +94,7 @@ export default function AddCart(props) {
                     insertCart(e);
                   }}
                 >
-                  Add
+                  Save
                 </button>
                 <button
                   type="button"
@@ -108,9 +112,9 @@ export default function AddCart(props) {
       <h5>
         Detail:[{prod_id},{color}, {size}, {sale_amount},{prod_price}]
       </h5>
-      <button type="submit" className="btn btn-success text-center" onClick={e=>{insertCart(e)}}>
+      {/* <button type="submit" className="btn btn-success text-center" onClick={e=>{insertCart(e)}}>
         Add to cart
-      </button>
+      </button> */}
     </div>
   );
 }

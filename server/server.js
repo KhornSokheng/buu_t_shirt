@@ -408,8 +408,8 @@ app.post("/insertBuyDetail", async (req, res) => {
 
 app.post("/insertCart", (req, res) => {
     try {
-      const { buy_id, full_prod_id, buy_amount, buy_cost } = req.body;
-      const sql = `CALL insert_buy_detail('${buy_id}','${full_prod_id}','${buy_amount}','${buy_cost}')`;
+      const { sale_id,cust_id,prod_id, color, size, sale_amount, prod_price } = req.body;
+      const sql = `CALL insert_cart("${sale_id}","${cust_id}","${prod_id}", "${color}", "${size}", "${sale_amount}", "${prod_price}" )`;
       pool.query(sql, (err, results) => {
         if (err) {
           throw err;
