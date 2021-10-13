@@ -98,11 +98,14 @@ app.get("/getSizeChart", (req, res) => {
 app.post("/getSizeRemain", async (req, res) => {
   try {
     // const {color} = req.params;
-    const { prod_id, color } = req.body;
+    const { prod_id, color,prod_color_id } = req.body;
+    // const sql = `SELECT color, size FROM warehouse_view
+    //     WHERE total_amount - sold_amount >0
+    //     AND prod_id = "${prod_id}"
+    //     AND color LIKE "%${color}%" LIMIT 5`;
     const sql = `SELECT color, size FROM warehouse_view
-        WHERE total_amount - sold_amount >0
-        AND prod_id = "${prod_id}"
-        AND color = "${color}"`;
+    WHERE total_amount - sold_amount >0
+    AND prod_color_id = "${prod_color_id}" LIMIT 5`;
     console.log(sql);
     await pool.query(sql, (err, results) => {
       if (err) {
@@ -127,6 +130,49 @@ app.post("/getColorRemain", async (req, res) => {
         AND prod_id = "${prod_id}"`;
     console.log(sql);
     await pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.get("/getColor", (req, res) => {
+  try {
+    const sql = `SELECT color from prod_color`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.get("/getSize", (req, res) => {
+  try {
+    const sql = `SELECT size from size_chart`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.get("/getBuyID", (req, res) => {
+  try {
+    const sql = `SELECT buy_id FROM buy`;
+    pool.query(sql, (err, results) => {
       if (err) {
         throw err;
       }
@@ -237,21 +283,24 @@ app.get("/getProduct", (req, res) => {
   }
 });
 // get product with id (OK)
-app.get('/getProduct/:id',  (req, res) =>{
+app.get('/getProduct/:id', (req, res) =>{
 
     try {
 
-        const id = req.params.id;
+        const prod_color_id = req.params.id;
+        // const color = req.params.color;
         // const sql = `SELECT * from warehouse_view where prod_color_id = "${id}" GROUP BY prod_color_id`;
-        const sql = `SELECT * from warehouse_view where prod_id = "${id}" GROUP BY prod_id`;
+        // const sql = `SELECT * from warehouse_view where prod_id = "${id}" and color="${color}"  GROUP BY color LIMIT 1`;
+        const sql = `SELECT * from warehouse_view where prod_color_id = "${prod_color_id}" GROUP BY color LIMIT 1;` 
         console.log(sql)
-        pool.query(sql, (err,results)=>{
-            if(err){
+        const data = pool.query(sql, (err, results) => {
+            if (err) {
                 throw err;
             }
             console.log(results);
-            res.send(results)
-            
+            // console.log(data)
+            res.send(results);
+
         });
 
     } catch (err) {
@@ -297,22 +346,82 @@ app.post("/insertBuy", (req, res) => {
 
 // insert buy detail
 // trigger will be called to update product in warehouse
-app.post("/insertBuyDetail", (req, res) => {
-  try {
-    const { buy_id, full_prod_id, buy_amount, buy_cost } = req.body;
-    const sql = `CALL insert_buy_detail('${buy_id}','${full_prod_id}','${buy_amount}','${buy_cost}')`;
-    pool.query(sql, (err, results) => {
-      if (err) {
-        throw err;
-      }
-      console.log(results);
-      res.send(results);
-    });
-    // console.log(req.body)
-  } catch (err) {
-    console.error(err.message);
-  }
-});
+app.post("/insertBuyDetail", async (req, res) => {
+    try {
+      const { buy_id, prod_name,color,size, buy_amount, buy_cost } = req.body;
+      
+      
+      const sql = `CALL insert_buy_detail('${buy_id}','${prod_name}','${color}','${size}','${buy_amount}','${buy_cost}')`;
+      console.log(sql);
+      pool.query(sql, async (err, results) => {
+        if (err) {
+          throw err;
+        }
+        console.log(results);
+        console.log("ID: ", full_prod_id);
+        res.send(results);
+      });
+      // console.log(req.body)
+    } catch (err) {
+      console.error(err.message);
+    }
+  });
+
+// ERROR:
+// app.post("/insertBuyDetail", async (req, res) => {
+//   try {
+//     const { buy_id, prod_name,color,size, buy_amount, buy_cost } = req.body;
+//     //get the full_prod_id first
+//     let full_prod_id;
+//     const sql1 = `SELECT full_prod_id FROM warehouse_view
+//     WHERE prod_name = "${prod_name}"
+//     AND color ="${color}"
+//     AND size = "${size}"`
+//     const data = await pool.query(sql1, async(err, results) => {
+//         if (err) {
+//           throw err;
+//         }
+//         console.log(results);
+//         console.log(data);
+//         full_prod_id = await results[0].full_prod_id;
+//         console.log("ID: ", full_prod_id);
+//         res.send(results);
+//       });
+    
+//     const sql2 = `CALL insert_buy_detail('${buy_id}','${full_prod_id}','${buy_amount}','${buy_cost}')`;
+//     console.log(sql2);
+//     pool.query(sql2, async (err, results) => {
+//       if (err) {
+//         throw err;
+//       }
+//       console.log(results);
+//       console.log("ID: ", full_prod_id);
+//       res.send(results);
+//     });
+//     // console.log(req.body)
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// });
+
+// insert product to cart
+
+app.post("/insertCart", (req, res) => {
+    try {
+      const { buy_id, full_prod_id, buy_amount, buy_cost } = req.body;
+      const sql = `CALL insert_buy_detail('${buy_id}','${full_prod_id}','${buy_amount}','${buy_cost}')`;
+      pool.query(sql, (err, results) => {
+        if (err) {
+          throw err;
+        }
+        console.log(results);
+        res.send(results);
+      });
+      // console.log(req.body)
+    } catch (err) {
+      console.error(err.message);
+    }
+  });
 
 // insert customer (OK)
 app.post("/insertCustomer", (req, res) => {

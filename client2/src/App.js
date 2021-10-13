@@ -21,70 +21,76 @@ import LogIn from "./components/LogIn";
 
 function App() {
   return (
-    <div className="App">
+    <div className="">
       <Router>
-        <Header />
+        
         <Switch>
+          <>
+          <Header />
+          <div className="">
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/customer">
+          <Route  path="/customer">
             <Customer />
           </Route>
-          <Route exact path="/customer/:id">
+          <Route  path="/customer/:id">
             <Customer />
           </Route>
-          <Route exact path="/insertCustomer">
+          <Route  path="/insertCustomer">
             <InsertCustomer />
           </Route>
-          <Route exact path="/product">
+          <Route  path="/product">
             <Product />
           </Route>
-          <Route exact path="/viewproduct">
+          {/* <Route  path="/viewproduct">
             <ViewProduct/>
-          </Route>
-          <Route exact path="/viewproduct/:id">
+          </Route> */}
+          <Route  path="/viewproduct/:prod_color_id">
             <ViewProduct />
           </Route>
-          <Route exact path="/buy">
+          <Route  path="/buy">
             <Buy />
           </Route>
-          <Route exact path="/insertbuy">
+          <Route  path="/insertbuy">
             <InsertBuy/>
           </Route>
-          <Route exact path="/buy/:id">
+          <Route  path="/buy/:id">
             <Buy />
             </Route>
-          <Route exact path="/insertbuydetail">
+          <Route  path="/insertbuydetail">
             <InsertBuyDetail/>
           </Route>
-          <Route exact path="/buydetail">
+          <Route  path="/buydetail">
             <Buydetail />
           </Route>
-          {/* <Route exact path="/buydetail/:id">
+          {/* <Route  path="/buydetail/:id">
             <Buydetail/>
           </Route> */}
-          <Route exact path="/sale">
+          <Route  path="/sale">
             <Sale />
           </Route>
-          <Route exact path="/size">
+          <Route  path="/size">
             <Size />
           </Route>
-          <Route exact path="/register">
+          <Route  path="/register">
             <Register />
           </Route>
-          <Route exact path="/login">
+          <Route  path="/login">
             <LogIn/>
           </Route>
-          <Route exact path="/cart">
+          <Route  path="/cart">
             <Cart />
           </Route>
-          <Route exact path="/wishlist">
+          <Route  path="/wishlist">
             <Wishlist />
           </Route>
+          </div>
+          <Footer />
+          </>
         </Switch>
 
-        <Footer />
+        
       </Router>
     </div>
   );

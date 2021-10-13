@@ -38,7 +38,7 @@ export default function SelectColor(props) {
     <>
       
       <Form.Select aria-label="Default select"  className="form-control">
-        <option value="Size detail">Select Color</option>
+        <option value="Black">Select Color</option>
       {color_list.map((colors)=>{
         return (
           <>
