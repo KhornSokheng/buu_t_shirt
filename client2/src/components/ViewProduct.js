@@ -42,21 +42,21 @@ export default function ViewProduct(props) {
     }
   };
 
-  const insertCart = async (e) => {
-    e.preventDefault();
-    try {
-      console.log(prod_id, color, size, amount);
-      const bodyStr = { prod_id, color, size, amount };
-      const resp = await fetch("http://localhost:4000/insertCart", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(bodyStr),
-      });
-      window.location = "/cart";
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
+  // const insertCart = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     console.log(prod_id, color, size, amount);
+  //     const bodyStr = { prod_id, color, size, amount };
+  //     const resp = await fetch("http://localhost:4000/insertCart", {
+  //       method: "POST",
+  //       headers: { "content-type": "application/json" },
+  //       body: JSON.stringify(bodyStr),
+  //     });
+  //     window.location = "/cart";
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // };
 
   useEffect(() => {
     console.log("Enter useEffect");
@@ -70,7 +70,8 @@ export default function ViewProduct(props) {
       {/* Featured Product start */}
       <section className="single-product">
         <div className="container">
-          <form onSubmit={insertCart}>
+          {/* <form onSubmit={insertCart}> */}
+          <form>
             {prod_list.map((prod) => {
               // const prodLink = "/viewproduct/" + prod.prod_color_id;
               // console.log(prodLink);
@@ -82,8 +83,8 @@ export default function ViewProduct(props) {
                     <div className="col-sm-4">
                       <div className="product-item">
                         <figure className="product-thumb">
-                          {/* <img src={prod.image_url} alt="image shirt" width="100%" height="100%"/> */}
-                          <img src={prod.image_url} />
+                          <img src={prod.image_url} alt="image shirt" width="100%" height="100%"/>
+                          {/* <img src={prod.image_url} /> */}
                         </figure>
                         <div className="product-content">
                           <div className="ratings">

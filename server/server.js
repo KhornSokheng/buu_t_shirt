@@ -303,22 +303,82 @@ app.post("/insertBuy", (req, res) => {
 
 // insert buy detail
 // trigger will be called to update product in warehouse
-app.post("/insertBuyDetail", (req, res) => {
-  try {
-    const { buy_id, full_prod_id, buy_amount, buy_cost } = req.body;
-    const sql = `CALL insert_buy_detail('${buy_id}','${full_prod_id}','${buy_amount}','${buy_cost}')`;
-    pool.query(sql, (err, results) => {
-      if (err) {
-        throw err;
-      }
-      console.log(results);
-      res.send(results);
-    });
-    // console.log(req.body)
-  } catch (err) {
-    console.error(err.message);
-  }
-});
+app.post("/insertBuyDetail", async (req, res) => {
+    try {
+      const { buy_id, prod_name,color,size, buy_amount, buy_cost } = req.body;
+      
+      
+      const sql = `CALL insert_buy_detail('${buy_id}','${prod_name}','${color}','${size}','${buy_amount}','${buy_cost}')`;
+      console.log(sql);
+      pool.query(sql, async (err, results) => {
+        if (err) {
+          throw err;
+        }
+        console.log(results);
+        console.log("ID: ", full_prod_id);
+        res.send(results);
+      });
+      // console.log(req.body)
+    } catch (err) {
+      console.error(err.message);
+    }
+  });
+
+// ERROR:
+// app.post("/insertBuyDetail", async (req, res) => {
+//   try {
+//     const { buy_id, prod_name,color,size, buy_amount, buy_cost } = req.body;
+//     //get the full_prod_id first
+//     let full_prod_id;
+//     const sql1 = `SELECT full_prod_id FROM warehouse_view
+//     WHERE prod_name = "${prod_name}"
+//     AND color ="${color}"
+//     AND size = "${size}"`
+//     const data = await pool.query(sql1, async(err, results) => {
+//         if (err) {
+//           throw err;
+//         }
+//         console.log(results);
+//         console.log(data);
+//         full_prod_id = await results[0].full_prod_id;
+//         console.log("ID: ", full_prod_id);
+//         res.send(results);
+//       });
+    
+//     const sql2 = `CALL insert_buy_detail('${buy_id}','${full_prod_id}','${buy_amount}','${buy_cost}')`;
+//     console.log(sql2);
+//     pool.query(sql2, async (err, results) => {
+//       if (err) {
+//         throw err;
+//       }
+//       console.log(results);
+//       console.log("ID: ", full_prod_id);
+//       res.send(results);
+//     });
+//     // console.log(req.body)
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// });
+
+// insert product to cart
+
+app.post("/insertCart", (req, res) => {
+    try {
+      const { buy_id, full_prod_id, buy_amount, buy_cost } = req.body;
+      const sql = `CALL insert_buy_detail('${buy_id}','${full_prod_id}','${buy_amount}','${buy_cost}')`;
+      pool.query(sql, (err, results) => {
+        if (err) {
+          throw err;
+        }
+        console.log(results);
+        res.send(results);
+      });
+      // console.log(req.body)
+    } catch (err) {
+      console.error(err.message);
+    }
+  });
 
 // insert customer (OK)
 app.post("/insertCustomer", (req, res) => {
