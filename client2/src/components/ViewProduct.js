@@ -4,21 +4,33 @@ import AddQty from "./AddQty";
 import Banner from "./Banner";
 import SelectSize from "./SelectSize";
 import SelectColor from "./SelectColor";
+import { useLocation } from "react-router";
 
 export default function ViewProduct(props) {
-  const [prod_id, setProdId] = useState([props.prod_id]);
-  const [prod_list, setList] = useState([]);
-  const [prod_name, setProdName] = useState([]);
-  const [size, setSize] = useState([]);
-  const [amount, setAmount] = useState([]);
-  const [color, setColor] = useState([props.color]);
-  // const [prod_id, setProdId] = useState([]);
-  const [cust_id, setCustId] = useState([]);
-  const [prod_price, setProdPrice] = useState([]);
+  let [prod_id, setProdId] = useState([props.prod_id]);
+  let [prod_color_id, setProdColorId] = useState([props.prod_color_id]);
+  let [prod_list, setList] = useState([]);
+  let [prod_name, setProdName] = useState([]);
+  let [size, setSize] = useState([]);
+  let [amount, setAmount] = useState([]);
+  let [color, setColor] = useState([props.color]);
+
+  let [cust_id, setCustId] = useState([]);
+  let [prod_price, setProdPrice] = useState([]);
+
+  // use location hook to get the prod_id
+  // ex: "/viewproduct/P001-Bl"
+  // ex: "/viewproduct/P001-Black"
+  let location = useLocation();
+  console.log(location.pathname.split("/")[2]);
+  prod_color_id = location.pathname.split("/")[2];
+  prod_id = prod_color_id.split("-")[1];
+  // color = prod_color_id.split("-")[2]; //"BL"
 
   const loadList = async () => {
     try {
-      const resp = await fetch(`http://localhost:5000/getProduct/${prod_id}`);
+      const resp = await fetch(`http://localhost:5000/getProduct/${prod_color_id}`);
+      // const resp = await fetch(`http://localhost:5000/getProduct/P001`);
       const jsonData = await resp.json();
 
       setList(jsonData);
@@ -51,6 +63,8 @@ export default function ViewProduct(props) {
     loadList();
   }, []);
 
+  
+
   return (
     <div>
       {/* Featured Product start */}
@@ -68,11 +82,10 @@ export default function ViewProduct(props) {
                     <div className="col-sm-4">
                       <div className="product-item">
                         <figure className="product-thumb">
-                          <img src={prod.image_url} alt />
-                          
+                          {/* <img src={prod.image_url} alt="image shirt" width="100%" height="100%"/> */}
+                          <img src={prod.image_url} />
                         </figure>
                         <div className="product-content">
-                          
                           <div className="ratings">
                             <a href="#">
                               <i className="ti-star" />
@@ -107,7 +120,7 @@ export default function ViewProduct(props) {
                         <div
                           className="form-group quantity"
                           onChange={(e) => {
-                            setColor(e.target.value); 
+                            setColor(e.target.value);
                           }}
                         >
                           <label
@@ -136,7 +149,7 @@ export default function ViewProduct(props) {
                           >
                             Size:
                           </label>
-                          <SelectSize prod_id={prod.prod_id} color={color} />
+                          <SelectSize prod_id={prod.prod_id} color={color} prod_color_id={prod.prod_color_id} />
                           {/* <SelectSize /> */}
                         </div>
                         {/* <h5 className="quantity">

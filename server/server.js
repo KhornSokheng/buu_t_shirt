@@ -98,11 +98,14 @@ app.get("/getSizeChart", (req, res) => {
 app.post("/getSizeRemain", async (req, res) => {
   try {
     // const {color} = req.params;
-    const { prod_id, color } = req.body;
+    const { prod_id, color,prod_color_id } = req.body;
+    // const sql = `SELECT color, size FROM warehouse_view
+    //     WHERE total_amount - sold_amount >0
+    //     AND prod_id = "${prod_id}"
+    //     AND color LIKE "%${color}%" LIMIT 5`;
     const sql = `SELECT color, size FROM warehouse_view
-        WHERE total_amount - sold_amount >0
-        AND prod_id = "${prod_id}"
-        AND color = "${color}"`;
+    WHERE total_amount - sold_amount >0
+    AND prod_color_id = "${prod_color_id}" LIMIT 5`;
     console.log(sql);
     await pool.query(sql, (err, results) => {
       if (err) {
@@ -237,21 +240,24 @@ app.get("/getProduct", (req, res) => {
   }
 });
 // get product with id (OK)
-app.get('/getProduct/:id',  (req, res) =>{
+app.get('/getProduct/:id', (req, res) =>{
 
     try {
 
-        const id = req.params.id;
+        const prod_color_id = req.params.id;
+        // const color = req.params.color;
         // const sql = `SELECT * from warehouse_view where prod_color_id = "${id}" GROUP BY prod_color_id`;
-        const sql = `SELECT * from warehouse_view where prod_id = "${id}"  GROUP BY color`;
+        // const sql = `SELECT * from warehouse_view where prod_id = "${id}" and color="${color}"  GROUP BY color LIMIT 1`;
+        const sql = `SELECT * from warehouse_view where prod_color_id = "${prod_color_id}" GROUP BY color LIMIT 1;` 
         console.log(sql)
-        pool.query(sql, (err,results)=>{
-            if(err){
+        const data = pool.query(sql, (err, results) => {
+            if (err) {
                 throw err;
             }
             console.log(results);
-            res.send(results)
-            
+            // console.log(data)
+            res.send(results);
+
         });
 
     } catch (err) {
