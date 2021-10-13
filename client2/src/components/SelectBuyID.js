@@ -24,15 +24,17 @@ export default function SelectColorBuy() {
 
   return (
     <div>
-      <Form.Select aria-label="Default select" className="form-control">
-        <option value="name detail">Select Product ID</option>
+      <Form.Select aria-label="Default select" className="form-control text-danger">
+        <option value="name detail">Select Buy ID</option>
         {buy_id_list.map((ids) => {
           return (
             <>
               <option value={ids.buy_id} placeholder="Name">
                 {ids.buy_id}
               </option>
+              
             </>
+            
           );
         })}
       </Form.Select>
