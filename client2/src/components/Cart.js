@@ -48,17 +48,16 @@ export default function Cart(props) {
         }}
       />
 
-      
       <section className="feat-product">
-        <div className="container">
-          <div className="row">
+        <div className="container d-flex justify-content-around">
+          <div className="col-6">
             {cart_list.map((items) => {
               max = items.item;
               sub_price = items.sale_amount * items.sale_price;
               total_price += sub_price;
               return (
                 <>
-                  <div className="col-sm-4">
+                  <div className=" mb-3 row ">
                     <div className="product-item">
                       <figure className="product-thumb">
                         <img src={items.image_url} alt />
@@ -84,10 +83,18 @@ export default function Cart(props) {
               );
             })}
           </div>
+
+          <div className="col-6 p-3">
+            <div className="border border-primary">
+              <h3>Order Summary</h3>
+              <h6>Total Items: {cart_list.length}</h6>
+              <h6>Total Price: ฿{total_price}</h6>
+              <button className="btn btn-success m-3">CHECK OUT</button>
+              <button href="" className="btn btn-info ">CONTINUE SHOPPING</button>
+            </div>
+          </div>
         </div>
       </section>
-      <h2>Total Items: {cart_list.length}</h2>
-      <h2>Total Price: ฿{total_price}</h2>
     </div>
   );
 }

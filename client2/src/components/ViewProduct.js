@@ -66,7 +66,7 @@ export default function ViewProduct(props) {
   
 
   return (
-    <div>
+    <div className="container">
       {/* Featured Product start */}
       <section className="single-product">
         <div className="container">

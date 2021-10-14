@@ -63,7 +63,7 @@ export default function Product() {
                         {/* <a href="#" className="wishlist icon">
                                         <i className="ti-heart"/>
                                         </a> */}
-                        <a href="#" className="add-cart icon">
+                        <a href="/cart" className="add-cart icon">
                           <i className="ti-shopping-cart" />
                         </a>
                       </div>
