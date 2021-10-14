@@ -338,6 +338,34 @@ app.get("/getCostTotal", (req, res) => {
   }
 });
 
+// get product with id (OK)
+app.get('/getCartList/:id', (req, res) =>{
+
+    try {
+
+        const cust_id = req.params.id;
+        
+        const sql = `SELECT sale.sale_id,cust_id,sale_date, full_prod_id,item, sale_amount, sale_price
+        FROM sale JOIN sale_detail
+        ON sale.sale_id = sale_detail.sale_id
+        WHERE sale_status = "cart"
+        AND cust_id = "${cust_id}"` 
+        console.log(sql)
+        const data = pool.query(sql, (err, results) => {
+            if (err) {
+                throw err;
+            }
+            console.log(results);
+            // console.log(data)
+            res.send(results);
+
+        });
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
 // --------------------------------------------
 // post method
 // insert buy
