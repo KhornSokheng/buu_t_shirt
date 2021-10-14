@@ -38,7 +38,6 @@ export default function Buy() {
       const jsonData = await resp.json();
 
       setCost(jsonData);
-      // cost = jsonData
 
       console.log("Resp", resp);
       console.log("List:", cost);
@@ -53,10 +52,13 @@ export default function Buy() {
   }, []);
   return (
     <div className="container">
+        <h3 >BUY REPORT</h3>
+        {cost.map((elt)=>{return (<p>Total Cost:{elt.total} BAHT</p>)})}
+        <div>
       
-        <h3 className="d-flex justify-content-center">BUY REPORT</h3>
+        {/* <h3 className="d-flex justify-content-center">BUY REPORT</h3>
         {cost.map((elt)=>{return (<h4  className="d-flex justify-content-center text-danger">Total Cost:{elt.total} BAHT</h4>)})}
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center"> */}
       <tr className="btn mt-1">
         <td>
           <input></input>
