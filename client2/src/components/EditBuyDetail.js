@@ -31,11 +31,11 @@ export default function EditBuyDetail(props) {
             <div>
                     <button
                       type="button"
-                      className="btn btn-warning"
+                      className="btn btn-primary"
                       data-toggle="modal"
                       data-target={`#full_prod_id${full_prod_id}`}
                     >
-                      แก้ไข
+                      Edit
                     </button>
                     {/* The Modal */}
                     <div className="modal fade" id={`full_prod_id${full_prod_id}`}>

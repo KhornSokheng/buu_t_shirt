@@ -3,8 +3,8 @@ import EditBuy from "./EditBuy";
 
 export default function Buy() {
   const [list, setList] = useState([]);
-  // const [cost, setCost] = useState();
-  let cost
+  const [cost, setCost] = useState([]);
+  
   const deleteItem = async (buy_id) => {
     try {
       const del = await fetch(`http://localhost:5000/deleteBuy/${buy_id}`, {
@@ -37,8 +37,8 @@ export default function Buy() {
       const resp = await fetch("http://localhost:5000/getCostTotal");
       const jsonData = await resp.json();
 
-      // setCost(jsonData);
-      cost = jsonData[0].total
+      setCost(jsonData);
+      // cost = jsonData[0].total
 
       console.log("Resp", resp);
       console.log("List:", cost);
@@ -54,8 +54,12 @@ export default function Buy() {
   return (
     <div className="container">
       <h3>BUY REPORT</h3>
-      <p>Total Cost:{cost}</p>
       
+      {cost.map((elt) => {
+            return (
+              <p>Total Cost:{elt.total}</p>
+            );
+          })}
       <tr className="btn mt-1">
         <td>
           <input></input>
@@ -97,7 +101,7 @@ export default function Buy() {
                   <button
                     className="btn btn-danger"
                     onClick={() => deleteItem(elt.buy_id)}
-                  >ลบ</button>
+                  >Del</button>
                 </td>
               </tr>
             );
