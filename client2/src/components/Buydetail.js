@@ -93,7 +93,7 @@ export default function Buydetail() {
                   <button
                     className="btn btn-danger"
                     onClick={() => deleteItem(elt.full_prod_id)}
-                  >ลบ</button>
+                  >Del</button>
                 </td>
               </tr>
             );

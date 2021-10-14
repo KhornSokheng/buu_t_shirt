@@ -4,7 +4,7 @@ import EditBuy from "./EditBuy";
 export default function Buy() {
   const [list, setList] = useState([]);
   const [cost, setCost] = useState([]);
-  // let cost
+  
   const deleteItem = async (buy_id) => {
     try {
       const del = await fetch(`http://localhost:5000/deleteBuy/${buy_id}`, {
@@ -99,7 +99,7 @@ export default function Buy() {
                   <button
                     className="btn btn-danger"
                     onClick={() => deleteItem(elt.buy_id)}
-                  >ลบ</button>
+                  >Del</button>
                 </td>
               </tr>
             );
