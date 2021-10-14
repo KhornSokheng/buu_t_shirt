@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import EditBuyDetail from "./EditBuyDetail";
+import Form from "react-bootstrap/Form";
 
 export default function Buydetail() {
   // const id = props.id;
   const [list, setList] = useState([]);
   const [buy_id,setID] = useState([]);
+  const [buy_list,setBuylist] = useState([]);
 
   const deleteItem = async (full_prod_id) => {
     try {
@@ -25,7 +27,7 @@ export default function Buydetail() {
   };
   const loadList = async () => {
     try {
-      const resp = await fetch(`http://localhost:5000/getBuydetail`);
+      const resp = await fetch(`http://localhost:5000/getBuydetail/${buy_id}`);
       const jsonData = await resp.json();
 
       setList(jsonData);
@@ -39,10 +41,6 @@ export default function Buydetail() {
   useEffect(() => {
     console.log("Enter useEffect()");
     loadList();
-  }, []);
-  useEffect(() => {
-    console.log("Enter useEffect()");
-    loadList();
   }, [buy_id]);
   return (
     <div className="container">
@@ -53,12 +51,11 @@ export default function Buydetail() {
           class="form-control mr-sm-2"
           type="search"
           placeholder="Search"
-          aria-label="Search"
           onChange={(e) =>{
             setID(e.target.value)
           }}
           />
-          {buy_id.map((item) => {
+          {buy_list.map((item) => {
             return <p>{item.buy_id}</p>
           })}
         </td>

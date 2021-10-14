@@ -5,7 +5,6 @@ export default function Buy() {
   const [list, setList] = useState([]);
   const [cost, setCost] = useState([]);
   
-  // let cost
   const deleteItem = async (buy_id) => {
     try {
       const del = await fetch(`http://localhost:5000/deleteBuy/${buy_id}`, {
@@ -39,8 +38,6 @@ export default function Buy() {
       const jsonData = await resp.json();
 
       setCost(jsonData);
-      // cost = jsonData[0].total
-      // cost = jsonData
 
       console.log("Resp", resp);
       console.log("List:", cost);
@@ -58,6 +55,10 @@ export default function Buy() {
         <h3 >BUY REPORT</h3>
         {cost.map((elt)=>{return (<p>Total Cost:{elt.total} BAHT</p>)})}
         <div>
+      
+        {/* <h3 className="d-flex justify-content-center">BUY REPORT</h3>
+        {cost.map((elt)=>{return (<h4  className="d-flex justify-content-center text-danger">Total Cost:{elt.total} BAHT</h4>)})}
+        <div className="d-flex justify-content-center"> */}
       <tr className="btn mt-1">
         <td>
           <input></input>

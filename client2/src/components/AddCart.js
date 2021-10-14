@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Cart from "./Cart";
 // the idea is
 // get props
 // insert to table sale + sale_detail
@@ -19,13 +19,17 @@ export default function AddCart(props) {
   const insertCart = async (e) => {
     e.preventDefault();
     try {
-      const bodyData = { sale_id,cust_id,prod_id, color, size, sale_amount };
+      const bodyData = { sale_id, cust_id, prod_id, color, size, sale_amount };
       const res = await fetch(`http://localhost:5000/insertCart`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bodyData),
       });
-      window.location = "/cart";
+
+      //   window.location = `/cart/${sale_id}`;
+      window.location = `/cart`;
+      
+
       console.log(res);
     } catch (err) {
       console.error(err.message);
@@ -34,8 +38,7 @@ export default function AddCart(props) {
 
   return (
     <div>
-        
-        <div>
+      <div>
         {/* Button to Open the Modal */}
         <button
           type="button"
@@ -59,14 +62,16 @@ export default function AddCart(props) {
               {/* Modal body */}
               <div className="modal-body">
                 <div>
-                <div className="form-group">
+                  <div className="form-group">
                     <input
                       type="text"
                       className="form-control"
                       id="sale"
                       placeholder="sale_id"
-                    //   value={price}
-                      onChange={e=>{setSaleId(e.target.value)}}
+                      //   value={price}
+                      onChange={(e) => {
+                        setSaleId(e.target.value);
+                      }}
                     />
                   </div>
                   <div className="form-group">
@@ -75,13 +80,12 @@ export default function AddCart(props) {
                       className="form-control"
                       id="cust"
                       placeholder="cust_id"
-                    //   value="C0000"
+                      //   value="C0000"
                       onChange={(e) => {
                         setCustId(e.target.value);
                       }}
                     />
                   </div>
-                  
                 </div>
               </div>
               {/* Modal footer */}
@@ -107,8 +111,8 @@ export default function AddCart(props) {
             </div>
           </div>
         </div>
-      </div> 
-      
+      </div>
+
       <h5>
         Detail:[{prod_id},{color}, {size}, {sale_amount},{prod_price}]
       </h5>
