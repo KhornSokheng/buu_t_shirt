@@ -61,7 +61,7 @@ export default function Buydetail() {
         </td>
         <td>
           <a href="/insertbuydetail">
-            <button className="btn btn-success ml-5 ">เพิ่มข้อมูล</button>
+            <button className="btn btn-success ml-3 ">เพิ่มข้อมูล</button>
           </a>
         </td>
       </tr>

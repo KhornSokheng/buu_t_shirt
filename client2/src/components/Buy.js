@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import EditBuy from "./EditBuy";
+import Form from "react-bootstrap/Form";
 
 export default function Buy() {
   const [list, setList] = useState([]);
   const [cost, setCost] = useState([]);
+  const [buy_id,setID] = useState([]);
+  const [buy_list,setBuylist] = useState([]);
   
   const deleteItem = async (buy_id) => {
     try {
@@ -21,7 +24,7 @@ export default function Buy() {
   };
   const loadList = async () => {
     try {
-      const resp = await fetch("http://localhost:5000/getBuy");
+      const resp = await fetch(`http://localhost:5000/getBuy/${buy_id}`);
       const jsonData = await resp.json();
 
       setList(jsonData);
@@ -49,20 +52,27 @@ export default function Buy() {
     console.log("Enter useEffect()");
     loadList();
     loadCost();
-  }, []);
+  }, [buy_id]);
   return (
     <div className="container">
         <h3 >BUY REPORT</h3>
+
+        <h1>buy id:{buy_id}</h1>
         {cost.map((elt)=>{return (<p>Total Cost:{elt.total} BAHT</p>)})}
         <div>
-      
-        {/* <h3 className="d-flex justify-content-center">BUY REPORT</h3>
-        {cost.map((elt)=>{return (<h4  className="d-flex justify-content-center text-danger">Total Cost:{elt.total} BAHT</h4>)})}
-        <div className="d-flex justify-content-center"> */}
       <tr className="btn mt-1">
-        <td>
-          <input></input>
-          <button className="btn btn-secondary ml-1">ค้นหา</button>
+      <td>
+          <Form.Control
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Search"
+          onChange={(e) =>{
+            setID(e.target.value)
+          }}
+          />
+          {buy_list.map((item) => {
+            return <p>{item.buy_id}</p>
+          })}
         </td>
         <td>
           <a href="/insertbuy">
