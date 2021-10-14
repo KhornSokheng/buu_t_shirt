@@ -224,7 +224,7 @@ app.get("/getBuydetail/:id", (req, res) => {
       `SELECT BD.buy_id,BD.item,BD.full_prod_id,BD.buy_amount,BD.buy_cost,WV.prod_name,WV.color,WV.size FROM buy_detail BD
         JOIN warehouse_view WV
         ON BD.full_prod_id = WV.full_prod_id WHERE buy_id like "%` +
-      `${id}" ORDER BY buy_id, item;`;
+      `${id}%" ORDER BY buy_id, item;`;
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;
