@@ -23,74 +23,71 @@ function App() {
   return (
     <div className="App">
       <Router>
-        
         <Switch>
           <>
-          <Header />
-          <div className="">
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route  path="/customer">
-            <Customer />
-          </Route>
-          <Route  path="/customer/:id">
-            <Customer />
-          </Route>
-          <Route  path="/insertCustomer">
-            <InsertCustomer />
-          </Route>
-          <Route  path="/product">
-            <Product />
-          </Route>
-          {/* <Route  path="/viewproduct">
+            <Header />
+            {/* <div className=""> */}
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/customer">
+              <Customer />
+            </Route>
+            <Route path="/customer/:id">
+              <Customer />
+            </Route>
+            <Route path="/insertCustomer">
+              <InsertCustomer />
+            </Route>
+            <Route path="/product">
+              <Product />
+            </Route>
+            {/* <Route  path="/viewproduct">
             <ViewProduct/>
           </Route> */}
-          <Route  path="/viewproduct/:prod_color_id">
-            <ViewProduct />
-          </Route>
-          <Route  path="/buy">
-            <Buy />
-          </Route>
-          <Route  path="/insertbuy">
-            <InsertBuy/>
-          </Route>
-          <Route  path="/buy/:id">
-            <Buy />
+            <Route path="/viewproduct/:prod_color_id">
+              <ViewProduct />
             </Route>
-          <Route  path="/insertbuydetail">
-            <InsertBuyDetail/>
-          </Route>
-          <Route  path="/buydetail">
-            <Buydetail />
-          </Route>
-          {/* <Route  path="/buydetail/:id">
+            <Route path="/buy">
+              <Buy />
+            </Route>
+            <Route path="/insertbuy">
+              <InsertBuy />
+            </Route>
+            <Route path="/buy/:id">
+              <Buy />
+            </Route>
+            <Route path="/insertbuydetail">
+              <InsertBuyDetail />
+            </Route>
+            <Route path="/buydetail">
+              <Buydetail />
+            </Route>
+            {/* <Route  path="/buydetail/:id">
             <Buydetail/>
           </Route> */}
-          <Route  path="/sale">
-            <Sale />
-          </Route>
-          <Route  path="/size">
-            <Size />
-          </Route>
-          <Route  path="/register">
-            <Register />
-          </Route>
-          <Route  path="/login">
-            <LogIn/>
-          </Route>
-          <Route  path="/cart">
-            <Cart />
-          </Route>
-          <Route  path="/wishlist">
-            <Wishlist />
-          </Route>
-          </div>
-          <Footer />
+            <Route path="/sale">
+              <Sale />
+            </Route>
+            <Route path="/size">
+              <Size />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/login">
+              <LogIn />
+            </Route>
+            <Route path="/cart">
+              <Cart />
+            </Route>
+            <Route path="/wishlist">
+              <Wishlist />
+            </Route>
+            {/* </div> */}
+            <Footer />
           </>
         </Switch>
-
-        
       </Router>
     </div>
   );
