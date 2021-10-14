@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import Form from "react-bootstrap/Form";
 import SelectSize2 from "./SelectSize2";
+import CheckOut from "./CheckOut";
 
 export default function Cart(props) {
   const [sale_id, setSaleId] = useState([]);
@@ -10,6 +11,7 @@ export default function Cart(props) {
   let max = 0;
   let total_price = 0;
   let sub_price = 0;
+  let total_qty = 0;
 
   const location = useLocation().pathname;
   //   sale_id = location.pathname.split("/")[2];
@@ -35,11 +37,11 @@ export default function Cart(props) {
 
   return (
     <div className="container">
-      <h1>Customer: {cust_id}</h1>
+      <h5 className="text-left">Customer ID: {cust_id}</h5>
 
       {/* search using sale_id (?) section */}
       <Form.Control
-        className="m-5"
+        className="mt-2"
         size="lg"
         type="text"
         placeholder="EX: C9999"
@@ -49,15 +51,16 @@ export default function Cart(props) {
       />
 
       <section className="feat-product">
-        <div className="container d-flex justify-content-around">
+        <div className="container d-flex justify-content-around ">
           <div className="col-6">
             {cart_list.map((items) => {
               max = items.item;
               sub_price = items.sale_amount * items.sale_price;
               total_price += sub_price;
+              total_qty += items.sale_amount;
               return (
                 <>
-                  <div className=" mb-3 row ">
+                  <div className=" mb-3 row border border-primary rounded pb-2">
                     <div className="product-item">
                       <figure className="product-thumb">
                         <img src={items.image_url} alt />
@@ -84,13 +87,22 @@ export default function Cart(props) {
             })}
           </div>
 
-          <div className="col-6 p-3">
-            <div className="border border-primary">
-              <h3>Order Summary</h3>
-              <h6>Total Items: {cart_list.length}</h6>
-              <h6>Total Price: ฿{total_price}</h6>
-              <button className="btn btn-success m-3">CHECK OUT</button>
-              <button href="" className="btn btn-info ">CONTINUE SHOPPING</button>
+          <div className="col-6 pl-3">
+            <div className="border border-primary rounded">
+              <div className="title text-left p-3">
+                <h3>Order Summary</h3>
+                <h6>Total Items: {cart_list.length}</h6>
+                <h6>Total Quantity: {total_qty}</h6>
+                <h4 >Total Price: <span className="text-danger">฿{total_price}</span></h4>
+              </div>
+
+              <div className="check-out d-flex justify-content-xl-around">
+                <button className="btn btn-danger m-3">CHECK OUT</button>
+                {/* <CheckOut/> */}
+                <a href="/product" className="btn btn-success m-3">
+                  CONTINUE SHOPPING
+                </a>
+              </div>
             </div>
           </div>
         </div>
