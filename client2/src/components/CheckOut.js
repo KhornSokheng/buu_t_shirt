@@ -46,7 +46,7 @@ export default function CheckOut(props) {
           data-toggle="modal"
           data-target={`#cust_id`} //"#myModal"
         >
-          CHECK OUT
+          <i className="ti-shopping-cart-full" /> CHECK OUT 
         </button>
         {/* The Modal */}
         <div className="modal " id={`cust_id`}>
@@ -123,7 +123,8 @@ export default function CheckOut(props) {
                     insertCart(e);
                   }}
                 >
-                  CONFIRM ORDER
+                  CONFIRM ORDER 
+                  {/* <i className="ti-credit-card" />  */}
                 </button>
                 <button
                   type="button"

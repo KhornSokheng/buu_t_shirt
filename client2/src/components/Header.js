@@ -65,6 +65,9 @@ export default function Header() {
               <li>
                 <a href="/size">Size</a>
               </li>
+              <li>
+                <a href="/size">Revenue</a>
+              </li>
               {/* <li>
                 <a href="/register">Register</a>
               </li> */}
@@ -73,6 +76,10 @@ export default function Header() {
               <a href="#" className="search-icon icon">
                 {/* <img src="images/icons/search.png" alt=""> */}
                 <i className="ti-search" />
+              </a>
+              <a href="#" className="search-icon icon">
+                {/* <img src="images/icons/search.png" alt=""> */}
+                <i className="ti-money" />
               </a>
               <a href="/cart" className="cart-bag icon">
                 {/* <img src="images/icons/bag.png" alt=""> */}
