@@ -97,8 +97,11 @@ export default function Cart(props) {
               </div>
 
               <div className="check-out d-flex justify-content-xl-around">
-                <button className="btn btn-danger m-3">CHECK OUT</button>
-                {/* <CheckOut/> */}
+                {/* <button className="btn btn-danger m-3">CHECK OUT</button> */}
+
+                <CheckOut
+                    sale_id ={sale_id}
+                />
                 <a href="/product" className="btn btn-success m-3">
                   CONTINUE SHOPPING
                 </a>

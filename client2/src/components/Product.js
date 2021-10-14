@@ -45,7 +45,7 @@ export default function Product() {
             // console.log(prodLink)
             return (
               
-                <div className="col-sm-4">
+                <div className="col-sm-4 pb-2">
                   <div className="product-item">
                     <figure className="product-thumb">
                       <img

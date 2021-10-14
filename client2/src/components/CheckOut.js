@@ -42,7 +42,7 @@ export default function CheckOut(props) {
         {/* Button to Open the Modal */}
         <button
           type="button"
-          className="btn btn-success"
+          className="btn btn-danger m-3"
           data-toggle="modal"
           data-target={`#cust_id`} //"#myModal"
         >
@@ -51,10 +51,11 @@ export default function CheckOut(props) {
         {/* The Modal */}
         <div className="modal " id={`cust_id`}>
           <div className="modal-dialog">
-            <div className="modal-content bg-primary">
+            <div className="modal-content ">
               {/* Modal Header */}
               <div className="modal-header">
-                <h4 className="modal-title">Enter Sale and Customer ID</h4>
+                <h4 className="modal-title">Just a little more...</h4>
+                
                 <button type="button" className="close" data-dismiss="modal">
                   ×
                 </button>
@@ -67,7 +68,7 @@ export default function CheckOut(props) {
                       type="text"
                       className="form-control"
                       id="sale"
-                      placeholder="sale_id"
+                      placeholder="Receiver Name"
                       //   value={price}
                       onChange={(e) => {
                         setSaleId(e.target.value);
@@ -79,7 +80,31 @@ export default function CheckOut(props) {
                       type="text"
                       className="form-control"
                       id="cust"
-                      placeholder="cust_id"
+                      placeholder="Receiver Phone Number"
+                      //   value="C0000"
+                      onChange={(e) => {
+                        setCustId(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <textarea
+                      type="text"
+                      className="form-control"
+                      id="cust"
+                      placeholder="Address"
+                      //   value="C0000"
+                      onChange={(e) => {
+                        setCustId(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="cust"
+                      placeholder="Credit Card"
                       //   value="C0000"
                       onChange={(e) => {
                         setCustId(e.target.value);
@@ -92,20 +117,20 @@ export default function CheckOut(props) {
               <div className="modal-footer">
                 <button
                   type="button"
-                  className="btn btn-success"
+                  className="btn btn-primary"
                   data-dismiss="modal"
                   onClick={(e) => {
                     insertCart(e);
                   }}
                 >
-                  Save
+                  CONFIRM ORDER
                 </button>
                 <button
                   type="button"
                   className="btn btn-danger"
                   data-dismiss="modal"
                 >
-                  Cancel
+                  CANCEL
                 </button>
               </div>
             </div>
@@ -113,12 +138,6 @@ export default function CheckOut(props) {
         </div>
       </div>
 
-      <h5>
-        Detail:[{prod_id},{color}, {size}, {sale_amount},{prod_price}]
-      </h5>
-      {/* <button type="submit" className="btn btn-success text-center" onClick={e=>{insertCart(e)}}>
-        Add to cart
-      </button> */}
     </div>
   );
 }
