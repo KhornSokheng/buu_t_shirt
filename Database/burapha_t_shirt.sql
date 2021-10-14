@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2021 at 12:25 PM
+-- Generation Time: Oct 14, 2021 at 09:34 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -60,6 +60,56 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_buy_detail` (IN `buy_id_in` 
 
         INSERT INTO buy_detail (buy_id,item,full_prod_id,buy_amount,buy_cost)
         VALUES (buy_id_in,next_item_num,find_full_prod_id,buy_amount,buy_cost) ;
+
+    END;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_cart` (IN `_sale_id` VARCHAR(6), IN `_cust_id` VARCHAR(5), IN `_prod_id` VARCHAR(5), IN `_color` VARCHAR(15), IN `_size` VARCHAR(5), IN `_sale_amount` INT(11))  BEGIN
+
+    DECLARE pre_item_num int(11);
+    DECLARE next_item_num int(11) DEFAULT 1;
+    DECLARE find_full_prod_id varchar(11);
+    DECLARE is_id_exist varchar(6);
+    DECLARE _sale_cost double(10,2);
+    DECLARE _sale_price double(10,2);
+
+    BEGIN
+
+        
+        -- check if sale_id already exist with sale_status=cart
+        SET is_id_exist = (SELECT sale_id FROM sale WHERE sale_id = _sale_id);
+        -- SELECT sale_id
+        -- FROM sale
+        -- WHERE sale_id = _sale_id;
+        -- );
+        
+
+        IF is_id_exist IS NULL THEN
+            -- create new sale_id
+            INSERT INTO sale (sale_id, sale_date, cust_id, sale_status)
+            VALUES (_sale_id,CURRENT_DATE(),_cust_id,"cart");
+        END IF;
+
+        -- Find the previous item number from the same sale_id
+        SELECT MAX(item) INTO pre_item_num
+        FROM sale_detail 
+        WHERE sale_id = _sale_id;
+
+        -- check pre_item_num
+        IF pre_item_num > 0 THEN
+            SET next_item_num := pre_item_num + 1;
+        END IF;
+
+        -- Find the full_prod_id using name-color-size
+        SELECT full_prod_id, prod_cost, prod_price INTO find_full_prod_id, _sale_cost,_sale_price
+        FROM warehouse_view 
+        WHERE prod_id = _prod_id
+        AND color = _color
+        AND size = _size;
+
+        INSERT INTO sale_detail (sale_id,item,full_prod_id,sale_amount,sale_cost,sale_price)
+        VALUES (_sale_id,next_item_num,find_full_prod_id,_sale_amount,_sale_cost,_sale_price) ;
 
     END;
 
@@ -150,13 +200,13 @@ INSERT INTO `buy_detail` (`buy_id`, `item`, `full_prod_id`, `buy_amount`, `buy_c
 ('B0001', 1, 'P001-DO-S', 10, 195.00),
 ('B0001', 2, 'P001-WH-S', 10, 195.00),
 ('B0001', 3, 'P001-BK-S', 10, 195.00),
-('B0001', 4, 'P001-NA-S', 10, 295.00),
-('B0001', 5, 'P001-BR-S', 10, 95.00),
-('B0001', 6, 'P001-BL-S', 10, 95.00),
+('B0001', 4, 'P001-NA-S', 10, 195.00),
+('B0001', 5, 'P001-BR-S', 10, 195.00),
+('B0001', 6, 'P001-BL-S', 10, 195.00),
 ('B0001', 7, 'P002-WH-S', 10, 295.00),
 ('B0001', 8, 'P002-BK-S', 10, 295.00),
 ('B0001', 9, 'P002-BL-S', 10, 295.00),
-('B0001', 10, 'P002-GR-S', 10, 95.00),
+('B0001', 10, 'P002-GR-S', 10, 295.00),
 ('B0001', 11, 'P003-PI-S', 10, 95.00),
 ('B0001', 12, 'P003-WI-S', 10, 95.00),
 ('B0001', 13, 'P003-OR-S', 10, 95.00),
@@ -165,13 +215,13 @@ INSERT INTO `buy_detail` (`buy_id`, `item`, `full_prod_id`, `buy_amount`, `buy_c
 ('B0001', 16, 'P001-DO-M', 10, 195.00),
 ('B0001', 17, 'P001-WH-M', 10, 195.00),
 ('B0001', 18, 'P001-BK-M', 10, 195.00),
-('B0001', 19, 'P001-NA-M', 10, 295.00),
-('B0001', 20, 'P001-BR-M', 10, 95.00),
-('B0001', 21, 'P001-BL-M', 10, 95.00),
+('B0001', 19, 'P001-NA-M', 10, 195.00),
+('B0001', 20, 'P001-BR-M', 10, 195.00),
+('B0001', 21, 'P001-BL-M', 10, 195.00),
 ('B0001', 22, 'P002-WH-M', 10, 295.00),
 ('B0001', 23, 'P002-BK-M', 10, 295.00),
 ('B0001', 24, 'P002-BL-M', 10, 295.00),
-('B0001', 25, 'P002-GR-M', 10, 95.00),
+('B0001', 25, 'P002-GR-M', 10, 295.00),
 ('B0001', 26, 'P003-PI-M', 10, 95.00),
 ('B0001', 27, 'P003-WI-M', 10, 95.00),
 ('B0001', 28, 'P003-OR-M', 10, 95.00),
@@ -180,13 +230,13 @@ INSERT INTO `buy_detail` (`buy_id`, `item`, `full_prod_id`, `buy_amount`, `buy_c
 ('B0001', 31, 'P001-DO-L', 10, 195.00),
 ('B0001', 32, 'P001-WH-L', 10, 195.00),
 ('B0001', 33, 'P001-BK-L', 10, 195.00),
-('B0001', 34, 'P001-NA-L', 10, 295.00),
-('B0001', 35, 'P001-BR-L', 10, 95.00),
-('B0001', 36, 'P001-BL-L', 10, 95.00),
+('B0001', 34, 'P001-NA-L', 10, 195.00),
+('B0001', 35, 'P001-BR-L', 10, 195.00),
+('B0001', 36, 'P001-BL-L', 10, 195.00),
 ('B0001', 37, 'P002-WH-L', 10, 295.00),
 ('B0001', 38, 'P002-BK-L', 10, 295.00),
 ('B0001', 39, 'P002-BL-L', 10, 295.00),
-('B0001', 40, 'P002-GR-L', 10, 95.00),
+('B0001', 40, 'P002-GR-L', 10, 295.00),
 ('B0001', 41, 'P003-PI-L', 10, 95.00),
 ('B0001', 42, 'P003-WI-L', 10, 95.00),
 ('B0001', 43, 'P003-OR-L', 10, 95.00),
@@ -195,13 +245,13 @@ INSERT INTO `buy_detail` (`buy_id`, `item`, `full_prod_id`, `buy_amount`, `buy_c
 ('B0001', 46, 'P001-DO-XL', 10, 195.00),
 ('B0001', 47, 'P001-WH-XL', 10, 195.00),
 ('B0001', 48, 'P001-BK-XL', 10, 195.00),
-('B0001', 49, 'P001-NA-XL', 10, 295.00),
-('B0001', 50, 'P001-BR-XL', 10, 95.00),
-('B0001', 51, 'P001-BL-XL', 10, 95.00),
+('B0001', 49, 'P001-NA-XL', 10, 195.00),
+('B0001', 50, 'P001-BR-XL', 10, 195.00),
+('B0001', 51, 'P001-BL-XL', 10, 195.00),
 ('B0001', 52, 'P002-WH-XL', 10, 295.00),
 ('B0001', 53, 'P002-BK-XL', 10, 295.00),
 ('B0001', 54, 'P002-BL-XL', 10, 295.00),
-('B0001', 55, 'P002-GR-XL', 10, 95.00),
+('B0001', 55, 'P002-GR-XL', 10, 295.00),
 ('B0001', 56, 'P003-PI-XL', 10, 95.00),
 ('B0001', 57, 'P003-WI-XL', 10, 95.00),
 ('B0001', 58, 'P003-OR-XL', 10, 95.00),
@@ -210,13 +260,13 @@ INSERT INTO `buy_detail` (`buy_id`, `item`, `full_prod_id`, `buy_amount`, `buy_c
 ('B0001', 61, 'P001-DO-XXL', 10, 195.00),
 ('B0001', 62, 'P001-WH-XXL', 10, 195.00),
 ('B0001', 63, 'P001-BK-XXL', 10, 195.00),
-('B0001', 64, 'P001-NA-XXL', 10, 295.00),
-('B0001', 65, 'P001-BR-XXL', 10, 95.00),
-('B0001', 66, 'P001-BL-XXL', 10, 95.00),
+('B0001', 64, 'P001-NA-XXL', 10, 195.00),
+('B0001', 65, 'P001-BR-XXL', 10, 195.00),
+('B0001', 66, 'P001-BL-XXL', 10, 195.00),
 ('B0001', 67, 'P002-WH-XXL', 10, 295.00),
 ('B0001', 68, 'P002-BK-XXL', 10, 295.00),
 ('B0001', 69, 'P002-BL-XXL', 10, 295.00),
-('B0001', 70, 'P002-GR-XXL', 10, 95.00),
+('B0001', 70, 'P002-GR-XXL', 10, 295.00),
 ('B0001', 71, 'P003-PI-XXL', 10, 95.00),
 ('B0001', 72, 'P003-WI-XXL', 10, 95.00),
 ('B0001', 73, 'P003-OR-XXL', 10, 95.00),
@@ -226,31 +276,32 @@ INSERT INTO `buy_detail` (`buy_id`, `item`, `full_prod_id`, `buy_amount`, `buy_c
 ('B0002', 2, 'P001-BR-S', 1, 195.00),
 ('B0002', 3, 'P003-OR-XL', 2, 95.00),
 ('B0002', 4, 'P003-OR-XXL', 2, 95.00),
-('B0002', 5, 'P001-BL-S', 4, 95.00),
+('B0002', 5, 'P001-BL-S', 4, 195.00),
 ('B0002', 6, 'P003-PI-L', 3, 95.00),
 ('B0002', 7, 'P003-BR-L', 1, 95.00),
-('B0002', 8, 'P001-BL-XXL', 1, 95.00),
+('B0002', 8, 'P001-BL-XXL', 1, 195.00),
 ('B0002', 9, 'P002-WH-M', 3, 295.00),
 ('B0002', 10, 'P003-BR-M', 2, 95.00),
-('B0002', 11, 'P002-GR-L', 2, 95.00),
-('B0002', 12, 'P001-BR-XXL', 1, 95.00),
+('B0002', 11, 'P002-GR-L', 2, 295.00),
+('B0002', 12, 'P001-BR-XXL', 1, 195.00),
 ('B0003', 1, 'P003-PI-S', 3, 95.00),
 ('B0003', 2, 'P003-BR-S', 4, 95.00),
 ('B0003', 3, 'P002-BL-M', 1, 295.00),
 ('B0003', 4, 'P001-DO-XXL', 1, 195.00),
 ('B0003', 5, 'P002-WH-XL', 1, 295.00),
-('B0003', 6, 'P001-BL-M', 2, 95.00),
-('B0003', 7, 'P001-NA-XL', 4, 295.00),
-('B0003', 8, 'P002-GR-XL', 3, 95.00),
+('B0003', 6, 'P001-BL-M', 2, 195.00),
+('B0003', 7, 'P001-NA-XL', 4, 195.00),
+('B0003', 8, 'P002-GR-XL', 3, 295.00),
 ('B0003', 9, 'P001-DO-S', 5, 195.00),
 ('B0003', 10, 'P003-OR-M', 2, 95.00),
 ('B0003', 11, 'P001-DO-XL', 2, 195.00),
-('B0003', 12, 'P001-BL-XL', 3, 95.00),
-('B0003', 13, 'P001-NA-L', 1, 295.00),
+('B0003', 12, 'P001-BL-XL', 3, 195.00),
+('B0003', 13, 'P001-NA-L', 1, 195.00),
 ('B0004', 1, 'P001-DO-S', 3, 195.00),
 ('B0004', 2, 'P001-BK-L', 3, 195.00),
 ('B0004', 3, 'P001-BK-M', 2, 195.00),
-('B0004', 4, 'P001-BK-XXL', 5, 195.00);
+('B0004', 4, 'P001-BK-XXL', 5, 195.00),
+('B9999', 1, 'P001-BL-M', 3, 195.00);
 
 --
 -- Triggers `buy_detail`
@@ -297,7 +348,7 @@ INSERT INTO `customer` (`cust_id`, `cust_name`, `cust_lname`, `phone_num`, `cred
 ('C0008', 'ศิวัช', 'ทัพขวา', '096-864118', '5685 9575 4565 5'),
 ('C0009', 'กิตติศักดิ์', 'แก้วทอง', '080-530079', '6231 4526 6985 1'),
 ('C0010', 'ณัฐพงค์', 'หงษาวงค์', '095-124247', '4568 6523 4587 5'),
-('C9999', 'NONT', 'Sokheng', '12344546', '1234');
+('C9999', 'NONT', 'Sokheng', '12344546', '12344546');
 
 -- --------------------------------------------------------
 
@@ -392,7 +443,8 @@ INSERT INTO `sale` (`sale_id`, `sale_date`, `cust_id`, `receiver_name`, `receive
 ('S00011', NULL, 'C0005', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 ('S00012', NULL, 'C0005', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 ('S00013', '2021-07-05', 'C0001', 'อนันดา เนาว์แก้งใหม่', '096-8640235', 'completed', 'd00001', 30.00, '2021-07-05', '2021-07-07', 'มหาวิทยาลัยบูรพา วิทยาเขตจันทบุรี', 'delivering'),
-('S00014', '2021-10-10', 'C0011', 'NONT', '099999999', 'completed', 'd00000', 0.00, '2021-10-11', '2021-10-12', 'BUU CHAN', 'cart');
+('S00014', '2021-10-10', 'C0011', 'NONT', '099999999', 'completed', 'd00000', 0.00, '2021-10-11', '2021-10-12', 'BUU CHAN', 'cart'),
+('S99999', '2021-10-13', 'C9999', NULL, NULL, 'cart', NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Triggers `sale`
@@ -441,9 +493,9 @@ INSERT INTO `sale_detail` (`sale_id`, `item`, `full_prod_id`, `sale_amount`, `sa
 ('S00001', 1, 'P001-DO-S', 2, 195.00, 390.00),
 ('S00001', 2, 'P002-WH-S', 3, 295.00, 590.00),
 ('S00002', 1, 'P001-WH-S', 2, 195.00, 390.00),
-('S00003', 1, 'P001-NA-XL', 2, 295.00, 590.00),
-('S00004', 1, 'P001-BR-XL', 5, 95.00, 190.00),
-('S00005', 1, 'P001-BL-XL', 1, 95.00, 190.00),
+('S00003', 1, 'P001-NA-XL', 2, 195.00, 390.00),
+('S00004', 1, 'P001-BR-XL', 5, 195.00, 390.00),
+('S00005', 1, 'P001-BL-XL', 1, 195.00, 390.00),
 ('S00006', 1, 'P002-WH-XL', 2, 295.00, 590.00),
 ('S00007', 1, 'P002-BK-XL', 1, 295.00, 590.00),
 ('S00008', 1, 'P003-BR-XL', 5, 95.00, 190.00),
@@ -452,7 +504,12 @@ INSERT INTO `sale_detail` (`sale_id`, `item`, `full_prod_id`, `sale_amount`, `sa
 ('S00013', 1, 'P001-DO-S', 3, 195.00, 390.00),
 ('S00014', 1, 'P001-BK-L', 3, 195.00, 390.00),
 ('S00014', 2, 'P001-BK-M', 2, 195.00, 390.00),
-('S00014', 3, 'P001-BK-S', 2, 195.00, 390.00);
+('S00014', 3, 'P001-BK-S', 2, 195.00, 390.00),
+('S99999', 1, 'P001-BK-L', 2, 195.00, 390.00),
+('S99999', 2, 'P001-DO-XXL', 3, 195.00, 390.00),
+('S99999', 3, 'P001-DO-M', 2, 195.00, 390.00),
+('S99999', 4, 'P001-BL-L', 2, 195.00, 390.00),
+('S99999', 5, 'P001-DO-XXL', 3, 195.00, 390.00);
 
 --
 -- Triggers `sale_detail`
@@ -534,26 +591,26 @@ INSERT INTO `warehouse` (`full_prod_id`, `prod_id`, `color`, `size`, `total_amou
 ('P001-BK-S', 'P001', 'BLACK', 'S', 10, 2, 195.00, 390.00, 'P001-BK'),
 ('P001-BK-XL', 'P001', 'BLACK', 'XL', 10, 0, 195.00, 390.00, 'P001-BK'),
 ('P001-BK-XXL', 'P001', 'BLACK', 'XXL', 15, 0, 195.00, 390.00, 'P001-BK'),
-('P001-BL-L', 'P001', 'BLUE', 'L', 10, 0, 95.00, 190.00, 'P001-BL'),
-('P001-BL-M', 'P001', 'BLUE', 'M', 12, 0, 95.00, 190.00, 'P001-BL'),
-('P001-BL-S', 'P001', 'BLUE', 'S', 14, 0, 95.00, 190.00, 'P001-BL'),
-('P001-BL-XL', 'P001', 'BLUE', 'XL', 13, 1, 95.00, 190.00, 'P001-BL'),
-('P001-BL-XXL', 'P001', 'BLUE', 'XXL', 11, 0, 95.00, 190.00, 'P001-BL'),
-('P001-BR-L', 'P001', 'BROWN', 'L', 10, 0, 95.00, 190.00, 'P001-BR'),
-('P001-BR-M', 'P001', 'BROWN', 'M', 10, 0, 95.00, 190.00, 'P001-BR'),
-('P001-BR-S', 'P001', 'BROWN', 'S', 11, 0, 95.00, 190.00, 'P001-BR'),
-('P001-BR-XL', 'P001', 'BROWN', 'XL', 10, 5, 95.00, 190.00, 'P001-BR'),
-('P001-BR-XXL', 'P001', 'BROWN', 'XXL', 11, 0, 95.00, 190.00, 'P001-BR'),
+('P001-BL-L', 'P001', 'BLUE', 'L', 10, 0, 195.00, 390.00, 'P001-BL'),
+('P001-BL-M', 'P001', 'BLUE', 'M', 15, 0, 195.00, 390.00, 'P001-BL'),
+('P001-BL-S', 'P001', 'BLUE', 'S', 14, 0, 195.00, 390.00, 'P001-BL'),
+('P001-BL-XL', 'P001', 'BLUE', 'XL', 13, 1, 195.00, 390.00, 'P001-BL'),
+('P001-BL-XXL', 'P001', 'BLUE', 'XXL', 11, 0, 195.00, 390.00, 'P001-BL'),
+('P001-BR-L', 'P001', 'BROWN', 'L', 10, 0, 195.00, 390.00, 'P001-BR'),
+('P001-BR-M', 'P001', 'BROWN', 'M', 10, 0, 195.00, 390.00, 'P001-BR'),
+('P001-BR-S', 'P001', 'BROWN', 'S', 11, 0, 195.00, 390.00, 'P001-BR'),
+('P001-BR-XL', 'P001', 'BROWN', 'XL', 10, 5, 195.00, 390.00, 'P001-BR'),
+('P001-BR-XXL', 'P001', 'BROWN', 'XXL', 11, 0, 195.00, 390.00, 'P001-BR'),
 ('P001-DO-L', 'P001', 'DARK ORANGE', 'L', 10, 0, 195.00, 390.00, 'P001-DO'),
 ('P001-DO-M', 'P001', 'DARK ORANGE', 'M', 13, 0, 195.00, 390.00, 'P001-DO'),
 ('P001-DO-S', 'P001', 'DARK ORANGE', 'S', 18, 5, 195.00, 390.00, 'P001-DO'),
 ('P001-DO-XL', 'P001', 'DARK ORANGE', 'XL', 12, 0, 195.00, 390.00, 'P001-DO'),
 ('P001-DO-XXL', 'P001', 'DARK ORANGE', 'XXL', 11, 2, 195.00, 390.00, 'P001-DO'),
-('P001-NA-L', 'P001', 'NATURAL', 'L', 11, 0, 295.00, 590.00, 'P001-NA'),
-('P001-NA-M', 'P001', 'NATURAL', 'M', 10, 0, 295.00, 590.00, 'P001-NA'),
-('P001-NA-S', 'P001', 'NATURAL', 'S', 10, 0, 295.00, 590.00, 'P001-NA'),
-('P001-NA-XL', 'P001', 'NATURAL', 'XL', 14, 2, 295.00, 590.00, 'P001-NA'),
-('P001-NA-XXL', 'P001', 'NATURAL', 'XXL', 10, 0, 295.00, 590.00, 'P001-NA'),
+('P001-NA-L', 'P001', 'NATURAL', 'L', 11, 0, 195.00, 390.00, 'P001-NA'),
+('P001-NA-M', 'P001', 'NATURAL', 'M', 10, 0, 195.00, 390.00, 'P001-NA'),
+('P001-NA-S', 'P001', 'NATURAL', 'S', 10, 0, 195.00, 390.00, 'P001-NA'),
+('P001-NA-XL', 'P001', 'NATURAL', 'XL', 14, 2, 195.00, 390.00, 'P001-NA'),
+('P001-NA-XXL', 'P001', 'NATURAL', 'XXL', 10, 0, 195.00, 390.00, 'P001-NA'),
 ('P001-WH-L', 'P001', 'WHITE', 'L', 10, 0, 195.00, 390.00, 'P001-WH'),
 ('P001-WH-M', 'P001', 'WHITE', 'M', 10, 0, 195.00, 390.00, 'P001-WH'),
 ('P001-WH-S', 'P001', 'WHITE', 'S', 10, 2, 195.00, 390.00, 'P001-WH'),
@@ -569,11 +626,11 @@ INSERT INTO `warehouse` (`full_prod_id`, `prod_id`, `color`, `size`, `total_amou
 ('P002-BL-S', 'P002', 'BLUE', 'S', 10, 0, 295.00, 590.00, 'P002-BL'),
 ('P002-BL-XL', 'P002', 'BLUE', 'XL', 10, 0, 295.00, 590.00, 'P002-BL'),
 ('P002-BL-XXL', 'P002', 'BLUE', 'XXL', 10, 0, 295.00, 590.00, 'P002-BL'),
-('P002-GR-L', 'P002', 'GREEN', 'L', 12, 0, 95.00, 190.00, 'P002-GR'),
-('P002-GR-M', 'P002', 'GREEN', 'M', 10, 0, 95.00, 190.00, 'P002-GR'),
-('P002-GR-S', 'P002', 'GREEN', 'S', 10, 0, 95.00, 190.00, 'P002-GR'),
-('P002-GR-XL', 'P002', 'GREEN', 'XL', 13, 0, 95.00, 190.00, 'P002-GR'),
-('P002-GR-XXL', 'P002', 'GREEN', 'XXL', 10, 0, 95.00, 190.00, 'P002-GR'),
+('P002-GR-L', 'P002', 'GREEN', 'L', 12, 0, 295.00, 590.00, 'P002-GR'),
+('P002-GR-M', 'P002', 'GREEN', 'M', 10, 0, 295.00, 590.00, 'P002-GR'),
+('P002-GR-S', 'P002', 'GREEN', 'S', 10, 0, 295.00, 590.00, 'P002-GR'),
+('P002-GR-XL', 'P002', 'GREEN', 'XL', 13, 0, 295.00, 590.00, 'P002-GR'),
+('P002-GR-XXL', 'P002', 'GREEN', 'XXL', 10, 0, 295.00, 590.00, 'P002-GR'),
 ('P002-WH-L', 'P002', 'WHITE', 'L', 10, 0, 295.00, 590.00, 'P002-WH'),
 ('P002-WH-M', 'P002', 'WHITE', 'M', 13, 0, 295.00, 590.00, 'P002-WH'),
 ('P002-WH-S', 'P002', 'WHITE', 'S', 10, 3, 295.00, 590.00, 'P002-WH'),
