@@ -19,7 +19,7 @@ export default function AddCart(props) {
   const insertCart = async (e) => {
     e.preventDefault();
     try {
-      const bodyData = { sale_id,cust_id,prod_id, color, size, sale_amount, prod_price };
+      const bodyData = { sale_id,cust_id,prod_id, color, size, sale_amount };
       const res = await fetch(`http://localhost:5000/insertCart`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

@@ -5,8 +5,8 @@ CREATE OR REPLACE PROCEDURE insert_cart(
     IN _prod_id varchar(5),
     IN _color varchar(15),
     IN _size varchar(5),
-    IN _sale_amount int(11),
-    IN _sale_price double(10,2) ) 
+    IN _sale_amount int(11))
+    -- IN _sale_price double(10,2) ) 
 
 BEGIN
 
@@ -15,6 +15,7 @@ BEGIN
     DECLARE find_full_prod_id varchar(11);
     DECLARE is_id_exist varchar(6);
     DECLARE _sale_cost double(10,2);
+    DECLARE _sale_price double(10,2);
 
     BEGIN
 
@@ -44,7 +45,7 @@ BEGIN
         END IF;
 
         -- Find the full_prod_id using name-color-size
-        SELECT full_prod_id, prod_cost INTO find_full_prod_id, _sale_cost
+        SELECT full_prod_id, prod_cost, prod_price INTO find_full_prod_id, _sale_cost,_sale_price
         FROM warehouse_view 
         WHERE prod_id = _prod_id
         AND color = _color
@@ -58,4 +59,4 @@ BEGIN
 END //
 
 DELIMITER ;
--- CALL insert_cart("S99999","C9999","P001","Black","L",2,390)
+-- CALL insert_cart("S99999","C9999","P001","Black","L",2)

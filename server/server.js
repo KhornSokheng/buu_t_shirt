@@ -422,8 +422,8 @@ app.post("/insertBuyDetail", async (req, res) => {
 
 app.post("/insertCart", (req, res) => {
     try {
-      const { sale_id,cust_id,prod_id, color, size, sale_amount, prod_price } = req.body;
-      const sql = `CALL insert_cart("${sale_id}","${cust_id}","${prod_id}", "${color}", "${size}", "${sale_amount}", "${prod_price}" )`;
+      const { sale_id,cust_id,prod_id, color, size, sale_amount } = req.body;
+      const sql = `CALL insert_cart("${sale_id}","${cust_id}","${prod_id}", "${color}", "${size}", "${sale_amount}" )`;
       pool.query(sql, (err, results) => {
         if (err) {
           throw err;
