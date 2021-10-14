@@ -4,7 +4,11 @@ import EditBuy from "./EditBuy";
 export default function Buy() {
   const [list, setList] = useState([]);
   const [cost, setCost] = useState([]);
+<<<<<<< HEAD
   
+=======
+  // let cost
+>>>>>>> e74b402319b86b09fd351ae8b48518dfac56bfb1
   const deleteItem = async (buy_id) => {
     try {
       const del = await fetch(`http://localhost:5000/deleteBuy/${buy_id}`, {
@@ -38,7 +42,11 @@ export default function Buy() {
       const jsonData = await resp.json();
 
       setCost(jsonData);
+<<<<<<< HEAD
       // cost = jsonData[0].total
+=======
+      // cost = jsonData
+>>>>>>> e74b402319b86b09fd351ae8b48518dfac56bfb1
 
       console.log("Resp", resp);
       console.log("List:", cost);
@@ -53,6 +61,7 @@ export default function Buy() {
   }, []);
   return (
     <div className="container">
+<<<<<<< HEAD
       <h3>BUY REPORT</h3>
       
       {cost.map((elt) => {
@@ -60,6 +69,12 @@ export default function Buy() {
               <p>Total Cost:{elt.total}</p>
             );
           })}
+=======
+      
+        <h3 className="d-flex justify-content-center">BUY REPORT</h3>
+        {cost.map((elt)=>{return (<h4  className="d-flex justify-content-center text-danger">Total Cost:{elt.total} BAHT</h4>)})}
+        <div className="d-flex justify-content-center">
+>>>>>>> e74b402319b86b09fd351ae8b48518dfac56bfb1
       <tr className="btn mt-1">
         <td>
           <input></input>
@@ -71,6 +86,7 @@ export default function Buy() {
           </a>
         </td>
       </tr>
+      </div>
       <table className="table table-striped">
         <thead>
           <tr>
