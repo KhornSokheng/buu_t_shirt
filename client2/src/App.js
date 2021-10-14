@@ -21,7 +21,7 @@ import LogIn from "./components/LogIn";
 
 function App() {
   return (
-    <div className="">
+    <div className="App">
       <Router>
         
         <Switch>
