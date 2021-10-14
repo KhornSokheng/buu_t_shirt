@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import Form from "react-bootstrap/Form";
+import SelectSize2 from "./SelectSize2";
 
 export default function Cart(props) {
   const [sale_id, setSaleId] = useState([]);
   const [cust_id, setCustId] = useState([]);
   const [cart_list, setCartList] = useState([]);
+  let max = 0;
+  let total_price = 0;
+  let sub_price = 0;
 
   const location = useLocation().pathname;
   //   sale_id = location.pathname.split("/")[2];
@@ -31,9 +35,7 @@ export default function Cart(props) {
 
   return (
     <div className="container">
-      <h1>Sale: {sale_id}</h1>
       <h1>Customer: {cust_id}</h1>
-      <h1>Location: {location}</h1>
 
       {/* search using sale_id (?) section */}
       <Form.Control
@@ -46,9 +48,46 @@ export default function Cart(props) {
         }}
       />
 
-      {cart_list.map((items) => {
-        return <h1>{items.full_prod_id}</h1>;
-      })}
+      
+      <section className="feat-product">
+        <div className="container">
+          <div className="row">
+            {cart_list.map((items) => {
+              max = items.item;
+              sub_price = items.sale_amount * items.sale_price;
+              total_price += sub_price;
+              return (
+                <>
+                  <div className="col-sm-4">
+                    <div className="product-item">
+                      <figure className="product-thumb">
+                        <img src={items.image_url} alt />
+                      </figure>
+                      <div className="product-content">
+                        <h5 className="product-name">
+                          <a href="#">{items.prod_name}</a>
+                        </h5>
+                        <h5 className="product-name">
+                          <a href="#">Color: {items.color}</a>
+                        </h5>
+                        {/* <SelectSize2 prod_id={items.prod_id} color={items.color} prod_color_id={items.prod_color_id}/> */}
+                        <h5 className="product-name text-primary">
+                          Quantity: {items.sale_amount}
+                        </h5>
+                        <p className="price text-danger">
+                          Subtotal: ฿{items.sale_amount * items.sale_price}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+      <h2>Total Items: {cart_list.length}</h2>
+      <h2>Total Price: ฿{total_price}</h2>
     </div>
   );
 }

@@ -98,7 +98,7 @@ app.get("/getSizeChart", (req, res) => {
 app.post("/getSizeRemain", async (req, res) => {
   try {
     // const {color} = req.params;
-    const { prod_id, color,prod_color_id } = req.body;
+    const { prod_id, color, prod_color_id } = req.body;
     // const sql = `SELECT color, size FROM warehouse_view
     //     WHERE total_amount - sold_amount >0
     //     AND prod_id = "${prod_id}"
@@ -286,30 +286,26 @@ app.get("/getProduct", (req, res) => {
   }
 });
 // get product with id (OK)
-app.get('/getProduct/:id', (req, res) =>{
-
-    try {
-
-        const prod_color_id = req.params.id;
-        // const color = req.params.color;
-        // const sql = `SELECT * from warehouse_view where prod_color_id = "${id}" GROUP BY prod_color_id`;
-        // const sql = `SELECT * from warehouse_view where prod_id = "${id}" and color="${color}"  GROUP BY color LIMIT 1`;
-        const sql = `SELECT * from warehouse_view where prod_color_id = "${prod_color_id}" GROUP BY color LIMIT 1;` 
-        console.log(sql)
-        const data = pool.query(sql, (err, results) => {
-            if (err) {
-                throw err;
-            }
-            console.log(results);
-            // console.log(data)
-            res.send(results);
-
-        });
-
-    } catch (err) {
-        console.error(err.message);
-    }
-})
+app.get("/getProduct/:id", (req, res) => {
+  try {
+    const prod_color_id = req.params.id;
+    // const color = req.params.color;
+    // const sql = `SELECT * from warehouse_view where prod_color_id = "${id}" GROUP BY prod_color_id`;
+    // const sql = `SELECT * from warehouse_view where prod_id = "${id}" and color="${color}"  GROUP BY color LIMIT 1`;
+    const sql = `SELECT * from warehouse_view where prod_color_id = "${prod_color_id}" GROUP BY color LIMIT 1;`;
+    console.log(sql);
+    const data = pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      // console.log(data)
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 // get all product color (OK)
 app.get("/getProductColor", (req, res) => {
@@ -342,32 +338,31 @@ app.get("/getCostTotal", (req, res) => {
 });
 
 // get product with id (OK)
-app.get('/getCartList/:id', (req, res) =>{
+app.get("/getCartList/:id", (req, res) => {
+  try {
+    const cust_id = req.params.id;
 
-    try {
-
-        const cust_id = req.params.id;
-        
-        const sql = `SELECT sale.sale_id,cust_id,sale_date, full_prod_id,item, sale_amount, sale_price
-        FROM sale JOIN sale_detail
-        ON sale.sale_id = sale_detail.sale_id
-        WHERE sale_status = "cart"
-        AND cust_id = "${cust_id}"` 
-        console.log(sql)
-        const data = pool.query(sql, (err, results) => {
-            if (err) {
-                throw err;
-            }
-            console.log(results);
-            // console.log(data)
-            res.send(results);
-
-        });
-
-    } catch (err) {
-        console.error(err.message);
-    }
-})
+    const sql = `SELECT sale.sale_id,cust_id,sale_date, sale_detail.full_prod_id,item,
+                sale_amount, sale_price, image_url,prod_name,color,size,prod_color_id
+                FROM sale JOIN sale_detail
+                ON sale.sale_id = sale_detail.sale_id
+                JOIN warehouse_view
+                ON sale_detail.full_prod_id = warehouse_view.full_prod_id
+                WHERE sale_status = "cart"
+                AND cust_id = "${cust_id}"`;
+    console.log(sql);
+    const data = pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      // console.log(data)
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 // --------------------------------------------
 // post method
@@ -392,25 +387,24 @@ app.post("/insertBuy", (req, res) => {
 // insert buy detail
 // trigger will be called to update product in warehouse
 app.post("/insertBuyDetail", async (req, res) => {
-    try {
-      const { buy_id, prod_name,color,size, buy_amount, buy_cost } = req.body;
-      
-      
-      const sql = `CALL insert_buy_detail('${buy_id}','${prod_name}','${color}','${size}','${buy_amount}','${buy_cost}')`;
-      console.log(sql);
-      pool.query(sql, async (err, results) => {
-        if (err) {
-          throw err;
-        }
-        console.log(results);
-        console.log("ID: ", full_prod_id);
-        res.send(results);
-      });
-      // console.log(req.body)
-    } catch (err) {
-      console.error(err.message);
-    }
-  });
+  try {
+    const { buy_id, prod_name, color, size, buy_amount, buy_cost } = req.body;
+
+    const sql = `CALL insert_buy_detail('${buy_id}','${prod_name}','${color}','${size}','${buy_amount}','${buy_cost}')`;
+    console.log(sql);
+    pool.query(sql, async (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      console.log("ID: ", full_prod_id);
+      res.send(results);
+    });
+    // console.log(req.body)
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 // ERROR:
 // app.post("/insertBuyDetail", async (req, res) => {
@@ -432,7 +426,7 @@ app.post("/insertBuyDetail", async (req, res) => {
 //         console.log("ID: ", full_prod_id);
 //         res.send(results);
 //       });
-    
+
 //     const sql2 = `CALL insert_buy_detail('${buy_id}','${full_prod_id}','${buy_amount}','${buy_cost}')`;
 //     console.log(sql2);
 //     pool.query(sql2, async (err, results) => {
@@ -452,21 +446,21 @@ app.post("/insertBuyDetail", async (req, res) => {
 // insert product to cart
 
 app.post("/insertCart", (req, res) => {
-    try {
-      const { sale_id,cust_id,prod_id, color, size, sale_amount } = req.body;
-      const sql = `CALL insert_cart("${sale_id}","${cust_id}","${prod_id}", "${color}", "${size}", "${sale_amount}" )`;
-      pool.query(sql, (err, results) => {
-        if (err) {
-          throw err;
-        }
-        console.log(results);
-        res.send(results);
-      });
-      // console.log(req.body)
-    } catch (err) {
-      console.error(err.message);
-    }
-  });
+  try {
+    const { sale_id, cust_id, prod_id, color, size, sale_amount } = req.body;
+    const sql = `CALL insert_cart("${sale_id}","${cust_id}","${prod_id}", "${color}", "${size}", "${sale_amount}" )`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+    // console.log(req.body)
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 // insert customer (OK)
 app.post("/insertCustomer", (req, res) => {
@@ -539,7 +533,7 @@ app.put("/updateBuy/:id", (req, res) => {
 app.put("/updateBuyDetail/:id", (req, res) => {
   try {
     let { id } = req.params;
-    let { buy_id,item,buy_amount,buy_cost } = req.body;
+    let { buy_id, item, buy_amount, buy_cost } = req.body;
 
     const sql = `UPDATE buy_detail SET buy_amount=${buy_amount},buy_cost=${buy_cost} WHERE buy_id="${buy_id} " AND item = ${item}`;
     console.log(id);

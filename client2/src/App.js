@@ -18,6 +18,7 @@ import ViewProduct from "./components/ViewProduct";
 import InsertBuy from "./components/InsertBuy";
 import InsertBuyDetail from "./components/InsertBuyDetail";
 import LogIn from "./components/LogIn";
+import SignUp from "./components/SignUp";
 
 function App() {
   return (
@@ -77,6 +78,9 @@ function App() {
             </Route>
             <Route path="/login">
               <LogIn />
+            </Route>
+            <Route path="/Signup">
+              <SignUp />
             </Route>
             <Route path="/cart">
               <Cart />
