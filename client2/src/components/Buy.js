@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 export default function Buy() {
   const [list, setList] = useState([]);
   const [cost, setCost] = useState([]);
-  const [buy_id,setID] = useState([]);
+  const [buy_id,setID] = useState(["B"]);
   const [buy_list,setBuylist] = useState([]);
   
   const deleteItem = async (buy_id) => {
@@ -56,8 +56,6 @@ export default function Buy() {
   return (
     <div className="container">
         <h3 >BUY REPORT</h3>
-
-        <h1>buy id:{buy_id}</h1>
         {cost.map((elt)=>{return (<p>Total Cost:{elt.total} BAHT</p>)})}
         <div>
       <tr className="btn mt-1">

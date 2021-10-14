@@ -187,10 +187,10 @@ app.get("/getBuyID", (req, res) => {
 // get all buy (OK)
 app.get("/getBuy/:id", (req, res) => {
   try {
-    const {buy_id} = req.params;
-    const sql = `SELECT DATE_FORMAT(buy_date, "%W %e %M %Y") AS buy_date, buy_id, buy_status FROM buy 
-    where buy_id like "%`+`${buy_id}%"`;
+    const buy_id = req.params.id;
+    const sql = `SELECT DATE_FORMAT(buy_date, "%W %e %M %Y") AS buy_date, buy_id, buy_status FROM buy where buy_id like "%`+`${buy_id}%"`;
     console.log (sql)
+    console.log (buy_id)
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;

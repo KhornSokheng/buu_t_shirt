@@ -45,7 +45,7 @@ export default function Buydetail() {
   return (
     <div className="container">
       <h2>Buy Detail</h2>
-      <tr className="btn mt-5">
+      <tr className="btn mt-3">
         <td>
           <Form.Control
           class="form-control mr-sm-2"
@@ -65,7 +65,7 @@ export default function Buydetail() {
           </a>
         </td>
       </tr>
-      <table className="table table-striped mt-5">
+      <table className="table table-striped ">
         <thead>
           <tr>
             <th>Buy Id</th>
@@ -88,7 +88,7 @@ export default function Buydetail() {
                 <td>
                   <a>{elt.item}</a>
                 </td>
-                <td>{elt.full_prod_id}</td>
+                <a href="/warehouse"><td>{elt.full_prod_id}</td></a>
                 <td>{elt.prod_name}</td>
                 <td>{elt.color}</td>
                 <td>{elt.size}</td>
