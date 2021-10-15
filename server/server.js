@@ -4,8 +4,33 @@ const app = express();
 const port = "5000";
 const pool = require("./connect_db");
 const cors = require("cors");
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+const saltRounds = 10;
+const { v4: uuidv4 } = require('uuid');
+const bcrypt = require('bcrypt');
 
-app.use(cors());
+
+// app.use(cors());
+
+app.use(cors({
+    origin:["http://localhost:3000"],
+    methods: ["GET","POST","DELETE","PUT"],
+    credentials: true
+}));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(session({
+    key: "userId",
+    secret: "subscribe",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 60 * 60 * 24,
+    }
+}))
+
 app.use(express.json());
 
 app.listen(port, () => {
@@ -405,6 +430,115 @@ app.post("/insertBuyDetail", async (req, res) => {
     console.error(err.message);
   }
 });
+// app.post('/register2',(req,res)=>{
+
+//   const password = req.body.Password;
+//   const firstname = req.body.cust_name;
+//   const lastname = req.body.cust_lname;
+//   const phone = req.body.phone_num;
+//   const creditcard = req.body.credit_card;
+//   const cust_id = `C${uuidv4()}`;
+//   const username = req.body.Username;
+
+//   console.log(username,password);
+
+//   pool.query("INSERT INTO customer (cust_id,Username,Password,cust_name,cust_lname,phone_num,credit_card) VALUES (?,?,?,?,?,?,?)",
+//   [cust_id,username,password,firstname,lastname,phone,creditcard],
+//   (err,result)=>{
+//       if(err){
+//       console.log("err1 :",err);
+//       res.send(err);  
+//       }
+//       if(result){
+//           console.log("chk1 :",result);
+//           res.send(result);
+//       }            
+
+//   })
+
+// })
+app.post('/register3',(req,res)=>{
+
+  const password = req.body.Password;
+  const firstname = req.body.cust_name;
+  const lastname = req.body.cust_lname;
+  const phone = req.body.phone_num;
+  const creditcard = req.body.credit_card;
+  const cust_id = `C${uuidv4()}`;
+  const username = req.body.Username;
+
+  console.log(username,password);
+
+  bcrypt.hash(password,saltRounds,(err,hash)=>{
+      if(err){
+          console.log("hash:",err);
+      }
+      pool.query("INSERT INTO customer (cust_id,Username,Password,cust_name,cust_lname,phone_num,credit_card) VALUES (?,?,?,?,?,?,?)",
+      [cust_id,username,hash,firstname,lastname,phone,creditcard],
+      (err,result)=>{
+          if(err){
+          console.log(err);
+          res.send(err);  
+          }
+          if(result){
+              console.log(result);
+              res.send(result);
+          }            
+      })
+  })
+
+})
+app.post('/login',(req,res)=>{
+  const username = req.body.username;
+  const password = req.body.password;
+  console.log(username,password)
+
+  pool.query("SELECT * FROM customer WHERE username=? and password=?",
+  [username,password],
+  (err,result)=>{
+      if(err){
+          console.log(err); 
+          res.send({err:err});  
+      }
+      if(result.length>0){
+          res.send(result);
+      }else{
+          res.send({message:"Wrong username/password.."});
+      }
+     
+  })
+})
+app.post('/login2',(req,res)=>{
+  const username = req.body.username;
+  const password = req.body.password;
+  console.log(username,password)
+  pool.query("SELECT * FROM customer WHERE username=?;",
+  [username],
+  (err,result)=>{
+      if(err){
+          console.log(err);
+          res.send({err:err});
+      }
+      console.log("login2:",result);
+      if(result.length>0){
+          bcrypt.compare(password,result[0].Password,
+              (error,response)=>{
+                console.log("chk2 :",response)
+                  if(response){
+                      // req.session.user = result;
+                      // console.log("session.user:",req.session.user);
+                      res.send(result);
+                  }else{
+                      res.send({error:"Wrong username/password"});
+                  }
+              })
+
+      }else{
+          res.send({error:"Username doesn't exist..."});
+      }
+     
+  })
+})
 
 // ERROR:
 // app.post("/insertBuyDetail", async (req, res) => {
