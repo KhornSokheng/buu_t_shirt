@@ -52,10 +52,10 @@ export default function Header() {
                 <i class="menu-dropdown ti-angle-down"></i>
                 <ul className="sub-menu">
                   <li>
-                    <a href="home-01.html">Sale report</a>
+                    <a href="/sale">Sale report</a>
                   </li>
                   <li>
-                    <a href="home-02.html">Sale detail</a>
+                    <a href="/saledetail">Sale detail</a>
                   </li>
                 </ul>
               </li>
