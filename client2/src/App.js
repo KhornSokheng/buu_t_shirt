@@ -21,6 +21,7 @@ import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import OrderHistory from "./components/OrderHistory";
 import Saledetail from "./components/Saledetail";
+import Warehouse from "./components/Warehouse";
 
 function App() {
   return (
@@ -93,8 +94,8 @@ function App() {
             <Route path="/orderHistory">
               <OrderHistory/>
             </Route>
-            <Route path="/wishlist">
-              <Wishlist />
+            <Route path="/warehouse">
+              <Warehouse/>
             </Route>
             {/* </div> */}
             <Footer />

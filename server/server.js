@@ -72,9 +72,10 @@ app.get("/getWarehouse/:id", (req, res) => {
 });
 
 // get all products in warehouse view (OK)
-app.get("/getWarehouseView", async (req, res) => {
+app.get("/getWarehouseView/:id", async (req, res) => {
   try {
-    const sql = "SELECT * from warehouse_view";
+    const full_prod_id = req.params.id;
+    const sql = `SELECT * from warehouse_view WHERE full_prod_id LIKE "%${full_prod_id}%"`;
     await pool.query(sql, (err, results) => {
       if (err) {
         throw err;
