@@ -1,53 +1,55 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
-import EditSaledetail from './EditSaleDetail';
+import EditSaledetail from "./EditSaleDetail";
 
 export default function Saledetail() {
-    const [list,setList] = useState([]);
-    const [sale_id,setID] = useState(["S"]);
-    const [sale_list,setSalelist] = useState([]);
+  const [list, setList] = useState([]);
+  const [sale_id, setID] = useState(["S"]);
+  const [sale_list, setSalelist] = useState([]);
 
-    const loadList = async () => {
-      try {
-        const resp = await fetch(`http://localhost:5000/getSaledetail/${sale_id}`);
-        const jsonData = await resp.json();
-  
-        setList(jsonData);
-  
-        console.log("Resp", resp);
-        console.log("List:", list);
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
-    useEffect(() => {
-      console.log("Enter useEffect()");
-      loadList();
-    }, [sale_id]);
-    return (
-        <div className="container">
-        <h3 >SALE DETAIL</h3>
-        <div>
-      <tr className="btn mt-1">
-      <td>
-          <Form.Control
-          class="form-control mr-sm-2"
-          type="search"
-          placeholder="Search"
-          onChange={(e) =>{
-            setID(e.target.value)
-          }}
-          />
-          {sale_list.map((item) => {
-            return <p>{item.sale_id}</p>
-          })}
-        </td>
-        {/* <td>
+  const loadList = async () => {
+    try {
+      const resp = await fetch(
+        `http://localhost:5000/getSaledetail/${sale_id}`
+      );
+      const jsonData = await resp.json();
+
+      setList(jsonData);
+
+      console.log("Resp", resp);
+      console.log("List:", list);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+  useEffect(() => {
+    console.log("Enter useEffect()");
+    loadList();
+  }, [sale_id]);
+  return (
+    <div className="container">
+      <h3>SALE DETAIL</h3>
+      <div>
+        <tr className="btn mt-1">
+          <td>
+            <Form.Control
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+              onChange={(e) => {
+                setID(e.target.value);
+              }}
+            />
+            {sale_list.map((item) => {
+              return <p>{item.sale_id}</p>;
+            })}
+          </td>
+          {/* <td>
           <a href="/insertbuy">
             <button className="btn btn-success ml-3">เพิ่มข้อมูล</button>
           </a>
         </td> */}
-      </tr>
+        </tr>
       </div>
       <table className="table table-striped">
         <thead>
@@ -76,5 +78,5 @@ export default function Saledetail() {
         </tbody>
       </table>
     </div>
-    )
+  );
 }
