@@ -407,7 +407,7 @@ app.get("/getCartList/:email", (req, res) => {
     // const cust_id = req.params.id;
     const email = req.params.email;
 
-    const sql = `SELECT sale.sale_id,customer.cust_id,Username,sale_date, sale_detail.full_prod_id,item,
+    const sql = `SELECT sale.sale_id,customer.cust_id,email,sale_date, sale_detail.full_prod_id,item,
                 sale_amount, sale_price, image_url,prod_name,color,size,prod_color_id
                 FROM sale JOIN sale_detail
                 ON sale.sale_id = sale_detail.sale_id
@@ -415,7 +415,7 @@ app.get("/getCartList/:email", (req, res) => {
                 ON sale_detail.full_prod_id = warehouse_view.full_prod_id
                 JOIN customer ON customer.cust_id=sale.cust_id
                 WHERE sale_status = "cart"
-                AND Username = "${email}"`;
+                AND email = "${email}"`;
                 // AND cust_id = "${cust_id}"`;
     console.log(sql);
     const data = pool.query(sql, (err, results) => {
@@ -474,18 +474,18 @@ app.post("/insertBuyDetail", async (req, res) => {
 });
 // app.post('/register2',(req,res)=>{
 
-//   const password = req.body.Password;
+//   const password = req.body.password;
 //   const firstname = req.body.cust_name;
 //   const lastname = req.body.cust_lname;
 //   const phone = req.body.phone_num;
 //   const creditcard = req.body.credit_card;
 //   const cust_id = `C${uuidv4()}`;
-//   const username = req.body.Username;
+//   const email = req.body.email;
 
-//   console.log(username,password);
+//   console.log(email,password);
 
-//   pool.query("INSERT INTO customer (cust_id,Username,Password,cust_name,cust_lname,phone_num,credit_card) VALUES (?,?,?,?,?,?,?)",
-//   [cust_id,username,password,firstname,lastname,phone,creditcard],
+//   pool.query("INSERT INTO customer (cust_id,email,password,cust_name,cust_lname,phone_num,credit_card) VALUES (?,?,?,?,?,?,?)",
+//   [cust_id,email,password,firstname,lastname,phone,creditcard],
 //   (err,result)=>{
 //       if(err){
 //       console.log("err1 :",err);
@@ -501,22 +501,22 @@ app.post("/insertBuyDetail", async (req, res) => {
 // })
 app.post('/register3',(req,res)=>{
 
-  const password = req.body.Password;
+  const password = req.body.password;
   const firstname = req.body.cust_name;
   const lastname = req.body.cust_lname;
   const phone = req.body.phone_num;
   const creditcard = req.body.credit_card;
   const cust_id = `C${uuidv4()}`;
-  const username = req.body.Username;
+  const email = req.body.email;
 
-  console.log(username,password);
+  console.log(email,password);
 
   bcrypt.hash(password,saltRounds,(err,hash)=>{
       if(err){
           console.log("hash:",err);
       }
-      pool.query("INSERT INTO customer (cust_id,Username,Password,cust_name,cust_lname,phone_num,credit_card) VALUES (?,?,?,?,?,?,?)",
-      [cust_id,username,hash,firstname,lastname,phone,creditcard],
+      pool.query("INSERT INTO customer (cust_id,email,password,cust_name,cust_lname,phone_num,credit_card) VALUES (?,?,?,?,?,?,?)",
+      [cust_id,email,hash,firstname,lastname,phone,creditcard],
       (err,result)=>{
           if(err){
           console.log(err);
@@ -531,12 +531,12 @@ app.post('/register3',(req,res)=>{
 
 })
 app.post('/login',(req,res)=>{
-  const username = req.body.username;
+  const email = req.body.email;
   const password = req.body.password;
-  console.log(username,password)
+  console.log(email,password)
 
-  pool.query("SELECT * FROM customer WHERE username=? and password=?",
-  [username,password],
+  pool.query("SELECT * FROM customer WHERE email=? and password=?",
+  [email,password],
   (err,result)=>{
       if(err){
           console.log(err); 
@@ -545,17 +545,17 @@ app.post('/login',(req,res)=>{
       if(result.length>0){
           res.send(result);
       }else{
-          res.send({message:"Wrong username/password.."});
+          res.send({message:"Wrong email/password.."});
       }
      
   })
 })
 app.post('/login2',(req,res)=>{
-  const username = req.body.username;
+  const email = req.body.email;
   const password = req.body.password;
-  console.log(username,password)
-  pool.query("SELECT * FROM customer WHERE username=?;",
-  [username],
+  console.log(email,password)
+  pool.query("SELECT * FROM customer WHERE email=?;",
+  [email],
   (err,result)=>{
       if(err){
           console.log(err);
@@ -563,7 +563,7 @@ app.post('/login2',(req,res)=>{
       }
       console.log("login2:",result);
       if(result.length>0){
-          bcrypt.compare(password,result[0].Password,
+          bcrypt.compare(password,result[0].password,
               (error,response)=>{
                 console.log("chk2 :",response)
                   if(response){
@@ -571,12 +571,12 @@ app.post('/login2',(req,res)=>{
                       // console.log("session.user:",req.session.user);
                       res.send(result);
                   }else{
-                      res.send({error:"Wrong username/password"});
+                      res.send({error:"Wrong email/password"});
                   }
               })
 
       }else{
-          res.send({error:"Username doesn't exist..."});
+          res.send({error:"email doesn't exist..."});
       }
      
   })
