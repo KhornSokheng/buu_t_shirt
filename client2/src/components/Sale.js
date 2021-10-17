@@ -5,6 +5,8 @@ export default function Sale() {
 
     const [list,setList] = useState([]);
     const [sale_id,setID] = useState(["S"]);
+    const [cost,setCost] = useState([]);
+    const [price,setPrice] = useState([]);
 
     const loadList = async () => {
         try {
@@ -19,15 +21,43 @@ export default function Sale() {
           console.error(err.message);
         }
       };
-      
+      const loadCost = async () => {
+        try {
+          const resp = await fetch(`http://localhost:5000/getSalecost/${sale_id}`);
+          const jsonData = await resp.json();
+    
+          setCost(jsonData);
+    
+          console.log("Resp", resp);
+          console.log("List:", cost);
+        } catch (err) {
+          console.error(err.message);
+        }
+      };
+      const loadPrice = async () => {
+        try {
+          const resp = await fetch(`http://localhost:5000/getSaleprice/${sale_id}`);
+          const jsonData = await resp.json();
+    
+          setPrice(jsonData);
+    
+          console.log("Resp", resp);
+          console.log("List:", cost);
+        } catch (err) {
+          console.error(err.message);
+        }
+      };
       useEffect(() => {
         console.log("Enter useEffect()");
         loadList();
+        loadCost();
+        loadPrice();
       }, [sale_id]);
     return (
         <div className="container">
         <h3 >SALE REPORT</h3>
-        {/* {cost.map((elt)=>{return (<p>Total Cost:{elt.total} BAHT</p>)})} */}
+        {cost.map((elt)=>{return (<p>Sale Cost:{elt.cost} BAHT</p>)})}
+        {price.map((elt)=>{return (<p>Sale Price:{elt.price} BAHT</p>)})}
         <div>
       <tr className="btn mt-1">
       <td>

@@ -362,6 +362,36 @@ app.get("/getCostTotal/:id", (req, res) => {
     console.error(err.message);
   }
 });
+app.get("/getSalecost/:id", (req, res) => {
+  try {
+    const sale_id = req.params.id;
+    const sql = `SELECT SUM(sale_cost)cost FROM sale_detail where sale_id LIKE "%${sale_id}%";`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.get("/getSaleprice/:id", (req, res) => {
+  try {
+    const sale_id = req.params.id;
+    const sql = `SELECT SUM(sale_price)price FROM sale_detail where sale_id LIKE "%${sale_id}%";`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 // get product in cart of cust_id
 app.get("/getCartList/:email", (req, res) => {
