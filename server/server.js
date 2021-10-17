@@ -347,10 +347,40 @@ app.get("/getProductColor", (req, res) => {
     console.error(err.message);
   }
 });
-app.get("/getCostTotal", (req, res) => {
+app.get("/getCostTotal/:id", (req, res) => {
   try {
     const buy_id = req.params.id;
-    const sql = `SELECT sum(buy_cost)total FROM buy_detail`;
+    const sql = `SELECT sum(buy_cost)total FROM buy_detail where buy_id LIKE "%${buy_id}%";`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.get("/getSalecost/:id", (req, res) => {
+  try {
+    const sale_id = req.params.id;
+    const sql = `SELECT SUM(sale_cost)cost FROM sale_detail where sale_id LIKE "%${sale_id}%";`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.get("/getSaleprice/:id", (req, res) => {
+  try {
+    const sale_id = req.params.id;
+    const sql = `SELECT SUM(sale_price)price FROM sale_detail where sale_id LIKE "%${sale_id}%";`;
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;
@@ -363,19 +393,22 @@ app.get("/getCostTotal", (req, res) => {
   }
 });
 
-// get product with id (OK)
-app.get("/getCartList/:id", (req, res) => {
+// get product in cart of cust_id
+app.get("/getCartList/:email", (req, res) => {
   try {
-    const cust_id = req.params.id;
+    // const cust_id = req.params.id;
+    const email = req.params.email;
 
-    const sql = `SELECT sale.sale_id,cust_id,sale_date, sale_detail.full_prod_id,item,
+    const sql = `SELECT sale.sale_id,customer.cust_id,Username,sale_date, sale_detail.full_prod_id,item,
                 sale_amount, sale_price, image_url,prod_name,color,size,prod_color_id
                 FROM sale JOIN sale_detail
                 ON sale.sale_id = sale_detail.sale_id
                 JOIN warehouse_view
                 ON sale_detail.full_prod_id = warehouse_view.full_prod_id
+                JOIN customer ON customer.cust_id=sale.cust_id
                 WHERE sale_status = "cart"
-                AND cust_id = "${cust_id}"`;
+                AND Username = "${email}"`;
+                // AND cust_id = "${cust_id}"`;
     console.log(sql);
     const data = pool.query(sql, (err, results) => {
       if (err) {
@@ -685,6 +718,32 @@ app.put("/updateBuyDetail/:id", (req, res) => {
     console.error(err.message);
   }
 });
+
+// check out order
+// change sale_status from "cart" to "new"
+app.put("/checkOut/:id", (req, res) => {
+  try {
+    // let sale_id = req.params.id;
+    let { sale_id,receiverName,receiverPhone,address }= req.body;
+
+    const sql = `UPDATE sale SET receiver_name="${receiverName}",receiver_phone="${receiverPhone}", sale_status="new_order", address="${address}"
+      WHERE sale_id="${sale_id}"`;
+    // console.log(id);
+    pool.query(sql, (err, results) => {
+      if (err) {
+        res.send(err.message);
+        throw err;
+      }
+      console.log(sql);
+      console.log(results);
+      res.send(`CheckOut Sale ID: ${sale_id} successfully...`);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+
 
 // --------------------------------------------
 // Delete method (OK)

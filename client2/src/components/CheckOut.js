@@ -13,21 +13,26 @@ export default function CheckOut(props) {
   const sale_amount = props.sale_amount;
   const prod_price = props.prod_price;
   const [cust_id, setCustId] = useState([]);
-  const [sale_id, setSaleId] = useState([]);
+  const sale_id = props.sale_id;
+  const email = props.email;
+  const [receiverName, setReceiverName] = useState([]);
+  const [receiverPhone, setReceiverPhone] = useState([]);
+  const [address, setAddress] = useState([]);
+  const [credit_card, setCreditCard] = useState([]);
   // const [prod_id,color, size, sale_amount,prod_price] = props;
 
-  const insertCart = async (e) => {
+  const doCheckOut = async (e) => {
     e.preventDefault();
     try {
-      const bodyData = { sale_id, cust_id, prod_id, color, size, sale_amount };
-      const res = await fetch(`http://localhost:5000/insertCart`, {
-        method: "POST",
+      const bodyData = { sale_id,receiverName,receiverPhone,address };
+      const res = await fetch(`http://localhost:5000/checkOut/${sale_id}`, {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bodyData),
       });
 
       //   window.location = `/cart/${sale_id}`;
-      window.location = `/cart`;
+      window.location = `/orderHistory`;
       
 
       console.log(res);
@@ -54,7 +59,7 @@ export default function CheckOut(props) {
             <div className="modal-content ">
               {/* Modal Header */}
               <div className="modal-header">
-                <h4 className="modal-title">Just a little more...</h4>
+                <h4 className="modal-title">Just a little more...{sale_id}</h4>
                 
                 <button type="button" className="close" data-dismiss="modal">
                   ×
@@ -71,7 +76,7 @@ export default function CheckOut(props) {
                       placeholder="Receiver Name"
                       //   value={price}
                       onChange={(e) => {
-                        setSaleId(e.target.value);
+                        setReceiverName(e.target.value);
                       }}
                     />
                   </div>
@@ -83,7 +88,7 @@ export default function CheckOut(props) {
                       placeholder="Receiver Phone Number"
                       //   value="C0000"
                       onChange={(e) => {
-                        setCustId(e.target.value);
+                        setReceiverPhone(e.target.value);
                       }}
                     />
                   </div>
@@ -95,7 +100,7 @@ export default function CheckOut(props) {
                       placeholder="Address"
                       //   value="C0000"
                       onChange={(e) => {
-                        setCustId(e.target.value);
+                        setAddress(e.target.value);
                       }}
                     />
                   </div>
@@ -107,7 +112,7 @@ export default function CheckOut(props) {
                       placeholder="Credit Card"
                       //   value="C0000"
                       onChange={(e) => {
-                        setCustId(e.target.value);
+                        setCreditCard(e.target.value);
                       }}
                     />
                   </div>
@@ -120,7 +125,7 @@ export default function CheckOut(props) {
                   className="btn btn-primary"
                   data-dismiss="modal"
                   onClick={(e) => {
-                    insertCart(e);
+                    doCheckOut(e);
                   }}
                 >
                   CONFIRM ORDER 

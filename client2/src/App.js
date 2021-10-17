@@ -19,6 +19,7 @@ import InsertBuy from "./components/InsertBuy";
 import InsertBuyDetail from "./components/InsertBuyDetail";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
+import OrderHistory from "./components/OrderHistory";
 import Saledetail from "./components/Saledetail";
 
 function App() {
@@ -88,6 +89,9 @@ function App() {
             </Route>
             <Route path="/cart">
               <Cart />
+            </Route>
+            <Route path="/orderHistory">
+              <OrderHistory/>
             </Route>
             <Route path="/wishlist">
               <Wishlist />
