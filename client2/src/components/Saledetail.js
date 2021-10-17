@@ -1,29 +1,27 @@
 import React,{useState,useEffect} from 'react'
 import Form from "react-bootstrap/Form";
 
-export default function Sale() {
-
+export default function Saledetail() {
     const [list,setList] = useState([]);
-    const [sale_id,setID] = useState(["S"]);
+    const [sale_id,setID] = useState([]);
 
     const loadList = async () => {
-        try {
-          const resp = await fetch(`http://localhost:5000/getSale`);
-          const jsonData = await resp.json();
-    
-          setList(jsonData);
-    
-          console.log("Resp", resp);
-          console.log("List:", list);
-        } catch (err) {
-          console.error(err.message);
-        }
-      };
-      
-      useEffect(() => {
-        console.log("Enter useEffect()");
-        loadList();
-      }, [sale_id]);
+      try {
+        const resp = await fetch(`http://localhost:5000/getSaledetail`);
+        const jsonData = await resp.json();
+  
+        setList(jsonData);
+  
+        console.log("Resp", resp);
+        console.log("List:", list);
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+    useEffect(() => {
+      console.log("Enter useEffect()");
+      loadList();
+    }, [sale_id]);
     return (
         <div className="container">
         <h3 >SALE REPORT</h3>
@@ -54,17 +52,11 @@ export default function Sale() {
         <thead>
           <tr>
             <th>Sale id</th>
-            <th>Sale date</th>
-            <th>Customer id</th>
-            <th>Receiver name</th>
-            <th>Receiver phone</th>
-            <th>Sale status</th>
-            <th>Delivery id</th>
-            <th>Delivery price</th>
-            <th>Delivery begin date</th>
-            <th>Delivery receive date</th>
-            <th>Address</th>
-            <th>Delivery status</th>
+            <th>Item</th>
+            <th>Full Product ID</th>
+            <th>Sale Amount</th>
+            <th>Sale Cost</th>
+            <th>Sale Price</th>
           </tr>
         </thead>
         <tbody>
@@ -72,17 +64,11 @@ export default function Sale() {
             return (
               <tr>
                 <td>{elt.sale_id}</td>
-                <td>{elt.sale_date}</td>
-                <td>{elt.cust_id}</td>
-                <td>{elt.receiver_name}</td>
-                <td>{elt.receiver_phone}</td>
-                <td>{elt.sale_status}</td>
-                <td>{elt.delivery_id}</td>
-                <td>{elt.delivery_price}</td>
-                <td>{elt.delivery_begin_date}</td>
-                <td>{elt.delivery_receive_date}</td>
-                <td>{elt.address}</td>
-                <td>{elt.delivery_status}</td>
+                <td>{elt.item}</td>
+                <td>{elt.full_prod_id}</td>
+                <td>{elt.sale_amount}</td>
+                <td>{elt.sale_cost}</td>
+                <td>{elt.sale_price}</td>
                 {/* <td>
                   <EditBuy
                     buy_date={elt.buy_date}
