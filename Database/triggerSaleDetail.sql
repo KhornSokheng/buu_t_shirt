@@ -12,7 +12,12 @@ BEGIN
         FROM sale
         WHERE sale.sale_id = NEW.sale_id;
 
-        IF _sale_status = "completed" THEN 
+        -- IF _sale_status = "completed" THEN 
+        --     UPDATE warehouse
+        --     SET warehouse.sold_amount = warehouse.sold_amount + NEW.sale_amount
+        --     WHERE warehouse.full_prod_id = NEW.full_prod_id;
+        -- END IF;
+        IF _sale_status = "cart" THEN 
             UPDATE warehouse
             SET warehouse.sold_amount = warehouse.sold_amount + NEW.sale_amount
             WHERE warehouse.full_prod_id = NEW.full_prod_id;
