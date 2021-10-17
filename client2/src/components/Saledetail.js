@@ -1,13 +1,15 @@
 import React,{useState,useEffect} from 'react'
 import Form from "react-bootstrap/Form";
+import EditSaledetail from './EditSaleDetail';
 
 export default function Saledetail() {
     const [list,setList] = useState([]);
-    const [sale_id,setID] = useState([]);
+    const [sale_id,setID] = useState(["S"]);
+    const [sale_list,setSalelist] = useState([]);
 
     const loadList = async () => {
       try {
-        const resp = await fetch(`http://localhost:5000/getSaledetail`);
+        const resp = await fetch(`http://localhost:5000/getSaledetail/${sale_id}`);
         const jsonData = await resp.json();
   
         setList(jsonData);
@@ -24,28 +26,27 @@ export default function Saledetail() {
     }, [sale_id]);
     return (
         <div className="container">
-        <h3 >SALE REPORT</h3>
-        {/* {cost.map((elt)=>{return (<p>Total Cost:{elt.total} BAHT</p>)})} */}
+        <h3 >SALE DETAIL</h3>
         <div>
       <tr className="btn mt-1">
       <td>
-          {/* <Form.Control
+          <Form.Control
           class="form-control mr-sm-2"
           type="search"
           placeholder="Search"
           onChange={(e) =>{
             setID(e.target.value)
           }}
-          /> */}
-          {/* {buy_list.map((item) => {
-            return <p>{item.buy_id}</p>
-          })} */}
+          />
+          {sale_list.map((item) => {
+            return <p>{item.sale_id}</p>
+          })}
         </td>
-        <td>
+        {/* <td>
           <a href="/insertbuy">
             <button className="btn btn-success ml-3">เพิ่มข้อมูล</button>
           </a>
-        </td>
+        </td> */}
       </tr>
       </div>
       <table className="table table-striped">
@@ -69,13 +70,6 @@ export default function Saledetail() {
                 <td>{elt.sale_amount}</td>
                 <td>{elt.sale_cost}</td>
                 <td>{elt.sale_price}</td>
-                {/* <td>
-                  <EditBuy
-                    buy_date={elt.buy_date}
-                    buy_id={elt.buy_id}
-                    buy_status={elt.buy_status}
-                  />
-                </td> */}
               </tr>
             );
           })}

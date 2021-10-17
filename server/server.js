@@ -266,9 +266,16 @@ app.get("/getBuydetail/:id", (req, res) => {
   }
 });
 // get all sale (OK)
-app.get("/getSale", (req, res) => {
+app.get("/getSale/:id", (req, res) => {
+
+  const  sale_id  = req.params.id;
+
   try {
-    const sql = `SELECT * from sale`;
+    const sql = `SELECT DATE_FORMAT(sale_date, "%W %e %M %Y") AS sale_date,
+    sale_id,cust_id,receiver_name,receiver_phone,sale_status,delivery_id,
+    delivery_price,DATE_FORMAT(delivery_begin_date, "%W %e %M %Y") AS delivery_begin_date,
+    DATE_FORMAT(delivery_receive_date, "%W %e %M %Y") AS delivery_receive_date,address,
+    delivery_status FROM sale WHERE sale_id like "%`+`${sale_id}%"`;
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;
@@ -281,9 +288,10 @@ app.get("/getSale", (req, res) => {
   }
 });
 // get all sale detail (OK)
-app.get("/getSaledetail", (req, res) => {
+app.get("/getSaledetail/:id", (req, res) => {
+  const  sale_id  = req.params.id;
   try {
-    const sql = `SELECT * from sale_detail`;
+    const sql = `SELECT * from sale_detail WHERE sale_id like "%`+`${sale_id}%" `;
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;
@@ -704,6 +712,29 @@ app.put("/updateBuyDetail/:id", (req, res) => {
     let { buy_id, item, buy_amount, buy_cost } = req.body;
 
     const sql = `UPDATE buy_detail SET buy_amount=${buy_amount},buy_cost=${buy_cost} WHERE buy_id="${buy_id} " AND item = ${item}`;
+    console.log(id);
+    pool.query(sql, (err, results) => {
+      if (err) {
+        res.send(err.message);
+        throw err;
+      }
+      console.log(sql);
+      console.log(results);
+      res.send("updated successfully");
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.put("/updateSale/:id", (req, res) => {
+  try {
+    let { id } = req.params;
+    let { sale_id,sale_status,delivery_price,delivery_begin_date,delivery_receive_date,delivery_status} = req.body;
+
+    const sql = `UPDATE sale SET sale_id="${sale_id}",sale_status="${sale_status}",delivery_price=${delivery_price},
+    delivery_begin_date="${delivery_begin_date}",delivery_receive_date="${delivery_receive_date}",delivery_status="${delivery_status}" 
+    WHERE sale_id="${sale_id}"`;
+
     console.log(id);
     pool.query(sql, (err, results) => {
       if (err) {

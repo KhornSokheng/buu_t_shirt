@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import Form from "react-bootstrap/Form";
+import EditSale from './EditSale';
 
 export default function Sale() {
 
@@ -7,10 +8,11 @@ export default function Sale() {
     const [sale_id,setID] = useState(["S"]);
     const [cost,setCost] = useState([]);
     const [price,setPrice] = useState([]);
+    const [sale_list,setSalelist] = useState([]);
 
     const loadList = async () => {
         try {
-          const resp = await fetch(`http://localhost:5000/getSale`);
+          const resp = await fetch(`http://localhost:5000/getSale/${sale_id}`);
           const jsonData = await resp.json();
     
           setList(jsonData);
@@ -54,30 +56,30 @@ export default function Sale() {
         loadPrice();
       }, [sale_id]);
     return (
-        <div className="container">
+        <div>
         <h3 >SALE REPORT</h3>
         {cost.map((elt)=>{return (<p>Sale Cost:{elt.cost} BAHT</p>)})}
         {price.map((elt)=>{return (<p>Sale Price:{elt.price} BAHT</p>)})}
         <div>
       <tr className="btn mt-1">
       <td>
-          {/* <Form.Control
+          <Form.Control
           class="form-control mr-sm-2"
           type="search"
           placeholder="Search"
           onChange={(e) =>{
             setID(e.target.value)
           }}
-          /> */}
-          {/* {buy_list.map((item) => {
-            return <p>{item.buy_id}</p>
-          })} */}
+          />
+          {sale_list.map((item) => {
+            return <p>{item.sale_id}</p>
+          })}
         </td>
-        <td>
+        {/* <td>
           <a href="/insertbuy">
             <button className="btn btn-success ml-3">เพิ่มข้อมูล</button>
           </a>
-        </td>
+        </td> */}
       </tr>
       </div>
       <table className="table table-striped">
@@ -95,6 +97,7 @@ export default function Sale() {
             <th>Delivery receive date</th>
             <th>Address</th>
             <th>Delivery status</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody>
@@ -113,13 +116,16 @@ export default function Sale() {
                 <td>{elt.delivery_receive_date}</td>
                 <td>{elt.address}</td>
                 <td>{elt.delivery_status}</td>
-                {/* <td>
-                  <EditBuy
-                    buy_date={elt.buy_date}
-                    buy_id={elt.buy_id}
-                    buy_status={elt.buy_status}
+                <td>
+                  <EditSale
+                    sale_id={elt.sale_id}
+                    sale_status={elt.sale_status}
+                    delivery_price={elt.delivery_price}
+                    delivery_begin_date={elt.delivery_begin_date}
+                    delivery_receive_date={elt.delivery_receive_date}
+                    delivery_status={elt.delivery_status}
                   />
-                </td> */}
+                </td>
               </tr>
             );
           })}
