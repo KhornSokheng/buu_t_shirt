@@ -74,7 +74,7 @@ export default function Header() {
                 {/* <img src="images/icons/search.png" alt=""> */}
                 <i className="ti-search" />
               </a>
-              <a href="#" className="search-icon icon">
+              <a href="/history" className="search-icon icon">
                 {/* <img src="images/icons/search.png" alt=""> */}
                 <i className="ti-money" />
               </a>

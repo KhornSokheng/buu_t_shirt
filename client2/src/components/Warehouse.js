@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import EditBuyDetail from "./EditBuyDetail";
 import Form from "react-bootstrap/Form";
+import EditProduct from "./EditProduct";
 
 export default function Warehouse() {
   // const id = props.id;
-  const [prodList, setProdList] = useState([]);
+  
   const [full_prod_id, setFullProdId] = useState(["P"]);
+  const [prodList, setProdList] = useState([]);
 //   const [buy_list, setBuylist] = useState([]);
 
   //   const deleteItem = async (full_prod_id) => {
@@ -45,7 +47,7 @@ export default function Warehouse() {
     loadList();
   }, [full_prod_id]);
   return (
-    <div className="container">
+    <div className="">
       <h2>Warehouse</h2>
       <tr className="btn mt-3">
         <td>
@@ -76,7 +78,7 @@ export default function Warehouse() {
             <th>Size</th>
             <th>Total Amount</th>
             <th>Sold Amount</th>
-            {/* <th>In Stock</th> */}
+            <th>In Stock</th>
             <th>Cost</th>
             <th>Price</th>
             <th>Product Id</th>
@@ -85,7 +87,7 @@ export default function Warehouse() {
           </tr>
         </thead>
         <tbody>
-          {prodList.map((product) => {
+        {prodList.map((product) => {
             return (
               <tr>
                 <td>{product.full_prod_id}</td>
@@ -94,22 +96,25 @@ export default function Warehouse() {
                 <td>{product.size}</td>
                 <td>{product.total_amount}</td>
                 <td>{product.sold_amount}</td>
-                {/* <td>{product.total_amount - product.sold_amount}</td> */}
+                <td>{product.total_amount - product.sold_amount}</td>
                 <td>{product.prod_cost}</td>
                 <td>{product.prod_price}</td>
                 <td>{product.prod_id}</td>
                 <td>{product.prod_color_id}</td>
                 <td>
-                  {/* <EditBuyDetail
-                    full_prod_id={product.full_prod_id}
-                    item={product.item}
-                    full_prod_id={product.full_prod_id}
+                  <EditProduct
+                    full_prod_id={product.full_prod_id}                    
                     prod_name={product.prod_name}
                     color={product.color}
                     size={product.size}
-                    buy_amount={product.buy_amount}
-                    buy_cost={product.buy_cost}
-                  /> */}
+                    total_amount={product.total_amount}
+                    sold_amount={product.sold_amount}
+                    prod_cost={product.prod_cost}
+                    prod_price={product.prod_price}
+                    prod_id={product.prod_id}
+                    prod_color_id={product.prod_color_id}
+
+                  />
                 </td>
                 {/* <td>
                   <button

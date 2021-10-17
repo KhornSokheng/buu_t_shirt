@@ -76,11 +76,14 @@ app.get("/getWarehouseView/:id", async (req, res) => {
   try {
     const full_prod_id = req.params.id;
     const sql = `SELECT * from warehouse_view WHERE full_prod_id LIKE "%${full_prod_id}%"`;
-    await pool.query(sql, (err, results) => {
+    // console.log(sql)
+    pool.query(sql, (err, results) => {
       if (err) {
         throw err;
       }
       console.log(results);
+      console.log(sql)
+      res.send(results);
     });
   } catch (err) {
     console.error(err.message);
@@ -423,6 +426,39 @@ app.get("/getSaleprice/:id", (req, res) => {
   try {
     const sale_id = req.params.id;
     const sql = `SELECT SUM(sale_price)price FROM sale_detail where sale_id LIKE "%${sale_id}%";`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.get("/getSalerevenue/:id", (req, res) => {
+  try {
+    const sale_id = req.params.id;
+    const sql = `SELECT SUM(sale_price-sale_cost)revenue FROM sale_detail where sale_id LIKE "%${sale_id}%";`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.get("/getHistory/:id", (req, res) => {
+  try {
+    const cust_id = req.params.id;
+    const sql = `SELECT DATE_FORMAT(sale_date, "%W %e %M %Y") AS sale_date,sale.sale_id,sale.cust_id,sale.receiver_name,sale_detail.item,sale_detail.full_prod_id,
+    sale_detail.sale_amount,sale_detail.sale_cost,sale_detail.sale_price,sale.sale_status,sale.delivery_status
+    FROM sale,sale_detail 
+    WHERE sale.sale_id = sale_detail.sale_id and sale.cust_id like "%${cust_id}%";`;
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;
@@ -777,6 +813,37 @@ app.put("/updateSale/:id", (req, res) => {
       }
       console.log(sql);
       console.log(results);
+      res.send("updated successfully");
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//update product
+app.put("/updateProduct/:id", (req, res) => {
+  try {
+    let { id } = req.params;
+    let  { full_prod_id,prod_name,color,size,total_amount,sold_amount,prod_cost,prod_price,prod_id,prod_color_id} = req.body;
+
+    // const sql = `UPDATE warehouse_view SET full_prod_id="${full_prod_id}",prod_name="${prod_name}",color="${color}",
+    // size="${size}",total_amount=${total_amount},sold_amount=${sold_amount} ,prod_cost=${prod_cost},prod_price=${prod_price},
+    // prod_id="${prod_id}",prod_color_id="${prod_color_id}"
+    // WHERE warehouse_view.full_prod_id="${full_prod_id}" AND warehouse_view.prod_id = '${prod_id}' 
+    // AND warehouse_view.prod_color_id = '${prod_color_id}'`;
+    const sql= `UPDATE product SET prod_name="${prod_name}" WHERE prod_id="${prod_id}";
+      UPDATE prod_color SET color="${color}" WHERE prod_color_id="${prod_color_id}";
+      UPDATE warehouse SET size="${size}", total_amount="${total_amount}", sold_amount="${sold_amount}",
+      prod_cost="${prod_cost}", prod_price="${prod_price}" WHERE full_prod_id="${full_prod_id}";`
+
+    console.log(id);
+    pool.query(sql, (err, results) => {
+      if (err) {
+        res.send(err.message);
+        throw err;
+      }
+      console.log(sql);
+      console.log(results);
+      console.log(sql);
       res.send("updated successfully");
     });
   } catch (err) {
