@@ -19,6 +19,7 @@ import InsertBuy from "./components/InsertBuy";
 import InsertBuyDetail from "./components/InsertBuyDetail";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
+import OrderHistory from "./components/OrderHistory";
 
 function App() {
   return (
@@ -84,6 +85,9 @@ function App() {
             </Route>
             <Route path="/cart">
               <Cart />
+            </Route>
+            <Route path="/orderHistory">
+              <OrderHistory/>
             </Route>
             <Route path="/wishlist">
               <Wishlist />

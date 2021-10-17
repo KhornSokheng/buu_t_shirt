@@ -37,7 +37,7 @@ export default function Buy() {
   };
   const loadCost = async () => {
     try {
-      const resp = await fetch("http://localhost:5000/getCostTotal");
+      const resp = await fetch(`http://localhost:5000/getCostTotal/${buy_id}`);
       const jsonData = await resp.json();
 
       setCost(jsonData);
