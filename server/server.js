@@ -349,7 +349,8 @@ app.get("/getProductColor", (req, res) => {
 });
 app.get("/getCostTotal", (req, res) => {
   try {
-    const sql = `SELECT sum(buy_cost)total FROM buy_detail;`;
+    const buy_id = req.params.id;
+    const sql = `SELECT sum(buy_cost)total FROM buy_detail`;
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;
