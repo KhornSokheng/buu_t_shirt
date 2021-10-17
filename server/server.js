@@ -292,7 +292,7 @@ app.get("/getSale/:id", (req, res) => {
 app.get("/getSaledetail/:id", (req, res) => {
   const  sale_id  = req.params.id;
   try {
-    const sql = `SELECT * from sale_detail WHERE sale_id like "%`+`${sale_id}%" ORDER BY sale_id DESC`;
+    const sql = `SELECT * from sale_detail WHERE sale_id like "%`+`${sale_id}%" ORDER BY sale_id DESC, item ASC`;
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;
