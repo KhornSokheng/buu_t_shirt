@@ -28,7 +28,7 @@ export default function Header() {
                 <i class="menu-dropdown ti-angle-down"></i>
                 <ul className="sub-menu">
                   <li>
-                    <a href="/product">Add Product</a>
+                    <a href="/product">All Product</a>
                   </li>
                   <li>
                     <a href="/warehouse">Warehouse</a>

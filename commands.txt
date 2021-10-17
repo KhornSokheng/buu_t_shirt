@@ -15,3 +15,7 @@ npm install react-bootstrap@next bootstrap@5.1.1
 
 // remove tracked file(.eslintcache) from git repository
 git rm --cached ./node_modules/.cache/.eslintcache
+
+npm install axios --save
+
+npm install express-session body-parser cookie-parser --save
