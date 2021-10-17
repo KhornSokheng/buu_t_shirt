@@ -9,6 +9,7 @@ export default function Sale() {
     const [cost,setCost] = useState([]);
     const [price,setPrice] = useState([]);
     const [sale_list,setSalelist] = useState([]);
+    const [revenue,setRevenue] = useState([]);
 
     const loadList = async () => {
         try {
@@ -49,17 +50,33 @@ export default function Sale() {
           console.error(err.message);
         }
       };
+      const loadRevenue = async () => {
+        try {
+          const resp = await fetch(`http://localhost:5000/getSalerevenue/${sale_id}`);
+          const jsonData = await resp.json();
+    
+          setRevenue(jsonData);
+    
+          console.log("Resp", resp);
+          console.log("List:", cost);
+        } catch (err) {
+          console.error(err.message);
+        }
+      };
+
       useEffect(() => {
         console.log("Enter useEffect()");
         loadList();
         loadCost();
         loadPrice();
+        loadRevenue();
       }, [sale_id]);
     return (
         <div>
         <h3 >SALE REPORT</h3>
         {cost.map((elt)=>{return (<p>Sale Cost:{elt.cost} BAHT</p>)})}
         {price.map((elt)=>{return (<p>Sale Price:{elt.price} BAHT</p>)})}
+        {revenue.map((elt)=>{return (<p>Revenue:{elt.revenue} BAHT</p>)})}
         <div>
       <tr className="btn mt-1">
       <td>

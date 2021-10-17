@@ -22,6 +22,7 @@ import SignUp from "./components/SignUp";
 import OrderHistory from "./components/OrderHistory";
 import Saledetail from "./components/Saledetail";
 import Warehouse from "./components/Warehouse";
+import History from "./components/History";
 
 function App() {
   return (
@@ -96,6 +97,9 @@ function App() {
             </Route>
             <Route path="/warehouse">
               <Warehouse/>
+            </Route>
+            <Route path="/history">
+              <History/>
             </Route>
             {/* </div> */}
             <Footer />

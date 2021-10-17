@@ -420,6 +420,39 @@ app.get("/getSaleprice/:id", (req, res) => {
     console.error(err.message);
   }
 });
+app.get("/getSalerevenue/:id", (req, res) => {
+  try {
+    const sale_id = req.params.id;
+    const sql = `SELECT SUM(sale_price-sale_cost)revenue FROM sale_detail where sale_id LIKE "%${sale_id}%";`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.get("/getHistory/:id", (req, res) => {
+  try {
+    const cust_id = req.params.id;
+    const sql = `SELECT DATE_FORMAT(sale_date, "%W %e %M %Y") AS sale_date,sale.sale_id,sale.cust_id,sale.receiver_name,sale_detail.item,sale_detail.full_prod_id,
+    sale_detail.sale_amount,sale_detail.sale_cost,sale_detail.sale_price,sale.sale_status,sale.delivery_status
+    FROM sale,sale_detail 
+    WHERE sale.sale_id = sale_detail.sale_id and sale.cust_id like "%${cust_id}%";`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 // get product in cart of cust_id
 app.get("/getCartList/:email", (req, res) => {
