@@ -13,7 +13,7 @@ export default function SignUp() {
   const [email,setEmail]=useState();
   const [phone,setPhone]=useState();
   const [creditcard,setCreditcard]=useState();
-    const [password,setPassword]=useState();
+    const [password,setpassword]=useState();
     const [loginStatus,setLoginStatus] = useState(false);
 
   const handleSubmit = (event) => {
@@ -34,8 +34,8 @@ export default function SignUp() {
 
       cust_name: firstname,
       cust_lname:lastname,
-      Password: password,
-      Username:email,
+      password: password,
+      email:email,
       phone_num:phone,
       credit_card:creditcard,
 
@@ -49,8 +49,8 @@ export default function SignUp() {
       //   setLoginStatus(response.data.error)
 
       // }else{
-      //   setLoginStatus(`Welcome... ${response.data[0].username}`);
-      //   console.log(response.data[0].username)
+      //   setLoginStatus(`Welcome... ${response.data[0].email}`);
+      //   console.log(response.data[0].email)
       //   return <Redirect to="/"/>;
       // }
       // console.log("isAuth:",isAuth);
@@ -142,13 +142,13 @@ export default function SignUp() {
             </Form.Group>
             <Form.Group as={Col} md="12" controlId="validationCustom05">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" required 
+              <Form.Control type="password" placeholder="password" required 
               onChange={((e)=>{
-                setPassword(e.target.value)
+                setpassword(e.target.value)
               })}
               />
               <Form.Control.Feedback type="invalid">
-                Please provide a valid Password.
+                Please provide a valid password.
               </Form.Control.Feedback>
             </Form.Group>
           </Row>

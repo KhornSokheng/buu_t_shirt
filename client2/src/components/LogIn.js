@@ -8,8 +8,8 @@ import {Redirect} from "react-router-dom"
 
 export default function LogIn() {
   const [validated, setValidated] = useState(false);
-  const [Username,setUsername] = useState();
-  const [Password,setPassword] = useState();
+  const [email,setemail] = useState();
+  const [password,setpassword] = useState();
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -23,8 +23,8 @@ export default function LogIn() {
   const doLogin = (e)=>{
     e.preventDefault();
     Axios.post("http://localhost:5000/login2",{
-      username: Username,
-      password: Password
+      email: email,
+      password: password
     },{ withCredentials: true }).then((response)=>{
       console.log(response);
       if(response.data.error){
@@ -32,8 +32,8 @@ export default function LogIn() {
         console.log(response.data.error)
         alert(response.data.error)
       }else{
-        // setLoginStatus(Welcome... ${response.data[0].username});
-        console.log(response.data[0].username)
+        // setLoginStatus(Welcome... ${response.data[0].email});
+        console.log(response.data[0].email)
         // return <Redirect to="/"/>;
         window.location="/"
       }
@@ -67,7 +67,7 @@ export default function LogIn() {
                   aria-describedby="inputGroupPrepend"
                   required
                   onChange={((e)=>{
-                    setUsername(e.target.value)
+                    setemail(e.target.value)
                   })}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -79,13 +79,13 @@ export default function LogIn() {
           <Row className="mb-3">
             <Form.Group as={Col} md="12" controlId="validationCustom05">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" required 
+              <Form.Control type="password" placeholder="password" required 
               onChange={((e)=>{
-                setPassword(e.target.value)
+                setpassword(e.target.value)
               })}
               />
               <Form.Control.Feedback type="invalid">
-                Please provide a valid Password.
+                Please provide a valid password.
               </Form.Control.Feedback>
             </Form.Group>
           </Row>
