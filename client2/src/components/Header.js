@@ -65,9 +65,6 @@ export default function Header() {
               <li>
                 <a href="/size">Size</a>
               </li>
-              <li>
-                <a href="/size">Revenue</a>
-              </li>
               {/* <li>
                 <a href="/register">Register</a>
               </li> */}

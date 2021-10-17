@@ -104,6 +104,23 @@ app.get("/getCustomer", (req, res) => {
     console.error(err.message);
   }
 });
+// get all customers (OK)
+app.get("/getCustomer/:cust_name", (req, res) => {
+  try {
+    // let {id} = req.params;
+    const cust_name = req.params.cust_name;
+    const sql = `SELECT * from customer where cust_name LIKE "%${cust_name}%"`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 // get all size (OK)
 app.get("/getSizeChart", (req, res) => {
   try {

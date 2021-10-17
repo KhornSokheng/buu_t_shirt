@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import EditCustomer from "./EditCustomer";
+import Form from "react-bootstrap/Form";
 
 export default function Customer() {
   const [list, setList] = useState([]);
+  const [cust_id, setID] = useState([]);
+  const [cust_name, setName] = useState([""]);
+  const [cust_list, setCustlist] = useState([]);
 
   const deleteItem = async (cust_id) => {
     try {
@@ -23,7 +27,9 @@ export default function Customer() {
   };
   const loadList = async () => {
     try {
-      const resp = await fetch("http://localhost:5000/getCustomer");
+      const resp = await fetch(
+        `http://localhost:5000/getCustomer/${cust_name}`
+      );
       const jsonData = await resp.json();
 
       setList(jsonData);
@@ -37,14 +43,23 @@ export default function Customer() {
   useEffect(() => {
     console.log("Enter useEffect()");
     loadList();
-  }, []);
+  }, [cust_name]);
   return (
     <div className="container">
       <h3>CUSTOMER</h3>
       <tr className="btn mt-5">
         <td>
-          <input></input>
-          <button className="btn btn-secondary ">ค้นหา</button>
+          <Form.Control
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          />
+          {cust_list.map((item) => {
+            return <p>{item.cust_id}</p>;
+          })}
         </td>
         <td>
           <a href="/insertCustomer">
