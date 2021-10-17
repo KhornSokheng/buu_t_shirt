@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2021 at 09:34 AM
+-- Generation Time: Oct 17, 2021 at 06:27 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -330,25 +330,29 @@ CREATE TABLE `customer` (
   `cust_name` varchar(30) DEFAULT NULL COMMENT 'ชื่อลูกค้า',
   `cust_lname` varchar(30) DEFAULT NULL COMMENT 'นามสกุลลูกค้า',
   `phone_num` varchar(10) DEFAULT NULL COMMENT 'เบอร์ติดต่อ',
-  `credit_card` varchar(16) DEFAULT NULL COMMENT 'บัตรเครดิต'
+  `credit_card` varchar(16) DEFAULT NULL COMMENT 'บัตรเครดิต',
+  `email` varchar(50) NOT NULL,
+  `password` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`cust_id`, `cust_name`, `cust_lname`, `phone_num`, `credit_card`) VALUES
-('C0001', 'อนันดา', 'เนาว์แก้งใหม่', '096-864023', '6233 5560 8929 0'),
-('C0002', 'พีรพัฒน์', 'เยียรยงค์', '084-140526', '5577 5571 1999 8'),
-('C0003', 'ธนมงคล', 'เสนะวิทูรย์กิจ', '094-215325', '5236 2135 7994 7'),
-('C0004', 'พิชญา', 'สีแดง', '090-085632', '6231 0134 1456 8'),
-('C0005', 'พงศ์ภรณ์', 'จันทาพูน', '095-924070', '6233 5617 5498 5'),
-('C0006', 'สุทธิพงษ์', 'ชมภูมาศ', '091-235455', '5325 1486 2153 2'),
-('C0007', 'เจนจิรา', 'ปิ่นแก้ว', '097-146251', '5577 2315 8596 5'),
-('C0008', 'ศิวัช', 'ทัพขวา', '096-864118', '5685 9575 4565 5'),
-('C0009', 'กิตติศักดิ์', 'แก้วทอง', '080-530079', '6231 4526 6985 1'),
-('C0010', 'ณัฐพงค์', 'หงษาวงค์', '095-124247', '4568 6523 4587 5'),
-('C9999', 'NONT', 'Sokheng', '12344546', '12344546');
+INSERT INTO `customer` (`cust_id`, `cust_name`, `cust_lname`, `phone_num`, `credit_card`, `email`, `password`) VALUES
+('C0001', 'อนันดา', 'เนาว์แก้งใหม่', '096-864023', '6233 5560 8929 0', '', ''),
+('C0002', 'พีรพัฒน์', 'เยียรยงค์', '084-140526', '5577 5571 1999 8', '', ''),
+('C0003', 'ธนมงคล', 'เสนะวิทูรย์กิจ', '094-215325', '5236 2135 7994 7', '', ''),
+('C0004', 'พิชญา', 'สีแดง', '090-085632', '6231 0134 1456 8', '', ''),
+('C0005', 'พงศ์ภรณ์', 'จันทาพูน', '095-924070', '6233 5617 5498 5', '', ''),
+('C0006', 'สุทธิพงษ์', 'ชมภูมาศ', '091-235455', '5325 1486 2153 2', '', ''),
+('C0007', 'เจนจิรา', 'ปิ่นแก้ว', '097-146251', '5577 2315 8596 5', '', ''),
+('C0008', 'ศิวัช', 'ทัพขวา', '096-864118', '5685 9575 4565 5', '', ''),
+('C0009', 'กิตติศักดิ์', 'แก้วทอง', '080-530079', '6231 4526 6985 1', '', ''),
+('C0010', 'ณัฐพงค์', 'หงษาวงค์', '095-124247', '4568 6523 4587 5', '', ''),
+('C05cd', 'Nont999', 'Heng123', '232423543', '32543254365433', 'nont@gmail.com', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
+('C9999', 'NONT', 'Sokheng', '12344546', '12344546', 'nont123@gmail.com', ''),
+('Cc788', 'Ptoy', 'Jane', '0923345343', '12354654365445', 'ptoy@go.com', '$2b$10$5raO0KAW.JlwEgjH3NXDUeY54dy.irr0JNowRyhv9ksOfyPN91hZy');
 
 -- --------------------------------------------------------
 
@@ -439,31 +443,38 @@ INSERT INTO `sale` (`sale_id`, `sale_date`, `cust_id`, `receiver_name`, `receive
 ('S00007', '2021-07-07', 'C0001', 'อนันดา เนาว์แก้งใหม่', '096-8640235', 'completed', 'd00007', 30.00, '2021-07-07', '2021-07-09', 'มหาวิทยาลัยบูรพา วิทยาเขตจันทบุรี', 'delivered'),
 ('S00008', '2021-07-08', 'C0002', 'พีรพัฒน์ เยียรยงค์', '084-1405264', 'completed', 'd00008', 30.00, '2021-07-08', '2021-07-10', 'มหาวิทยาลัยบูรพา วิทยาเขตจันทบุรี', 'delivered'),
 ('S00009', '2021-07-09', 'C0008', 'ศิวัช ทัพขวา', '096-8641184', 'completed', 'd00009', 30.00, '2021-07-09', '2021-07-11', 'มหาวิทยาลัยบูรพา วิทยาเขตจันทบุรี', 'delivered'),
-('S00010', NULL, 'C0005', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('S00011', NULL, 'C0005', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('S00012', NULL, 'C0005', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 ('S00013', '2021-07-05', 'C0001', 'อนันดา เนาว์แก้งใหม่', '096-8640235', 'completed', 'd00001', 30.00, '2021-07-05', '2021-07-07', 'มหาวิทยาลัยบูรพา วิทยาเขตจันทบุรี', 'delivering'),
 ('S00014', '2021-10-10', 'C0011', 'NONT', '099999999', 'completed', 'd00000', 0.00, '2021-10-11', '2021-10-12', 'BUU CHAN', 'cart'),
-('S99999', '2021-10-13', 'C9999', NULL, NULL, 'cart', NULL, NULL, NULL, NULL, NULL, NULL);
+('S00015', '2021-10-17', 'Cc788', 'Sokheng', '09212345678', 'new_order', NULL, NULL, NULL, NULL, 'BUU CHAN', NULL),
+('S00016', '2021-10-17', 'Cc788', 'Sokheng', '09212345678', 'cancel', NULL, NULL, NULL, NULL, 'Burapha Chan', NULL);
 
 --
 -- Triggers `sale`
 --
 DELIMITER $$
 CREATE TRIGGER `update_warehouse_when_update_sale` AFTER UPDATE ON `sale` FOR EACH ROW BEGIN
-    DECLARE _full_prod_id varchar(11);
-    DECLARE _sale_amount int(11);
+    -- DECLARE _full_prod_id varchar(11);
+    -- DECLARE _sale_amount int(11);
 
     BEGIN
-        -- find full_prod_id from table sale_detail 
-        SELECT full_prod_id,sale_amount INTO _full_prod_id, _sale_amount
-        FROM sale_detail
-        WHERE sale_detail.sale_id = NEW.sale_id;
+        
 
-        IF NEW.sale_status = "completed" THEN 
-            UPDATE warehouse
-            SET warehouse.sold_amount = warehouse.sold_amount + _sale_amount
-            WHERE warehouse.full_prod_id = _full_prod_id;
+        IF NEW.sale_status = "cancel" THEN 
+            --  if cancel, we delete from sale_detail
+            DELETE FROM sale_detail WHERE sale_detail.sale_id = NEW.sale_id;
+
+            -- find full_prod_id from table sale_detail 
+            -- SELECT full_prod_id,sale_amount INTO _full_prod_id, _sale_amount
+            -- FROM sale_detail
+            -- WHERE sale_detail.sale_id = NEW.sale_id;
+
+
+            -- UPDATE warehouse
+            -- SET warehouse.sold_amount = warehouse.sold_amount + _sale_amount
+            -- WHERE warehouse.full_prod_id = _full_prod_id;
+
+            
+
         END IF;
     END;
 END
@@ -505,15 +516,32 @@ INSERT INTO `sale_detail` (`sale_id`, `item`, `full_prod_id`, `sale_amount`, `sa
 ('S00014', 1, 'P001-BK-L', 3, 195.00, 390.00),
 ('S00014', 2, 'P001-BK-M', 2, 195.00, 390.00),
 ('S00014', 3, 'P001-BK-S', 2, 195.00, 390.00),
-('S99999', 1, 'P001-BK-L', 2, 195.00, 390.00),
-('S99999', 2, 'P001-DO-XXL', 3, 195.00, 390.00),
-('S99999', 3, 'P001-DO-M', 2, 195.00, 390.00),
-('S99999', 4, 'P001-BL-L', 2, 195.00, 390.00),
-('S99999', 5, 'P001-DO-XXL', 3, 195.00, 390.00);
+('S00015', 1, 'P001-BK-L', 2, 195.00, 390.00),
+('S00015', 2, 'P002-WH-L', 2, 295.00, 590.00);
 
 --
 -- Triggers `sale_detail`
 --
+DELIMITER $$
+CREATE TRIGGER `update_warehouse_when_delete_sale_detail` BEFORE DELETE ON `sale_detail` FOR EACH ROW BEGIN
+    DECLARE _full_prod_id varchar(11);
+    DECLARE _sale_amount int(11);
+
+    BEGIN
+        -- find full_prod_id from table sale_detail 
+            SELECT full_prod_id,sale_amount INTO _full_prod_id, _sale_amount
+            FROM sale_detail
+            WHERE sale_detail.sale_id = OLD.sale_id and item=OLD.item;
+
+
+            UPDATE warehouse
+            SET warehouse.sold_amount = warehouse.sold_amount - _sale_amount
+            WHERE warehouse.full_prod_id = _full_prod_id;
+
+    END;
+END
+$$
+DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `update_warehouse_when_insert_sale_detail` AFTER INSERT ON `sale_detail` FOR EACH ROW BEGIN
     DECLARE _sale_status varchar(10);
@@ -524,7 +552,12 @@ CREATE TRIGGER `update_warehouse_when_insert_sale_detail` AFTER INSERT ON `sale_
         FROM sale
         WHERE sale.sale_id = NEW.sale_id;
 
-        IF _sale_status = "completed" THEN 
+        -- IF _sale_status = "completed" THEN 
+        --     UPDATE warehouse
+        --     SET warehouse.sold_amount = warehouse.sold_amount + NEW.sale_amount
+        --     WHERE warehouse.full_prod_id = NEW.full_prod_id;
+        -- END IF;
+        IF _sale_status = "cart" THEN 
             UPDATE warehouse
             SET warehouse.sold_amount = warehouse.sold_amount + NEW.sale_amount
             WHERE warehouse.full_prod_id = NEW.full_prod_id;
@@ -586,7 +619,7 @@ CREATE TABLE `warehouse` (
 --
 
 INSERT INTO `warehouse` (`full_prod_id`, `prod_id`, `color`, `size`, `total_amount`, `sold_amount`, `prod_cost`, `prod_price`, `prod_color_id`) VALUES
-('P001-BK-L', 'P001', 'BLACK', 'L', 13, 3, 195.00, 390.00, 'P001-BK'),
+('P001-BK-L', 'P001', 'BLACK', 'L', 13, 5, 195.00, 390.00, 'P001-BK'),
 ('P001-BK-M', 'P001', 'BLACK', 'M', 12, 2, 195.00, 390.00, 'P001-BK'),
 ('P001-BK-S', 'P001', 'BLACK', 'S', 10, 2, 195.00, 390.00, 'P001-BK'),
 ('P001-BK-XL', 'P001', 'BLACK', 'XL', 10, 0, 195.00, 390.00, 'P001-BK'),
@@ -631,7 +664,7 @@ INSERT INTO `warehouse` (`full_prod_id`, `prod_id`, `color`, `size`, `total_amou
 ('P002-GR-S', 'P002', 'GREEN', 'S', 10, 0, 295.00, 590.00, 'P002-GR'),
 ('P002-GR-XL', 'P002', 'GREEN', 'XL', 13, 0, 295.00, 590.00, 'P002-GR'),
 ('P002-GR-XXL', 'P002', 'GREEN', 'XXL', 10, 0, 295.00, 590.00, 'P002-GR'),
-('P002-WH-L', 'P002', 'WHITE', 'L', 10, 0, 295.00, 590.00, 'P002-WH'),
+('P002-WH-L', 'P002', 'WHITE', 'L', 10, 2, 295.00, 590.00, 'P002-WH'),
 ('P002-WH-M', 'P002', 'WHITE', 'M', 13, 0, 295.00, 590.00, 'P002-WH'),
 ('P002-WH-S', 'P002', 'WHITE', 'S', 10, 3, 295.00, 590.00, 'P002-WH'),
 ('P002-WH-XL', 'P002', 'WHITE', 'XL', 11, 2, 295.00, 590.00, 'P002-WH'),
