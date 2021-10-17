@@ -5,7 +5,8 @@ var pool  = mysql.createPool({
   host            : 'localhost',
   user            : 'root',
   password        : '',
-  database        : 'burapha_t_shirt'
+  database        : 'burapha_t_shirt',
+  multipleStatements: true
 });
 
 module.exports = pool;
