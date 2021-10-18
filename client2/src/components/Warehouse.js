@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import EditBuyDetail from "./EditBuyDetail";
 import Form from "react-bootstrap/Form";
 import EditProduct from "./EditProduct";
 
@@ -8,25 +7,7 @@ export default function Warehouse() {
   
   const [full_prod_id, setFullProdId] = useState(["P"]);
   const [prodList, setProdList] = useState([]);
-//   const [buy_list, setBuylist] = useState([]);
 
-  //   const deleteItem = async (full_prod_id) => {
-  //     try {
-  //       const del = await fetch(
-  //         `http://localhost:5000/deleteBuydetail/${full_prod_id}`,
-  //         {
-  //           method: "DELETE",
-  //         }
-  //       );
-  //       setProdList(
-  //         prodList.filter((product) => {
-  //           return product.full_prod_id !== full_prod_id;
-  //         })
-  //       );
-  //     } catch (err) {
-  //       console.error(err.message);
-  //     }
-  //   };
   const loadList = async () => {
     try {
       const resp = await fetch(
@@ -59,9 +40,7 @@ export default function Warehouse() {
               setFullProdId(e.target.value);
             }}
           />
-          {/* {buy_list.map((item) => {
-            return <p>{item.full_prod_id}</p>
-          })} */}
+          
         </td>
         <td>
           <a href="/insertProduct">
