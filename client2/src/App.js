@@ -24,6 +24,7 @@ import Saledetail from "./components/Saledetail";
 import Warehouse from "./components/Warehouse";
 import History from "./components/History";
 import InsertProduct from "./components/InsertProduct";
+import Revenue from "./components/Revenue";
 
 function App() {
   return (
@@ -104,6 +105,9 @@ function App() {
             </Route>
             <Route path="/history">
               <History/>
+            </Route>
+            <Route path="/revenue">
+              <Revenue/>
             </Route>
             {/* </div> */}
             <Footer />

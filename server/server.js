@@ -452,6 +452,21 @@ app.get("/getSalerevenue/:id", (req, res) => {
     console.error(err.message);
   }
 });
+app.get("/getDeliveryCost", (req, res) => {
+  try {
+    // const sale_id = req.params.id;
+    const sql = `SELECT COUNT(*) AS total_delivery, SUM(delivery_price) AS delivery_cost from sale WHERE sale_status="completed"`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 app.get("/getHistory/:id", (req, res) => {
   try {
     const cust_id = req.params.id;
