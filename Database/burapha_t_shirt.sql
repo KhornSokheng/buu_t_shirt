@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2021 at 06:27 PM
+-- Generation Time: Oct 18, 2021 at 04:57 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -340,18 +340,18 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`cust_id`, `cust_name`, `cust_lname`, `phone_num`, `credit_card`, `email`, `password`) VALUES
-('C0001', 'อนันดา', 'เนาว์แก้งใหม่', '096-864023', '6233 5560 8929 0', '', ''),
-('C0002', 'พีรพัฒน์', 'เยียรยงค์', '084-140526', '5577 5571 1999 8', '', ''),
-('C0003', 'ธนมงคล', 'เสนะวิทูรย์กิจ', '094-215325', '5236 2135 7994 7', '', ''),
-('C0004', 'พิชญา', 'สีแดง', '090-085632', '6231 0134 1456 8', '', ''),
-('C0005', 'พงศ์ภรณ์', 'จันทาพูน', '095-924070', '6233 5617 5498 5', '', ''),
-('C0006', 'สุทธิพงษ์', 'ชมภูมาศ', '091-235455', '5325 1486 2153 2', '', ''),
-('C0007', 'เจนจิรา', 'ปิ่นแก้ว', '097-146251', '5577 2315 8596 5', '', ''),
-('C0008', 'ศิวัช', 'ทัพขวา', '096-864118', '5685 9575 4565 5', '', ''),
-('C0009', 'กิตติศักดิ์', 'แก้วทอง', '080-530079', '6231 4526 6985 1', '', ''),
-('C0010', 'ณัฐพงค์', 'หงษาวงค์', '095-124247', '4568 6523 4587 5', '', ''),
+('C0001', 'อนันดา', 'เนาว์แก้งใหม่', '096-864023', '6233 5560 8929 0', 'ananda@gmail.com', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
+('C0002', 'พีรพัฒน์', 'เยียรยงค์', '084-140526', '5577 5571 1999 8', 'folk@gmail.com', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
+('C0003', 'ธนมงคล', 'เสนะวิทูรย์กิจ', '094-215325', '5236 2135 7994 7', 'bew@gmail.com', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
+('C0004', 'พิชญา', 'สีแดง', '090-085632', '6231 0134 1456 8', 'bam@gmail.com', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
+('C0005', 'พงศ์ภรณ์', 'จันทาพูน', '095-924070', '6233 5617 5498 5', 'tom@gmail.com', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
+('C0006', 'สุทธิพงษ์', 'ชมภูมาศ', '091-235455', '5325 1486 2153 2', 'jr@gmail.com', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
+('C0007', 'เจนจิรา', 'ปิ่นแก้ว', '097-146251', '5577 2315 8596 5', 'jane@gmail.com', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
+('C0008', 'ศิวัช', 'ทัพขวา', '096-864118', '5685 9575 4565 5', 'tane@gmail.com', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
+('C0009', 'กิตติศักดิ์', 'แก้วทอง', '080-530079', '6231 4526 6985 1', 'bank2@gmail.com', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
+('C0010', 'ณัฐพงค์', 'หงษาวงค์', '095-124247', '4568 6523 4587 5', 'benz@gmail.com', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
 ('C05cd', 'Nont999', 'Heng123', '232423543', '32543254365433', 'nont@gmail.com', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
-('C9999', 'NONT', 'Sokheng', '12344546', '12344546', 'nont123@gmail.com', ''),
+('C9999', 'NONT', 'Sokheng', '12344546', '12344546', 'nont123@gmail.com', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
 ('Cc788', 'Ptoy', 'Jane', '0923345343', '12354654365445', 'ptoy@go.com', '$2b$10$5raO0KAW.JlwEgjH3NXDUeY54dy.irr0JNowRyhv9ksOfyPN91hZy');
 
 -- --------------------------------------------------------
