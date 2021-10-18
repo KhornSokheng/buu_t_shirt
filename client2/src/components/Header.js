@@ -70,10 +70,10 @@ export default function Header() {
               </li> */}
             </ul>
             <div className="d-inline-flex align-items-center">
-              <a href="#" className="search-icon icon">
-                {/* <img src="images/icons/search.png" alt=""> */}
+              {/* <a href="#" className="search-icon icon">
+                
                 <i className="ti-search" />
-              </a>
+              </a> */}
               <a href="/history" className="search-icon icon">
                 {/* <img src="images/icons/search.png" alt=""> */}
                 <i className="ti-money" />
