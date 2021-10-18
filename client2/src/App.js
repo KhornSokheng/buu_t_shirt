@@ -23,6 +23,7 @@ import OrderHistory from "./components/OrderHistory";
 import Saledetail from "./components/Saledetail";
 import Warehouse from "./components/Warehouse";
 import History from "./components/History";
+import InsertProduct from "./components/InsertProduct";
 
 function App() {
   return (
@@ -97,6 +98,9 @@ function App() {
             </Route>
             <Route path="/warehouse">
               <Warehouse/>
+            </Route>
+            <Route path="/insertProduct">
+              <InsertProduct/>
             </Route>
             <Route path="/history">
               <History/>

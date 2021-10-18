@@ -8,7 +8,7 @@ import image3 from "../im/3.png";
 
 const Banner3 = () => {
   return (
-    <div className="Homecss container">
+    <div className="Homecss container mb-5">
       <Carousel>
         <Carousel.Item>
           <img className="d-block w-100" SRC={image1} alt="" />

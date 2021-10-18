@@ -10,9 +10,10 @@ export default function Home() {
         <div>
             <Banner/>
             <Featuredprod/>
+            <Banner3/>
             <Banner2/>
             <Featured/>
-            <Banner3/>
+            
         </div>
     )
 }
