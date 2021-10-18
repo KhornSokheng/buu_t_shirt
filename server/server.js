@@ -727,6 +727,28 @@ app.post("/insertCustomer", (req, res) => {
     console.error(err.message);
   }
 });
+// insert new product (OK)
+app.post("/insertNewProduct", (req, res) => {
+  try {
+    const { prod_name,color,size,prod_cost,prod_id,image_url} = req.body;
+    const sql = `DELETE FROM product where prod_id = '${prod_id}';
+    INSERT INTO product VALUES ('${prod_id}','${prod_name}');
+    INSERT INTO prod_color VALUES ('${prod_id}-${color}','${prod_id}','${color}', '${image_url}');
+    INSERT INTO warehouse VALUES ('${prod_id}-${color}-${size}','${prod_id}','${color}', '${size}',0,0,${prod_cost},${2*prod_cost},'${prod_id}-${color}');`;
+
+    console.log(sql);
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+    // console.log(req.body)
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 // --------------------------------------------
 // Put Method
