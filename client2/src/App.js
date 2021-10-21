@@ -25,6 +25,7 @@ import Warehouse from "./components/Warehouse";
 import History from "./components/History";
 import InsertProduct from "./components/InsertProduct";
 import Revenue from "./components/Revenue";
+import About from "./components/About";
 
 function App() {
   return (
@@ -108,6 +109,9 @@ function App() {
             </Route>
             <Route path="/revenue">
               <Revenue/>
+            </Route>
+            <Route path="/about">
+              <About/>
             </Route>
             {/* </div> */}
             <Footer />

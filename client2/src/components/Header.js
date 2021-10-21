@@ -68,6 +68,9 @@ export default function Header() {
               <li>
                 <a href="/revenue">Revenue</a>
               </li>
+              <li>
+                <a href="/about">About Us</a>
+              </li>
             </ul>
             <div className="d-inline-flex align-items-center">
               {/* <a href="#" className="search-icon icon">
