@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Banner from "./components/Banner";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Header2 from "./components/Header2";
 import Home from "./components/Home";
 import Buy from "./components/Buy";
 import Sale from "./components/Sale";
@@ -26,6 +27,7 @@ import History from "./components/History";
 import InsertProduct from "./components/InsertProduct";
 import Revenue from "./components/Revenue";
 import About from "./components/About";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
       <Router>
         <Switch>
           <>
+            <Header2 />
             <Header />
             {/* <div className=""> */}
             <Route exact path="/">
