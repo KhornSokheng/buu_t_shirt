@@ -467,6 +467,35 @@ app.get("/getDeliveryCost", (req, res) => {
     console.error(err.message);
   }
 });
+app.get("/getTotalBuyCost", (req, res) => {
+  try {
+    //const sale_id = req.params.id;
+    const sql = `SELECT SUM(buy_amount*buy_cost)AS total_buy_cost FROM buy_detail JOIN buy ON buy.buy_id=buy_detail.buy_id WHERE buy_status = "completed"`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.get("/getTotalSaleCostPrice", (req, res) => {
+  try {
+    const sql = `SELECT SUM(sale_amount*sale_cost)AS total_sale_cost ,SUM(sale_amount*sale_price)AS total_sale_price FROM sale_detail JOIN sale ON sale.sale_id=sale_detail.sale_id WHERE sale_status = "completed"`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 app.get("/getHistory/:id", (req, res) => {
   try {
     const cust_id = req.params.id;
