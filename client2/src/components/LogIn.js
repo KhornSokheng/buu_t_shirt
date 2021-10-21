@@ -93,7 +93,7 @@ export default function LogIn() {
           <Button onClick={doLogin} type="submit">Submit form</Button>
           <br></br>
           <br></br>
-          <Card.Link href="/Signup">SING UP</Card.Link>
+          <Card.Link href="/Signup">SIGN UP</Card.Link>
           <br></br>
           <br></br>
         </Form>

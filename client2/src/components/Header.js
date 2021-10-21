@@ -19,7 +19,8 @@ export default function Header() {
             </a> */}
 
 
-            <ul className="navbar-nav ">
+            {/* <ul className="navbar-nav "> */}
+            <ul className="navbar-nav d-flex flex-row justify-content-between">
               <li className="current-menu-item has-menu-child">
                 <a href="/">Home</a>
               </li>
