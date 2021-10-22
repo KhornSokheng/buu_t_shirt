@@ -121,14 +121,14 @@ section {
 /******************************* 
  * Header
  */
-@media screen and (max-width: 991px) {
+/* @media screen and (max-width: 991px) {
   .header .navbar {
     padding: 15px 0;
   }
   .header .navbar .icon {
     padding-bottom: 0;
   }
-}
+} */
 
 .top-header {
   background-color: #fef7f6;
@@ -161,7 +161,7 @@ section {
 /******************************* 
  * Navigation menu
  */
-.navbar {
+/* .navbar {
   padding: 0;
 }
 
@@ -261,7 +261,7 @@ section {
   .navbar-nav li a {
     padding: 20px 15px;
   }
-}
+} */
 
 #mobile-menu-toggler {
   color: #000;

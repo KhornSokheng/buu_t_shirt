@@ -42,7 +42,7 @@ export default function LogIn() {
     })
   }
   return (
-    <div className="singin container">
+    <div className="singin container mb-4">
       <Card border="info">
         <Card.Header
           className="d-flex justify-content-center alert alert-info"

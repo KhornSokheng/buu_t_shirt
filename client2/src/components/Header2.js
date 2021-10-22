@@ -13,7 +13,7 @@ import {
 export default function Header2() {
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="info" variant="dark" >
+      <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
         <Container>
           <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />

@@ -19,3 +19,5 @@ git rm --cached ./node_modules/.cache/.eslintcache
 npm install axios --save
 
 npm install express-session body-parser cookie-parser --save
+
+npm install --save @reduxjs/toolkit react-redux
