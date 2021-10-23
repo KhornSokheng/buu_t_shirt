@@ -16,9 +16,9 @@ export default function Header2() {
   const user= useSelector((state)=> state.user)
 
   return (
-    <div>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Container>
+    <div className="">
+      <Navbar collapseOnSelect expand="lg" variant="dark" bg="primary"  >
+        <Container  className=" text-warning  p-2">
           <Navbar.Brand href="#home">Burapha T-Shirt</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -48,7 +48,7 @@ export default function Header2() {
               <Nav.Link eventKey={2} href="#memes">
                 Dank memes
               </Nav.Link>
-              <Nav.Link eventKey={3} href="#memes">
+              <Nav.Link eventKey={3} href="#memes" className="text-warning border border-warning rounded-3">
                 {user.cust_name}
               </Nav.Link>
             </Nav>

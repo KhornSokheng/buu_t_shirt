@@ -3,6 +3,8 @@ import { Form, Row, InputGroup, Button, Col } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Axios from "axios"
 import {Redirect} from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
+import { update } from "../redux/userSlice";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -11,6 +13,23 @@ export default function LogIn() {
   const [email,setemail] = useState();
   const [password,setpassword] = useState();
   const [cust_id, setCustId] = useState("");
+  const [cust_name,setCustName] = useState();
+  const [role,setRole] = useState();
+  const [profile_img,setProfileImg] = useState();
+
+  let user= useSelector((state)=> state.user)
+
+  const dispatch = useDispatch();
+
+  user={
+    email:email,
+    cust_id: cust_id,
+    cust_name:"Sok",
+    role:role,
+    profile_img:profile_img,
+  }
+
+  
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -35,6 +54,9 @@ export default function LogIn() {
       }else{
         // setLoginStatus(Welcome... ${response.data[0].email});
         console.log(response.data[0].email)
+
+        dispatch(update(user))
+
         // return <Redirect to="/"/>;
         window.location="/"
       }
