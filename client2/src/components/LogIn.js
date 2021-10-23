@@ -10,6 +10,7 @@ export default function LogIn() {
   const [validated, setValidated] = useState(false);
   const [email,setemail] = useState();
   const [password,setpassword] = useState();
+  const [cust_id, setCustId] = useState("");
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
