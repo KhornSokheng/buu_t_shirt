@@ -21,37 +21,58 @@ export default function Header2() {
 
   return (
     <div className="">
-      <Navbar collapseOnSelect expand="lg" variant="dark" bg="primary"  >
+      <Navbar collapseOnSelect expand="lg" variant="light" bg="light"  >
         <Container  className=" text-warning  p-2">
-          <Navbar.Brand href="#home">Burapha T-Shirt</Navbar.Brand>
+          <Navbar.Brand href="/"className="logo">
+            <img src="images/logo_1.png" alt="Buu T Shirt" />
+            </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
 
             <Nav className="me-auto"></Nav>
 
             <Nav className="me-auto">
-              <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
-              <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
+            <Nav.Link href="/">Home</Nav.Link>
+              <NavDropdown title="Product" id="collasible-nav-dropdown">
+                <NavDropdown.Item href="/product">
+                  All Product
+                  </NavDropdown.Item>
+                <NavDropdown.Item href="/warehouse">
+                  Warehouse
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
+               </NavDropdown>
+               <NavDropdown title="Buy" id="collasible-nav-dropdown">
+                <NavDropdown.Item href="/buy">
+                  Buy Report
+                  </NavDropdown.Item>
+                <NavDropdown.Item href="/buydetail">
+                  Buy Detail
                 </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
+               </NavDropdown>
+               <NavDropdown title="Sale" id="collasible-nav-dropdown">
+                <NavDropdown.Item href="/sale">
+                  Sale Report
+                  </NavDropdown.Item>
+                <NavDropdown.Item href="/saledetail">
+                  Sale Detail
                 </NavDropdown.Item>
-              </NavDropdown>
+               </NavDropdown>
+               <Nav.Link href="/customer">Customer</Nav.Link>
+               <Nav.Link href="/size">Size</Nav.Link>
+               <Nav.Link href="/revenue">Revenue</Nav.Link>
+               <Nav.Link href="/about">About Us</Nav.Link>
             </Nav>
 
             <Nav>
-              <Nav.Link href="#deets">More deets</Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
-                Dank memes
+              <Nav.Link href="/history">
+              <i className="ti-money" />
+                </Nav.Link>
+              <Nav.Link eventKey={2} href="/cart">
+              <i className="ti-shopping-cart" />
               </Nav.Link>
+              <Nav.Link href="/login">
+              <i className="ti-user" />
+                </Nav.Link>
               <Nav.Link eventKey={3} href="#memes" className="text-warning border border-warning rounded-3">
                 {email},{cust_name}
               </Nav.Link>
