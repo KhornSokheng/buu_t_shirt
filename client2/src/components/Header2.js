@@ -18,11 +18,11 @@ export default function Header2() {
   const email= useSelector((state)=> state.user.email)
 
   // console.log("Navbar Rerendered...")
-
+  
   return (
-    <div className="">
-      <Navbar collapseOnSelect expand="lg" variant="light" bg="light"  >
-        <Container  className=" text-warning  p-2">
+    <div>
+      <Navbar collapseOnSelect expand="lg" variant="light" bg="white" className=" pb-0 mb-0 fixed-top">
+        <Container  className=" text-warning ">
           <Navbar.Brand href="/"className="logo">
             <img src="images/logo_1.png" alt="Buu T Shirt" />
             </Navbar.Brand>
