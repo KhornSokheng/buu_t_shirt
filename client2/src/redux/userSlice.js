@@ -18,9 +18,12 @@ export const userSlice = createSlice({
             state.role=action.payload.role;
             state.profile_img=action.payload.profile_img;
 
-        }
-    }
+        },
+        remove: (state) =>{
+            state=null
+        },
+    },
 });
 
-export const {update} = userSlice.actions;
+export const {update, remove} = userSlice.actions;
 export default userSlice.reducer;

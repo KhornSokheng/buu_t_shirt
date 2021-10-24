@@ -12,9 +12,9 @@ export default function LogIn() {
   const [validated, setValidated] = useState(false);
   const [email,setemail] = useState();
   const [password,setpassword] = useState();
-  const [cust_id, setCustId] = useState("");
+  const [cust_id, setCustId] = useState("C9999");
   const [cust_name,setCustName] = useState();
-  const [role,setRole] = useState();
+  const [role,setRole] = useState("user");
   const [profile_img,setProfileImg] = useState();
 
   let user= useSelector((state)=> state.user)
@@ -58,7 +58,7 @@ export default function LogIn() {
         dispatch(update(user))
 
         // return <Redirect to="/"/>;
-        window.location="/"
+        // window.location="/"
       }
       // console.log("isAuth:",isAuth);
       
@@ -66,6 +66,7 @@ export default function LogIn() {
   }
   return (
     <div className="singin container mb-4">
+      <h1>Cust Name:{user.email},{user.cust_name}</h1>
       <Card border="info">
         <Card.Header
           className="d-flex justify-content-center alert alert-info"

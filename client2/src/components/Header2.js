@@ -13,7 +13,11 @@ import { useSelector } from "react-redux";
 
 export default function Header2() {
 
-  const user= useSelector((state)=> state.user)
+  // const user= useSelector((state)=> state.user)
+  const cust_name= useSelector((state)=> state.user.cust_name)
+  const email= useSelector((state)=> state.user.email)
+
+  // console.log("Navbar Rerendered...")
 
   return (
     <div className="">
@@ -49,7 +53,7 @@ export default function Header2() {
                 Dank memes
               </Nav.Link>
               <Nav.Link eventKey={3} href="#memes" className="text-warning border border-warning rounded-3">
-                {user.cust_name}
+                {email},{cust_name}
               </Nav.Link>
             </Nav>
 
