@@ -30,6 +30,7 @@ import About from "./components/About";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header3 from "./components/Header3/Header3";
 import { useSelector } from "react-redux";
+import HeaderUser from "./components/HeaderUser";
 // import MobileNav from "./components/MobileNav/MobileNav";
 
 function App() {
@@ -40,11 +41,18 @@ function App() {
       <Router>
         <Switch>
           <>
-            {currentUser && <Header2 />}
+            {/* navbar of admin  */}
+            {currentUser.role === "admin" && <Header2 />} 
+
+            {/* navbar of normal user  */}
+            {currentUser.role === "user" && <HeaderUser/> }
+
             {/* <Header3/> */}
-            {/* <MobileNav/> */}
+            
             {/* <Header /> */}
+
             <div className="mt-5"></div><div className="mt-5"></div>
+
             <Route exact path="/">
               <Home />
             </Route>
