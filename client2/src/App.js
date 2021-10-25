@@ -27,6 +27,7 @@ import History from "./components/History";
 import InsertProduct from "./components/InsertProduct";
 import Revenue from "./components/Revenue";
 import About from "./components/About";
+import Chart from "./components/Chart";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header3 from "./components/Header3/Header3";
 import { useSelector } from "react-redux";
@@ -130,6 +131,9 @@ function App() {
             </Route>
             <Route path="/about">
               <About/>
+            </Route>
+            <Route path="/chart">
+              <Chart/>
             </Route>
             {/* </div> */}
             {currentUser &&<Footer />}
