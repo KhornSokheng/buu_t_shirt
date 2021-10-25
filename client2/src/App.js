@@ -52,7 +52,7 @@ function App() {
             
             {/* <Header /> */}
 
-            <div className="mt-5"></div><div className="mt-5"></div>
+            <div className="mt-5"></div><br/><br/><br/>
 
             <Route exact path="/">
               <Home />

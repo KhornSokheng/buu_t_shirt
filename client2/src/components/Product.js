@@ -57,7 +57,7 @@ export default function Product() {
                           <i className="ti-eye" />
                         </a> */}
                         <ViewIcon prod_id={prod.prod_id} color={prod.color} prod_color_id={prod.prod_color_id}/>
-                        <a href="#" className="wishlist icon">
+                        <a href="size" className="wishlist icon">
                           <i className="ti-write" />
                         </a>
                         {/* <a href="#" className="wishlist icon">
