@@ -43,8 +43,8 @@ function App() {
             {currentUser && <Header2 />}
             {/* <Header3/> */}
             {/* <MobileNav/> */}
-            <Header />
-            {/* <div className=""> */}
+            {/* <Header /> */}
+            <div className="mt-5"></div><div className="mt-5"></div>
             <Route exact path="/">
               <Home />
             </Route>
@@ -124,7 +124,7 @@ function App() {
               <About/>
             </Route>
             {/* </div> */}
-            <Footer />
+            {currentUser &&<Footer />}
           </>
         </Switch>
       </Router>
