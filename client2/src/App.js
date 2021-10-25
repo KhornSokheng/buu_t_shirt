@@ -29,9 +29,12 @@ import Revenue from "./components/Revenue";
 import About from "./components/About";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header3 from "./components/Header3/Header3";
+import { useSelector } from "react-redux";
 // import MobileNav from "./components/MobileNav/MobileNav";
 
 function App() {
+  const user= useSelector((state)=> state.user)
+  
   return (
     <div className="App">
       <Router>
