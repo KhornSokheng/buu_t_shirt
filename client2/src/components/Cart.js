@@ -3,13 +3,19 @@ import { useLocation } from "react-router";
 import Form from "react-bootstrap/Form";
 import SelectSize2 from "./SelectSize2";
 import CheckOut from "./CheckOut";
+import { useSelector } from "react-redux";
 
 export default function Cart(props) {
   // const [sale_id, setSaleId] = useState([]);
   let sale_id;
   const [cust_id, setCustId] = useState([]);
-  const [email, setEmail] = useState([]);
+  // const [email, setEmail] = useState([]);
   const [cart_list, setCartList] = useState([]);
+
+  // redux, user info
+  const cust_name = useSelector((state) => state.user.cust_name);
+  const email = useSelector((state) => state.user.email);
+
   let max = 0;
   let total_price = 0;
   let sub_price = 0;
@@ -52,10 +58,13 @@ export default function Cart(props) {
         }}
       /> */}
 
-      <h5 className="text-left">Email: {email}</h5>
+      <h2 className="text-center">Your Cart's Here, {cust_name}</h2>
+
+      {/* <h5 className="text-left">Email: {email}</h5>
+      <h5 className="text-left">Name: {cust_name}</h5> */}
 
       {/* search using sale_id (?) section */}
-      <Form.Control
+      {/* <Form.Control
         className="mt-2"
         size="lg"
         type="text"
@@ -63,13 +72,13 @@ export default function Cart(props) {
         onChange={(e) => {
           setEmail(e.target.value);
         }}
-      />
+      /> */}
 
       <section className="feat-product">
         <div className="container d-flex justify-content-around ">
           <div className="col-6">
             {cart_list.map((items) => {
-              sale_id=items.sale_id;
+              sale_id = items.sale_id;
               max = items.item;
               sub_price = items.sale_amount * items.sale_price;
               total_price += sub_price;
@@ -118,9 +127,9 @@ export default function Cart(props) {
               <div className="check-out d-flex justify-content-xl-around">
                 {/* <button className="btn btn-danger m-3">CHECK OUT</button> */}
 
-                <CheckOut sale_id={sale_id} email={email}/>
+                <CheckOut sale_id={sale_id} email={email} />
                 <a href="/product" className="btn btn-success m-3">
-                  CONTINUE SHOPPING <i className="ti-arrow-circle-right" /> 
+                  CONTINUE SHOPPING <i className="ti-arrow-circle-right" />
                 </a>
               </div>
             </div>

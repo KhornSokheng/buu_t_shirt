@@ -3,6 +3,8 @@ import { Form, Row, InputGroup, Button, Col } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Axios from "axios"
 import {Redirect} from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
+import { update } from "../redux/userSlice";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -10,6 +12,39 @@ export default function LogIn() {
   const [validated, setValidated] = useState(false);
   const [email,setemail] = useState();
   const [password,setpassword] = useState();
+  const [cust_id, setCustId] = useState("C9999");
+  const [cust_name,setCustName] = useState();
+  const [role,setRole] = useState("user");
+  const [profile_img,setProfileImg] = useState();
+  const [curUser, setUser] = useState([]);
+
+  let user= useSelector((state)=> state.user)
+
+  const dispatch = useDispatch();
+
+  user={
+    email:email,
+    cust_id: cust_id,
+    cust_name:"Sok",
+    role:role,
+    profile_img:profile_img,
+  }
+
+  const setCurrentUser = async () => {
+    try {
+      const resp = await fetch(`http://localhost:5000/getCustomerByEmail/${email}`);
+      const jsonData = await resp.json();
+      user=jsonData;
+      setUser(jsonData);
+      dispatch(update(user[0]))
+      
+      
+      // console.log("Resp", user);
+      // console.log("List:", list);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -34,15 +69,20 @@ export default function LogIn() {
       }else{
         // setLoginStatus(Welcome... ${response.data[0].email});
         console.log(response.data[0].email)
+
+        // dispatch(update(user))
+        setCurrentUser();
+        
+        // window.location="/"
         // return <Redirect to="/"/>;
-        window.location="/"
       }
       // console.log("isAuth:",isAuth);
       
     })
   }
   return (
-    <div className="singin container">
+    <div className="singin container mb-4">
+      {curUser && <h1>Cust Name:{curUser.email},{curUser.cust_name}</h1>}
       <Card border="info">
         <Card.Header
           className="d-flex justify-content-center alert alert-info"
@@ -93,7 +133,7 @@ export default function LogIn() {
           <Button onClick={doLogin} type="submit">Submit form</Button>
           <br></br>
           <br></br>
-          <Card.Link href="/Signup">SING UP</Card.Link>
+          <Card.Link href="/Signup">SIGN UP</Card.Link>
           <br></br>
           <br></br>
         </Form>

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Banner from "./components/Banner";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Header2 from "./components/Header2";
 import Home from "./components/Home";
 import Buy from "./components/Buy";
 import Sale from "./components/Sale";
@@ -27,15 +28,24 @@ import InsertProduct from "./components/InsertProduct";
 import Revenue from "./components/Revenue";
 import About from "./components/About";
 import Chart from "./components/Chart";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header3 from "./components/Header3/Header3";
+import { useSelector } from "react-redux";
+// import MobileNav from "./components/MobileNav/MobileNav";
 
 function App() {
+  const currentUser= useSelector((state)=> state.user.currentUser)
+  
   return (
     <div className="App">
       <Router>
         <Switch>
           <>
-            <Header />
-            {/* <div className=""> */}
+            {currentUser && <Header2 />}
+            {/* <Header3/> */}
+            {/* <MobileNav/> */}
+            {/* <Header /> */}
+            <div className="mt-5"></div><div className="mt-5"></div>
             <Route exact path="/">
               <Home />
             </Route>
@@ -118,7 +128,7 @@ function App() {
               <Chart/>
             </Route>
             {/* </div> */}
-            <Footer />
+            {currentUser &&<Footer />}
           </>
         </Switch>
       </Router>
