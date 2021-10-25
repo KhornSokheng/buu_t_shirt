@@ -38,11 +38,13 @@ export default function HeaderUser() {
 
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <NavDropdown title="Product" id="collasible-nav-dropdown">
+              <Nav.Link href="/product">Products</Nav.Link>
+              <Nav.Link href="/cart">Cart</Nav.Link>
+              {/* <NavDropdown title="Product" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="/product">All Product</NavDropdown.Item>
                 <NavDropdown.Item href="/warehouse">Warehouse</NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown title="Buy" id="collasible-nav-dropdown">
+              </NavDropdown> */}
+              {/* <NavDropdown title="Buy" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="/buy">Buy Report</NavDropdown.Item>
                 <NavDropdown.Item href="/buydetail">
                   Buy Detail
@@ -53,10 +55,10 @@ export default function HeaderUser() {
                 <NavDropdown.Item href="/saledetail">
                   Sale Detail
                 </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="/customer">Customer</Nav.Link>
+              </NavDropdown> */}
+              {/* <Nav.Link href="/customer">Customer</Nav.Link> */}
               <Nav.Link href="/size">Size</Nav.Link>
-              <Nav.Link href="/revenue">Revenue</Nav.Link>
+              {/* <Nav.Link href="/revenue">Revenue</Nav.Link> */}
               <Nav.Link href="/about">About Us</Nav.Link>
             </Nav>
 
