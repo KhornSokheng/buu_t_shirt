@@ -26,6 +26,7 @@ import History from "./components/History";
 import InsertProduct from "./components/InsertProduct";
 import Revenue from "./components/Revenue";
 import About from "./components/About";
+import Chart from "./components/Chart";
 
 function App() {
   return (
@@ -112,6 +113,9 @@ function App() {
             </Route>
             <Route path="/about">
               <About/>
+            </Route>
+            <Route path="/chart">
+              <Chart/>
             </Route>
             {/* </div> */}
             <Footer />
