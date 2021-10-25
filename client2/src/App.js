@@ -43,10 +43,10 @@ function App() {
         <Switch>
           <>
             {/* navbar of admin  */}
-            {currentUser.role === "admin" && <Header2 />} 
+            {currentUser && currentUser.role === "admin" && <Header2 />} 
 
             {/* navbar of normal user  */}
-            {currentUser.role === "user" && <HeaderUser/> }
+            {currentUser && currentUser.role === "user" && <HeaderUser/> }
 
             {/* <Header3/> */}
             
