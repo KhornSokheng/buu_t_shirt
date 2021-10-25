@@ -16,6 +16,7 @@ export default function Header2() {
   // const user= useSelector((state)=> state.user)
   const cust_name= useSelector((state)=> state.user.cust_name)
   const email= useSelector((state)=> state.user.email)
+  const currentUser= useSelector((state)=> state.user.currentUser)
 
   // console.log("Navbar Rerendered...")
   
@@ -74,7 +75,7 @@ export default function Header2() {
               <i className="ti-user" />
                 </Nav.Link>
               <Nav.Link eventKey={3} href="#memes" className="text-warning border border-warning rounded-3">
-                {email},{cust_name}
+                {currentUser.email},{currentUser.cust_name}
               </Nav.Link>
             </Nav>
 

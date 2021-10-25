@@ -16,6 +16,7 @@ export default function LogIn() {
   const [cust_name,setCustName] = useState();
   const [role,setRole] = useState("user");
   const [profile_img,setProfileImg] = useState();
+  const [curUser, setUser] = useState([]);
 
   let user= useSelector((state)=> state.user)
 
@@ -29,7 +30,21 @@ export default function LogIn() {
     profile_img:profile_img,
   }
 
-  
+  const setCurrentUser = async () => {
+    try {
+      const resp = await fetch(`http://localhost:5000/getCustomerByEmail/${email}`);
+      const jsonData = await resp.json();
+      user=jsonData;
+      setUser(jsonData);
+      dispatch(update(user[0]))
+      
+      
+      // console.log("Resp", user);
+      // console.log("List:", list);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -55,10 +70,11 @@ export default function LogIn() {
         // setLoginStatus(Welcome... ${response.data[0].email});
         console.log(response.data[0].email)
 
-        dispatch(update(user))
-
-        // return <Redirect to="/"/>;
+        // dispatch(update(user))
+        setCurrentUser();
+        
         // window.location="/"
+        // return <Redirect to="/"/>;
       }
       // console.log("isAuth:",isAuth);
       
@@ -66,7 +82,7 @@ export default function LogIn() {
   }
   return (
     <div className="singin container mb-4">
-      <h1>Cust Name:{user.email},{user.cust_name}</h1>
+      {curUser && <h1>Cust Name:{curUser.email},{curUser.cust_name}</h1>}
       <Card border="info">
         <Card.Header
           className="d-flex justify-content-center alert alert-info"

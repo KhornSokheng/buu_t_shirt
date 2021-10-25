@@ -33,14 +33,14 @@ import { useSelector } from "react-redux";
 // import MobileNav from "./components/MobileNav/MobileNav";
 
 function App() {
-  const user= useSelector((state)=> state.user)
+  const currentUser= useSelector((state)=> state.user.currentUser)
   
   return (
     <div className="App">
       <Router>
         <Switch>
           <>
-            <Header2 />
+            {currentUser && <Header2 />}
             {/* <Header3/> */}
             {/* <MobileNav/> */}
             <Header />

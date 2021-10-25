@@ -124,6 +124,22 @@ app.get("/getCustomer/:cust_name", (req, res) => {
     console.error(err.message);
   }
 });
+// get all customers (OK)
+app.get("/getCustomerByEmail/:email", (req, res) => {
+  try {
+    // let {id} = req.params;
+    const email = req.params.email;
+    const sql = `SELECT * from customer where email = "${email}"`;
+    pool.query(sql, (err, results) => {
+      
+      console.log(results);
+      console.log(sql);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 // get all size (OK)
 app.get("/getSizeChart", (req, res) => {
   try {
