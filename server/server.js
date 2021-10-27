@@ -1117,3 +1117,19 @@ app.delete("/deleteWarehouse/:id", (req, res) => {
     console.error(err.message);
   }
 });
+app.delete("/removecart", (req, res) => {
+  try {
+    let { sale_id,item } = req.body;
+
+    const sql = `DELETE FROM sale_detail where sale_id = "${sale_id}" and item = ${item}`;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
