@@ -32,7 +32,7 @@ export default function CheckOut(props) {
       });
 
       //   window.location = `/cart/${sale_id}`;
-      window.location = `/orderHistory`;
+      window.location = `/history`;
       
 
       console.log(res);

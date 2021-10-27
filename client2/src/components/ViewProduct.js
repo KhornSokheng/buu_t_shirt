@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import AddCart from "./AddCart";
 import AddQty from "./AddQty";
-import Banner from "./Banner";
 import SelectSize from "./SelectSize";
 import SelectColor from "./SelectColor";
 import { useLocation } from "react-router";
+import AddCart2 from "./AddCart2";
 
 export default function ViewProduct(props) {
   let [prod_id, setProdId] = useState([props.prod_id]);
@@ -182,7 +182,14 @@ export default function ViewProduct(props) {
                       {/* <button href="#" className="btn btn-success text-center">
                         Add to cart
                       </button> */}
-                      <AddCart
+                      {/* <AddCart
+                        prod_id={prod.prod_id}
+                        color={color}
+                        size={size}
+                        sale_amount={amount}
+                        prod_price={prod.prod_price}
+                      /> */}
+                      <AddCart2
                         prod_id={prod.prod_id}
                         color={color}
                         size={size}

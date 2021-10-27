@@ -140,6 +140,22 @@ app.get("/getCustomerByEmail/:email", (req, res) => {
     console.error(err.message);
   }
 });
+// get all customers (OK)
+app.get("/getSaleId/:id", (req, res) => {
+  try {
+    // let {id} = req.params;
+    const cust_id = req.params.id;
+    const sql = `SELECT sale_id from sale where cust_id = "${cust_id}" AND sale_status = "cart" LIMIT 1`;
+    pool.query(sql, (err, results) => {
+      
+      console.log(results);
+      console.log(sql);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 // get all size (OK)
 app.get("/getSizeChart", (req, res) => {
   try {
@@ -770,7 +786,8 @@ app.post('/login2',(req,res)=>{
 
 app.post("/insertCart", (req, res) => {
   try {
-    const { sale_id, cust_id, prod_id, color, size, sale_amount } = req.body;
+    let { sale_id, cust_id, prod_id, color, size, sale_amount } = req.body;
+    sale_id = sale_id || `S${uuidv4()}`
     const sql = `CALL insert_cart("${sale_id}","${cust_id}","${prod_id}", "${color}", "${size}", "${sale_amount}" )`;
     pool.query(sql, (err, results) => {
       if (err) {
