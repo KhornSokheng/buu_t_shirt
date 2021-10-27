@@ -41,6 +41,7 @@ export default function LogIn() {
       
       // console.log("Resp", user);
       // console.log("List:", list);
+      window.location="/";
     } catch (err) {
       console.error(err.message);
     }
