@@ -45,9 +45,7 @@ const chart_1_profit = list.map(x=>{
 });
   return (
     <div className="container">
-      <h2>Chart</h2>
-      
-        
+      <h2>Chart</h2>    
           <Line
             data={{
               labels: chart_1_date,

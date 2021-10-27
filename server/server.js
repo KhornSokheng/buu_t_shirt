@@ -578,10 +578,11 @@ app.get("/getCartList/:email", (req, res) => {
 });
 app.get("/getChart", (req, res) => {
   try {
-    const sql = `SELECT DATE_FORMAT(sale_date, "%W %e %M %Y") AS sale_date,(sum(sale_amount))*(sum(sale_cost))cost,
-    (sum(sale_amount))*(sum(sale_price))price,
-    ((sum(sale_amount))*(sum(sale_price)))-((sum(sale_amount))*(sum(sale_cost)))profit,
-    sum(sale_amount)amount FROM sale join sale_detail ON sale.sale_id = sale_detail.sale_id GROUP BY sale_date`;
+    const sql = `SELECT DATE_FORMAT(sale_date, "%W %e %M %Y") AS sale_date,
+    (((sum(sale_amount))*(sum(sale_cost)))+sum(delivery_price))cost, 
+    (sum(sale_amount))*(sum(sale_price))price, 
+    ((((sum(sale_amount))*(sum(sale_price)))-((sum(sale_amount))*(sum(sale_cost))))-sum(delivery_price))profit 
+    FROM sale join sale_detail ON sale.sale_id = sale_detail.sale_id GROUP BY sale_date`;
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;

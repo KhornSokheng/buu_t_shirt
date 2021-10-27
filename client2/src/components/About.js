@@ -45,7 +45,7 @@ export default function About() {
         <div class="card">
           <img
             class="card-img-top"
-            src="images/pictures10.jpg"
+            src="images/pictures10.jpg "
             alt="Card image cap"
           />
           <div class="card-body">
@@ -66,8 +66,8 @@ export default function About() {
           </div>
         </div>
       </div>
-
-      <h3> What about us </h3>
+      
+      <h3 className="mt-5"> What about us </h3>
 
       <font face="Comic sans MS" size=" 5">
         where product from ?
@@ -79,9 +79,9 @@ export default function About() {
           our product come for manufacturer representive
         </font>
       </p>
-
+      
       <img src="../../images/pictures1.jpg" />
-      <h4>
+      <h4 className="mt-5">
         <font face="Comic sans MS" size=" 5">
           Integrity{" "}
         </font>
@@ -95,7 +95,7 @@ export default function About() {
       <p6>
         <img src="../../images/pictures3.jpg" />
       </p6>
-      <h4>Inspiration</h4>
+      <h4 className="mt-5">Inspiration</h4>
       <p6>
         <font face="comic sans MS" size="5">
           {" "}
