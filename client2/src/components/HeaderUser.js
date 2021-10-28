@@ -60,6 +60,7 @@ export default function HeaderUser() {
               <Nav.Link href="/size">Size</Nav.Link>
               {/* <Nav.Link href="/revenue">Revenue</Nav.Link> */}
               <Nav.Link href="/about">About Us</Nav.Link>
+              <Nav.Link href="/contact">Contact Us</Nav.Link>
             </Nav>
 
             <Nav>

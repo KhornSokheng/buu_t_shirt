@@ -31,6 +31,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import Header3 from "./components/Header3/Header3";
 import { useSelector } from "react-redux";
 import HeaderUser from "./components/HeaderUser";
+import ContactUs from "./components/ContactUs";
 // import MobileNav from "./components/MobileNav/MobileNav";
 
 function App() {
@@ -133,6 +134,9 @@ function App() {
             </Route>
             <Route path="/chart">
               <Chart/>
+            </Route>
+            <Route path="/contact">
+              <ContactUs/>
             </Route>
             {/* </div> */}
             {currentUser &&<Footer />}
