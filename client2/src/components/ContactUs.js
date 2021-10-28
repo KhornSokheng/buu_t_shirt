@@ -1,24 +1,25 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Map from "./Map";
 
 export default function ContactUs() {
   const currentUser = useSelector((state) => state.user.currentUser);
-  let cust_id = currentUser.cust_id
-  const [message,setMessage] = useState ([])
-  const doInsert = (e)=>{
+  let cust_id = currentUser.cust_id;
+  const [message, setMessage] = useState([]);
+  const doInsert = (e) => {
     e.preventDefault();
     try {
-      const bodymessage = {cust_id,message};
-      const resp = fetch("http://localhost:5000/insertMessage",{
+      const bodymessage = { cust_id, message };
+      const resp = fetch("http://localhost:5000/insertMessage", {
         method: "POST",
-        headers:{"Content-Type":"application/json"},
-        body: JSON.stringify(bodymessage)
-      })
-      window.location="/";
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bodymessage),
+      });
+      window.location = "/";
     } catch (err) {
-      console.error(err.message)
+      console.error(err.message);
     }
-  }
+  };
   return (
     <div className="container d-flex justify-content-around">
       <div className="col-8">
@@ -48,7 +49,7 @@ export default function ContactUs() {
                     name="Name"
                     placeholder="Your name"
                     required
-                    value = {currentUser.cust_name}
+                    value={currentUser.cust_name}
                   />
                 </div>
               </div>
@@ -66,7 +67,7 @@ export default function ContactUs() {
                     name="Email"
                     placeholder="Your email"
                     required
-                    value = {currentUser.email}
+                    value={currentUser.email}
                   />
                 </div>
               </div>
@@ -81,8 +82,8 @@ export default function ContactUs() {
                     className="form-control"
                     placeholder="Message"
                     required
-                    onChange={e=>{
-                      setMessage(e.target.value)
+                    onChange={(e) => {
+                      setMessage(e.target.value);
                     }}
                   />
                 </div>
@@ -104,32 +105,37 @@ export default function ContactUs() {
         </form>
       </div>
       <div className="col-6 text-left align-item-center justify-content-center">
-        <h2 style={{color: "gray" }}>
+        <h2 style={{ color: "gray" }}>
           <i
             className="ti-email mx-5"
             style={{ fontSize: "50px", color: "black" }}
           />
           Email : BUUTSHIRT@gmail.com
         </h2>
-        <h2 style={{color: "gray" }}>
+        <h2 style={{ color: "gray" }}>
           <i
             className="ti-tablet mx-5"
             style={{ fontSize: "50px", color: "black" }}
           />
           Phone : 099-999-9999
         </h2>
-        <h2 style={{color: "gray" }}>
+        <h2 style={{ color: "gray" }}>
           <i
             className="ti-location-pin mx-5"
             style={{ fontSize: "50px", color: "black" }}
           />
           Burapha Uni Chantaburi
         </h2>
-        <h2 style={{color: "gray" }}>
-          <i className="ti-time mx-5" 
-          style={{ fontSize: "50px", color: "black" }}/>
+        <h2 style={{ color: "gray" }}>
+          <i
+            className="ti-time mx-5"
+            style={{ fontSize: "50px", color: "black" }}
+          />
           10:00 AM - 10:00 PM
         </h2>
+      </div>
+      <div>
+        <Map />
       </div>
     </div>
   );

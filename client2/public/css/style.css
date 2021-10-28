@@ -182,7 +182,7 @@ section {
   position: relative;
 }
 
-.navbar-nav li a {
+/* .navbar-nav li a {
   color: #000;
   display: block;
   font-size: 13px;
@@ -190,7 +190,7 @@ section {
   line-height: 0.8;
   padding: 40px 15px;
   text-transform: uppercase;
-}
+} */
 
 .navbar-nav li a li.current-menu-item a, .navbar-nav li a:hover {
   color: #ff5353;
