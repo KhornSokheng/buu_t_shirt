@@ -146,9 +146,14 @@ app.get("/getMessage/:message", (req, res) => {
   try {
     
     const message = req.params.message;
-    const sql = message ? `SELECT * from message`: `SELECT * from message where message LIKE "%${message}%"` ;
+    let sql;
+    if(message =="undefined"){
+      sql = `SELECT * from customer JOIN message ON customer.cust_id = message.cust_id ORDER BY message.message_id DESC`;
+    }else{
+     sql = `SELECT * from customer JOIN message ON customer.cust_id = message.cust_id where message LIKE "%${message}%" ORDER BY message.message_id DESC`
+    }
     console.log(sql)
-    console.log("Message",message)
+    console.log("Message=",message)
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;
@@ -1056,7 +1061,24 @@ app.put("/checkOut/:id", (req, res) => {
     console.error(err.message);
   }
 });
+app.put("/markAllAsRead", (req, res) => {
+  try {
 
+    const sql = `UPDATE message set status="Read"`;
+ 
+    pool.query(sql, (err, results) => {
+      if (err) {
+        res.send(err.message);
+        throw err;
+      }
+      console.log(sql);
+      console.log(results);
+      res.send(`Mark as read successfully...`);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 
 // --------------------------------------------
