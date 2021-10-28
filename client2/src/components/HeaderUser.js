@@ -10,6 +10,7 @@ import {
   Button,
 } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import LogOut from "./LogOut";
 
 export default function HeaderUser() {
   // const user= useSelector((state)=> state.user)
@@ -89,14 +90,15 @@ export default function HeaderUser() {
               >
                 <i className="ti-user" />
               </Nav.Link>
-              <Nav.Link
+              {/* <Nav.Link
                 href="/login"
                 data-toggle="tooltip"
                 data-placement="bottom"
                 title="Log Out"
               >
                 <i className="ti-share" />
-              </Nav.Link>
+              </Nav.Link> */}
+              <LogOut/>
             </Nav>
             <Nav>
               <Nav.Link

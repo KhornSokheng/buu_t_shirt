@@ -11,9 +11,9 @@ export default function LogOut() {
     const dispatch = useDispatch();
 
 
-    const logout = (e) => {
+    const logout = async (e) => {
         e.preventDefault();
-        dispatch(remove());
+        await dispatch(remove());
     
         window.location = "/login";
       };
@@ -21,7 +21,7 @@ export default function LogOut() {
     return (
         <>
             <Nav.Link
-                href="/login"
+                // href="/login"
                 data-toggle="tooltip"
                 data-placement="bottom"
                 title="Log Out"
