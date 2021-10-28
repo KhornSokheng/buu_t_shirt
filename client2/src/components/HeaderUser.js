@@ -107,7 +107,7 @@ export default function HeaderUser() {
                 className="text-warning border border-warning rounded-3"
               >
                 <img
-                  className="  mx-auto d-block"
+                  className="  mx-auto d-block  rounded-circle"
                   style={{ width: "40px", height: "40px" }}
                   src={currentUser.profile_img}
                 />

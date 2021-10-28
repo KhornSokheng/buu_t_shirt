@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import EditProfile from "./EditProfile";
 import Form from "react-bootstrap/Form";
+import { useSelector } from "react-redux";
 
 export default function Profile() {
   const [list, setList] = useState([]);
   const [cust_id, setID] = useState([]);
   const [cust_name, setName] = useState([""]);
   const [cust_list, setCustlist] = useState([]);
-  let email="ananda@gmail.com"
+
+  const currentUser = useSelector((state) => state.user.currentUser);
+
+  let email=currentUser.email;
+
   const deleteItem = async (cust_id) => {
     try {
       const del = await fetch(
@@ -78,14 +83,14 @@ export default function Profile() {
         <tbody>
           {list.map((elt) => {
             return (
-              <tr>
+              <tr className="">
                 <td>{elt.cust_id}</td>
                 <td>{elt.cust_name}</td>
                 <td>{elt.cust_lname}</td>
                 <td>{elt.phone_num}</td>
                 <td>{elt.credit_card}</td>
                 <td>{elt.email}</td>
-                <td><img className="  mx-auto d-block"  style={{width: "40px", height:"40px" }} src={elt.profile_img}/></td>
+                <td><img className="  mx-auto d-block  rounded-circle"  style={{width: "100px", height:"100px" }} src={elt.profile_img}/></td>
                 <td>
                   <EditProfile
                     cust_id={elt.cust_id}

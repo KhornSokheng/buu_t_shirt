@@ -22,13 +22,13 @@ export default function LogIn() {
 
   const dispatch = useDispatch();
 
-  user={
-    email:email,
-    cust_id: cust_id,
-    cust_name:"Sok",
-    role:role,
-    profile_img:profile_img,
-  }
+  // user={
+  //   email:email,
+  //   cust_id: cust_id,
+  //   cust_name:"Sok",
+  //   role:role,
+  //   profile_img:profile_img,
+  // }
 
   const setCurrentUser = async () => {
     try {

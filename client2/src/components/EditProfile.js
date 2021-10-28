@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { update } from "../redux/userSlice";
 
 export default function EditProfile(props) {
   // const cust_id = props.cust_id;
@@ -10,20 +12,29 @@ export default function EditProfile(props) {
   const [email, setemail] = useState(props.email);
   const [profile_img, setprofile_img] = useState(props.profile_img);
 
+  
+  let currentUser= useSelector((state) => state.user.currentUser);
+  let role = currentUser.role;
+  const dispatch = useDispatch();
+
   const onUpdateData = async (e) => {
     e.preventDefault();
     try {
-      const bodyData = { cust_id,cust_name,cust_lname,phone_num,credit_card,email,profile_img};
-      console.log("Edit Cust ID: ",cust_id)
+      const bodyData = { cust_id,cust_name,cust_lname,phone_num,credit_card,email,profile_img,role};
+     
       const res = await fetch(
-        `http://localhost:5000/updateCustomer/${cust_id}`,
+        `http://localhost:5000/updateProfile/${cust_id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(bodyData)
         }
       );
-      window.location = "/customer";
+
+      let newUser =  { cust_id,cust_name,cust_lname,phone_num,credit_card,email,profile_img,role};
+      dispatch(update(newUser))
+
+      window.location = "/profile";
       console.log(res);
     } catch (err) {
       console.error(err.message);

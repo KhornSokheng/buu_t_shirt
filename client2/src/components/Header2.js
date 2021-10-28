@@ -14,20 +14,8 @@ import { remove } from "../redux/userSlice";
 import LogOut from "./LogOut";
 
 export default function Header2() {
-  // const user= useSelector((state)=> state.user)
-  // const cust_name = useSelector((state) => state.user.cust_name);
-  // const email = useSelector((state) => state.user.email);
+  
   const currentUser = useSelector((state) => state.user.currentUser);
-
-  // console.log("Navbar Rerendered...")
-  const dispatch = useDispatch();
-
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(remove());
-
-    window.location = "/login";
-  };
 
   return (
     <div>
@@ -67,7 +55,9 @@ export default function Header2() {
               <Nav.Link href="/customer">Customer</Nav.Link>
               <Nav.Link href="/size">Size</Nav.Link>
               <Nav.Link href="/revenue">Revenue</Nav.Link>
+              <Nav.Link href="/chart">Chart</Nav.Link>
               <Nav.Link href="/about">About Us</Nav.Link>
+              <Nav.Link href="/contact">Contact Us</Nav.Link>
             </Nav>
 
             <Nav>
@@ -117,7 +107,7 @@ export default function Header2() {
               >
                 
                 
-                <img className="  mx-auto d-block"  style={{width: "40px", height:"40px" }} src={currentUser.profile_img}/>
+                <img className="  mx-auto d-block rounded-circle"  style={{width: "40px", height:"40px" }} src={currentUser.profile_img}/>
                 
                 {currentUser.role}: {currentUser.cust_name}
               </Nav.Link>
