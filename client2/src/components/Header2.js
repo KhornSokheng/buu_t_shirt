@@ -61,6 +61,14 @@ export default function Header2() {
             </Nav>
 
             <Nav>
+            <Nav.Link
+                href="/message"
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="Messages"
+              >
+                <i className="ti-comment-alt" />
+              </Nav.Link>
               <Nav.Link
                 href="/history"
                 data-toggle="tooltip"

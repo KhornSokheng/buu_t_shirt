@@ -140,7 +140,27 @@ app.get("/getCustomerByEmail/:email", (req, res) => {
     console.error(err.message);
   }
 });
-// get all customers (OK)
+
+// get message 
+app.get("/getMessage/:message", (req, res) => {
+  try {
+    
+    const message = req.params.message;
+    const sql = message ? `SELECT * from message`: `SELECT * from message where message LIKE "%${message}%"` ;
+    console.log(sql)
+    console.log("Message",message)
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 app.get("/getSaleId/:id", (req, res) => {
   try {
     // let {id} = req.params;

@@ -33,6 +33,7 @@ import { useSelector } from "react-redux";
 import HeaderUser from "./components/HeaderUser";
 import ContactUs from "./components/ContactUs";
 import Profile from "./components/Profile";
+import Message from "./components/Message";
 // import MobileNav from "./components/MobileNav/MobileNav";
 
 function App() {
@@ -141,6 +142,9 @@ function App() {
             </Route>
             <Route path="/profile">
               <Profile/>
+            </Route>
+            <Route path="/message">
+              <Message/>
             </Route>
             {/* </div> */}
             {currentUser &&<Footer />}
