@@ -40,7 +40,7 @@ export default function Message() {
   }, [message]);
   return (
     <div className="container">
-      <h3>Message: {message}</h3>
+      <h3>Messages</h3>
       <tr className="btn mt-5">
         <td>
           <Form.Control
