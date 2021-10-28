@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2021 at 05:22 PM
+-- Generation Time: Oct 28, 2021 at 05:42 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -358,6 +358,28 @@ INSERT INTO `customer` (`cust_id`, `cust_name`, `cust_lname`, `phone_num`, `cred
 ('C75aa', 'PJom', 'JJJ', '4354235432', '24354353454345', 'pjom@gmail.com', 'user', 'https://openclipart.org/download/294868/myAvatar.svg', '$2b$10$vZJDUUNipBk1ZHV2HUuSLeI4onn6dA1XyMNSQ4KklrklzVIIsq.Jm'),
 ('C9999', 'NONT', 'Sokheng', '1234454623', '1234454623423', 'nont@gmail.com', 'admin', 'https://pbs.twimg.com/media/EYVxlOSXsAExOpX.jpg', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
 ('Cc788', 'Ptoy', 'Jane', '0923345343', '12354654365445', 'ptoy@gmail.com', 'admin', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFjJO0hz4oD-fIlwa-zOwFpcawqEb5NHdFRszPEH9Ykr3F0vv52Dg-uZPd0gNlYb_0UWg&usqp=CAU', '$2b$10$5raO0KAW.JlwEgjH3NXDUeY54dy.irr0JNowRyhv9ksOfyPN91hZy');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message`
+--
+
+CREATE TABLE `message` (
+  `cust_id` varchar(5) NOT NULL,
+  `message` varchar(500) NOT NULL,
+  `message_id` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` varchar(20) NOT NULL DEFAULT 'new'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`cust_id`, `message`, `message_id`, `date`, `status`) VALUES
+('C9999', 'Hello', 1, '2021-10-28 22:35:50', 'new'),
+('C9999', 'Helllo world', 2, '2021-10-28 22:41:45', 'new');
 
 -- --------------------------------------------------------
 
@@ -784,6 +806,12 @@ ALTER TABLE `customer`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`message_id`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
@@ -821,6 +849,16 @@ ALTER TABLE `warehouse`
   ADD PRIMARY KEY (`full_prod_id`),
   ADD KEY `prod_id` (`prod_id`),
   ADD KEY `size` (`size`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
