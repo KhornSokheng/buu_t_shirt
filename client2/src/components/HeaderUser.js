@@ -101,7 +101,7 @@ export default function HeaderUser() {
             <Nav>
               <Nav.Link
                 eventKey={3}
-                href="#memes"
+                href="/profile"
                 className="text-warning border border-warning rounded-3"
               >
                 <img
