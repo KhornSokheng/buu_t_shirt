@@ -844,6 +844,24 @@ app.post("/insertNewProduct", (req, res) => {
     console.error(err.message);
   }
 });
+app.post("/insertMessage", (req, res) => {
+  try {
+    const { cust_id,message } = req.body;
+    const sql = `INSERT INTO message (cust_id,message) VALUES ('${cust_id}','${message}')`;
+    console.log(cust_id,message)
+    console.log(sql);
+    pool.query(sql, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      console.log(results);
+      res.send(results);
+    });
+    // console.log(req.body)
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 // --------------------------------------------
 // Put Method

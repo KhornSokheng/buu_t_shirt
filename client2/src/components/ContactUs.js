@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ContactUs() {
+  const currentUser = useSelector((state) => state.user.currentUser);
+  let cust_id = currentUser.cust_id
+  const [message,setMessage] = useState ([])
+  const doInsert = (e)=>{
+    e.preventDefault();
+    try {
+      const bodymessage = {cust_id,message};
+      const resp = fetch("http://localhost:5000/insertMessage",{
+        method: "POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify(bodymessage)
+      })
+      window.location="/";
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
   return (
     <div className="container d-flex justify-content-around">
       <div className="col-8">
-        <form action="" method="post">
+        <form onSubmit={doInsert} novalidate>
           <div className="">
             <div className="">
               <div className="bg-green text-black text-center py-2">
@@ -30,6 +48,7 @@ export default function ContactUs() {
                     name="Name"
                     placeholder="Your name"
                     required
+                    value = {currentUser.cust_name}
                   />
                 </div>
               </div>
@@ -47,6 +66,7 @@ export default function ContactUs() {
                     name="Email"
                     placeholder="Your email"
                     required
+                    value = {currentUser.email}
                   />
                 </div>
               </div>
@@ -61,7 +81,9 @@ export default function ContactUs() {
                     className="form-control"
                     placeholder="Message"
                     required
-                    defaultValue={""}
+                    onChange={e=>{
+                      setMessage(e.target.value)
+                    }}
                   />
                 </div>
               </div>
