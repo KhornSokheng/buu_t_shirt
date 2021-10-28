@@ -38,6 +38,25 @@ export default function Cart(props) {
       console.error(err.message);
     }
   };
+
+  const deleteItem = async (sale_id,item) => {
+    try {
+      const bodyitem = {sale_id,item};
+      const del = await fetch(`http://localhost:5000/removecart`, {
+        method: "DELETE",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify(bodyitem)
+      });
+      setCartList(
+        cart_list.filter((elt) => {
+          return elt.item !== item;
+        })
+      );
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   useEffect(() => {
     console.log("Enter useEffect");
     loadList();
@@ -104,6 +123,7 @@ export default function Cart(props) {
                         <p className="price text-danger">
                           Subtotal: ฿{items.sale_amount * items.sale_price}
                         </p>
+                        <a onClick={() => deleteItem(items.sale_id,items.item)}><i className="ti-trash"/></a>
                       </div>
                     </div>
                   </div>

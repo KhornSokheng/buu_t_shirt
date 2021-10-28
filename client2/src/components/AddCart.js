@@ -16,6 +16,8 @@ export default function AddCart(props) {
   const [sale_id, setSaleId] = useState([]);
   // const [prod_id,color, size, sale_amount,prod_price] = props;
 
+  
+
   const insertCart = async (e) => {
     e.preventDefault();
     try {
