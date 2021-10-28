@@ -83,7 +83,7 @@ export default function LogIn() {
   }
   return (
     <div className="singin container mb-4">
-      {curUser && <h1>Cust Name:{curUser.email},{curUser.cust_name}</h1>}
+      {/* {curUser && <h1>Cust Name:{curUser.email},{curUser.cust_name}</h1>} */}
       <Card border="info">
         <Card.Header
           className="d-flex justify-content-center alert alert-info"

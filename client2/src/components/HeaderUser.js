@@ -63,14 +63,21 @@ export default function HeaderUser() {
             </Nav>
 
             <Nav>
-              <Nav.Link href="/history" data-toggle="tooltip"
+              <Nav.Link
+                href="/history"
+                data-toggle="tooltip"
                 data-placement="bottom"
-                title="Order History">
+                title="Order History"
+              >
                 <i className="ti-money" />
               </Nav.Link>
-              <Nav.Link eventKey={2} href="/cart" data-toggle="tooltip"
+              <Nav.Link
+                eventKey={2}
+                href="/cart"
+                data-toggle="tooltip"
                 data-placement="bottom"
-                title="cart">
+                title="cart"
+              >
                 <i className="ti-shopping-cart" />
               </Nav.Link>
               <Nav.Link
@@ -89,18 +96,24 @@ export default function HeaderUser() {
               >
                 <i className="ti-share" />
               </Nav.Link>
+            </Nav>
+            <Nav>
               <Nav.Link
                 eventKey={3}
                 href="#memes"
                 className="text-warning border border-warning rounded-3"
               >
+                <img
+                  className="  mx-auto d-block"
+                  style={{ width: "40px", height: "40px" }}
+                  src={currentUser.profile_img}
+                />
                 {currentUser.role}: {currentUser.cust_name}
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      
     </div>
   );
 }

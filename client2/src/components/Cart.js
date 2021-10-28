@@ -12,9 +12,10 @@ export default function Cart(props) {
   // const [email, setEmail] = useState([]);
   const [cart_list, setCartList] = useState([]);
 
-  // redux, user info
-  const cust_name = useSelector((state) => state.user.cust_name);
-  const email = useSelector((state) => state.user.email);
+  // redux, user info  
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const email = currentUser.email;
+  const cust_name = currentUser.cust_name;
 
   let max = 0;
   let total_price = 0;

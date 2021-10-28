@@ -7,10 +7,11 @@ export default function History() {
   // const [cust_id,setID] = useState("C");
   const [sale_list, setSalelist] = useState([]);
 
-  const cust_name = useSelector((state) => state.user.cust_name);
-  const email = useSelector((state) => state.user.email);
-  const cust_id = useSelector((state) => state.user.cust_id);
-  const user= useSelector((state)=> state.user)
+  // const cust_name = useSelector((state) => state.user.cust_name);
+  // const email = useSelector((state) => state.user.email);
+  
+  const currentUser= useSelector((state)=> state.user.currentUser)
+  const cust_id = currentUser.cust_id;
 
   const loadList = async () => {
     try {
@@ -31,7 +32,7 @@ export default function History() {
   }, [cust_id]);
   return (
     <div className="container">
-      <h3>Your Order History's Here, {user.cust_name}</h3>
+      <h3>Your Order History's Here, {currentUser.cust_name}</h3>
       <tr className="btn mt-1">
         <td>
           {/* <Form.Control
