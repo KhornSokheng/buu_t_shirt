@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Chartprofit from "./Chartprofit";
 
 export default function Revenue() {
   const [delivery_cost, setDeliCost] = useState([]);
@@ -118,6 +119,7 @@ export default function Revenue() {
         </div>
 
         <div className="col-6 pl-3">
+
           {/* <div className="border border-primary rounded">
             <div className="title text-left p-3">
               <h3>Order Summary</h3>
