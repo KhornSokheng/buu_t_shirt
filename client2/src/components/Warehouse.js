@@ -35,7 +35,7 @@ export default function Warehouse() {
           <Form.Control
             class="form-control mr-sm-2"
             type="search"
-            placeholder="Search full prod id"
+            placeholder="Search"
             onChange={(e) => {
               setFullProdId(e.target.value);
             }}
@@ -51,6 +51,7 @@ export default function Warehouse() {
       <table className="table table-striped ">
         <thead>
           <tr>
+          <th>Image</th>
             <th>Full_prod_id</th>
             <th>Product Name</th>
             <th>Color</th>
@@ -69,6 +70,7 @@ export default function Warehouse() {
         {prodList.map((product) => {
             return (
               <tr>
+                <td><img className="  mx-auto d-block  rounded-circle"  style={{width: "50px", height:"50px" }} src={product.image_url}/></td>
                 <td>{product.full_prod_id}</td>
                 <td>{product.prod_name}</td>
                 <td>{product.color}</td>
