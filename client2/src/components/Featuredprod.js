@@ -32,7 +32,7 @@ export default function Featured() {
             <div className="row">
               <div className="col">
                 <div className="sec-heading">
-                  <h3 className="sec-title">Featured product</h3>
+                  <h3 className="sec-title">Top 3 products</h3>
                 </div>
               </div>
             </div>
@@ -90,6 +90,7 @@ export default function Featured() {
                           <i className="ti-star" />
                         </a>
                       </div>
+                      <p>({prod.sold_amount} Solds)</p>
                       <p className="price text-danger">฿{prod.prod_price}</p>
                     </div>
                   </div>

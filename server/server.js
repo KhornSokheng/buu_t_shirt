@@ -385,7 +385,7 @@ app.get("/getSaledetail/:id", (req, res) => {
 });
 app.get("/getProductFeaturedproduct", (req, res) => {
   try {
-    const sql = `SELECT * FROM warehouse_view GROUP BY prod_color_id LIMIT 3`;
+    const sql = `SELECT * FROM warehouse_view GROUP BY prod_color_id ORDER BY sold_amount DESC LIMIT 3`;
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;
