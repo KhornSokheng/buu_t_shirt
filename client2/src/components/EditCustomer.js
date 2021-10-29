@@ -8,13 +8,19 @@ export default function Edit(props) {
   const [phone_num, setPhone_Num] = useState(props.phone_num);
   const [credit_card, setCredit_Card] = useState(props.credit_card);
 
+  const [email, setEmail] = useState(props.email);
+  const [role, setRole] = useState(props.role);
+  const [profile_img, setProfileImg] = useState(props.profile_img);
+ 
+  
+
   const onUpdateData = async (e) => {
     e.preventDefault();
     try {
-      const bodyData = { cust_id,cust_name,cust_lname,phone_num,credit_card };
+      const bodyData = { cust_id,cust_name,cust_lname,phone_num,credit_card,email,role,profile_img };
       console.log("Edit Cust ID: ",cust_id)
       const res = await fetch(
-        `http://localhost:5000/updateCustomer/${cust_id}`,
+        `http://localhost:5000/updateCustomer2/${cust_id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -96,6 +102,39 @@ export default function Edit(props) {
                         value={credit_card}
                         onChange={(e) => {
                           setCredit_Card(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="pwd"
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="pwd"
+                        value={role}
+                        onChange={(e) => {
+                          setRole(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="pwd"
+                        value={profile_img}
+                        onChange={(e) => {
+                          setProfileImg(e.target.value);
                         }}
                       />
                     </div>

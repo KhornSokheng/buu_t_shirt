@@ -67,9 +67,11 @@ export default function Message() {
       <table className="table table-striped mt-5">
         <thead>
           <tr>
+            <th>profile</th>
             <th>Message</th>
             <th>date</th>
             <th>customer Id</th>
+            <th>email</th>
             <th>Message Id</th>
             <th>status</th>
 
@@ -80,9 +82,11 @@ export default function Message() {
           {message_list.map((elt) => {
             return (
               <tr>
+                <td><img className="  mx-auto d-block  rounded-circle"  style={{width: "50px", height:"50px" }} src={elt.profile_img}/></td>
                 <td>{elt.message}</td>
                 <td>{elt.date}</td>
                 <td>{elt.cust_id}</td>
+                <td>{elt.email}</td>
                 <td>{elt.message_id}</td>
                 <td className="text-danger">{elt.status}</td>
                 <td>

@@ -62,7 +62,7 @@ export default function Customer() {
           })}
         </td>
         <td>
-          <a href="/insertCustomer">
+          <a href="/signup">
             <button className="btn btn-success ml-5 ">เพิ่มข้อมูล</button>
           </a>
         </td>
@@ -70,11 +70,13 @@ export default function Customer() {
       <table className="table table-striped mt-5">
         <thead>
           <tr>
+          <th>Profile</th>
             <th>Cust Id</th>
             <th>Cust Name</th>
             <th>Cust Lname</th>
             <th>Phone Num</th>
-            <th>Credit Card</th>
+            <th>Email</th>
+            <th>Role</th>
             <th>Edit</th>
             <th>Del</th>
           </tr>
@@ -83,11 +85,14 @@ export default function Customer() {
           {list.map((elt) => {
             return (
               <tr>
+                <td><img className="  mx-auto d-block  rounded-circle"  style={{width: "50px", height:"50px" }} src={elt.profile_img}/></td>
                 <td>{elt.cust_id}</td>
                 <td>{elt.cust_name}</td>
                 <td>{elt.cust_lname}</td>
                 <td>{elt.phone_num}</td>
-                <td>{elt.credit_card}</td>
+                <td>{elt.email}</td>
+                <td>{elt.role}</td>
+                
                 <td>
                   <EditCustomer
                     cust_id={elt.cust_id}
@@ -95,6 +100,9 @@ export default function Customer() {
                     cust_lname={elt.cust_lname}
                     phone_num={elt.phone_num}
                     credit_card={elt.credit_card}
+                    email={elt.email}
+                    role={elt.role}
+                    profile_img ={elt.profile_img}
                   />
                 </td>
                 <td>

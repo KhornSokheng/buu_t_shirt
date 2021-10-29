@@ -95,7 +95,7 @@ app.get("/getCustomer", (req, res) => {
   try {
     // let {id} = req.params;
 
-    const sql = `SELECT * from customer`;
+    const sql = `SELECT * from customer ORDER BY cust_id DESC`;
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;
@@ -112,12 +112,13 @@ app.get("/getCustomer/:cust_name", (req, res) => {
   try {
     // let {id} = req.params;
     const cust_name = req.params.cust_name;
-    const sql = `SELECT * from customer where cust_name LIKE "%${cust_name}%"`;
+    const sql = `SELECT * from customer where cust_name LIKE "%${cust_name}%" ORDER BY cust_id DESC`;
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;
       }
       console.log(results);
+      console.log(sql)
       res.send(results);
     });
   } catch (err) {
@@ -917,14 +918,35 @@ app.put("/updateCustomer/:id", (req, res) => {
   }
 });
 
+app.put("/updateCustomer2/:id", (req, res) => {
+  try {
+    
+    let { cust_id,cust_name,cust_lname,phone_num,credit_card,email,role,profile_img }= req.body;
+
+   
+    const sql = `update customer set cust_name='${cust_name}',cust_lname='${cust_lname}',
+    phone_num='${phone_num}',credit_card='${credit_card}',email='${email}',profile_img='${profile_img}',role='${role}'
+    WHERE cust_id = '${cust_id}' `;
+    pool.query(sql, (err, results) => {
+      if (err) {
+        res.send(err.message);
+        throw err;
+      }
+      console.log(sql);
+      console.log(cust_id);
+      console.log(results);
+      res.send("updated successfully");
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 app.put("/updateProfile/:id", (req, res) => {
   try {
-    // let {cust_id} = req.params;  //undefined
+   
     let { cust_id,cust_name,cust_lname,phone_num,credit_card,email,profile_img,role} = req.body;
-
-    // const sql = `UPDATE customer SET ('${cust_id}','${cust_name}','${cust_lname}', '${phone_num}','${credit_card}')`;
-
-    // call store procedure
+   
     const sql = `update customer set cust_name='${cust_name}',cust_lname='${cust_lname}',
     phone_num='${phone_num}',credit_card='${credit_card}',email='${email}',profile_img='${profile_img}',role='${role}'
     WHERE cust_id = '${cust_id}' `;

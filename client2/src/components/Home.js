@@ -13,7 +13,7 @@ export default function Home() {
             <Banner3/>
             <Banner2/>
             <Featured/>
-            <Map/>
+            {/* <Map/> */}
             
         </div>
     )
