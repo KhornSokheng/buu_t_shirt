@@ -310,7 +310,7 @@ app.get("/getBuy/:id", (req, res) => {
 // get all buy detail (OK)
 app.get("/getBuydetail", (req, res) => {
   try {
-    const sql = `SELECT BD.buy_id,BD.item,BD.full_prod_id,BD.buy_amount,BD.buy_cost,WV.prod_name,WV.color,WV.size FROM buy_detail BD
+    const sql = `SELECT BD.buy_id,BD.item,BD.full_prod_id,BD.buy_amount,BD.buy_cost,WV.prod_name,WV.color,WV.size,WV.image_url FROM buy_detail BD
         JOIN warehouse_view WV
         ON BD.full_prod_id = WV.full_prod_id  ORDER BY buy_id DESC, item;`;
     pool.query(sql, (err, results) => {
@@ -329,7 +329,7 @@ app.get("/getBuydetail/:id", (req, res) => {
   try {
     const { id } = req.params;
     const sql =
-      `SELECT BD.buy_id,BD.item,BD.full_prod_id,BD.buy_amount,BD.buy_cost,WV.prod_name,WV.color,WV.size FROM buy_detail BD
+      `SELECT BD.buy_id,BD.item,BD.full_prod_id,BD.buy_amount,BD.buy_cost,WV.prod_name,WV.color,WV.size, WV.image_url FROM buy_detail BD
         JOIN warehouse_view WV
         ON BD.full_prod_id = WV.full_prod_id WHERE buy_id like "%` +
       `${id}%" ORDER BY buy_id, item;`;
@@ -371,7 +371,7 @@ app.get("/getSale/:id", (req, res) => {
 app.get("/getSaledetail/:id", (req, res) => {
   const  sale_id  = req.params.id;
   try {
-    const sql = `SELECT * from sale_detail WHERE sale_id like "%`+`${sale_id}%" ORDER BY sale_id DESC, item ASC`;
+    const sql = `SELECT * from sale_detail SD, warehouse_view WV WHERE SD.full_prod_id=WV.full_prod_id and sale_id like "%`+`${sale_id}%" ORDER BY sale_id DESC, item ASC`;
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;
@@ -558,9 +558,9 @@ app.get("/getHistory/:id", (req, res) => {
   try {
     const cust_id = req.params.id;
     const sql = `SELECT DATE_FORMAT(sale_date, "%W %e %M %Y") AS sale_date,sale.sale_id,sale.cust_id,sale.receiver_name,sale_detail.item,sale_detail.full_prod_id,
-    sale_detail.sale_amount,sale_detail.sale_cost,sale_detail.sale_price,sale.sale_status,sale.delivery_status
-    FROM sale,sale_detail 
-    WHERE sale.sale_id = sale_detail.sale_id and sale.cust_id like "%${cust_id}%";`;
+    sale_detail.sale_amount,sale_detail.sale_cost,sale_detail.sale_price,sale.sale_status,sale.delivery_status, WV.image_url
+    FROM sale,sale_detail, warehouse_view WV
+    WHERE sale.sale_id = sale_detail.sale_id and WV.full_prod_id=sale_detail.full_prod_id and sale.cust_id like "%${cust_id}%";`;
     pool.query(sql, (err, results) => {
       if (err) {
         throw err;

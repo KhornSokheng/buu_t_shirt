@@ -155,7 +155,7 @@ export default function ViewProduct(props) {
                         </div>
                         {/* <h5 className="quantity">
                           QTY: <AddQty />
-                        </h5> */}
+                        </h5> */}                        
                         <div className="form-group quantity">
                           <label
                             className="font-weight-bold h5"

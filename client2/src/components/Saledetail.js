@@ -57,6 +57,7 @@ export default function Saledetail() {
             <th>Sale id</th>
             <th>Item</th>
             <th>Full Product ID</th>
+            <th>Image</th>
             <th>Sale Amount</th>
             <th>Sale Cost</th>
             <th>Sale Price</th>
@@ -69,6 +70,7 @@ export default function Saledetail() {
                 <td>{elt.sale_id}</td>
                 <td>{elt.item}</td>
                 <td>{elt.full_prod_id}</td>
+                <td><img className="  mx-auto d-block  rounded-circle"  style={{width: "50px", height:"50px" }} src={elt.image_url}/></td>
                 <td>{elt.sale_amount}</td>
                 <td>{elt.sale_cost}</td>
                 <td>{elt.sale_price}</td>

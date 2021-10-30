@@ -70,6 +70,7 @@ export default function Buydetail() {
           <tr>
             <th>Buy Id</th>
             <th>Item</th>
+            <th>Image</th>
             <th>Full Product Id</th>
             <th>Product Name</th>
             <th>Color</th>
@@ -88,6 +89,7 @@ export default function Buydetail() {
                 <td>
                   <a>{elt.item}</a>
                 </td>
+                <td><img className="  mx-auto d-block  rounded-circle"  style={{width: "50px", height:"50px" }} src={elt.image_url}/></td>
                 <a href="/warehouse"><td>{elt.full_prod_id}</td></a>
                 <td>{elt.prod_name}</td>
                 <td>{elt.color}</td>

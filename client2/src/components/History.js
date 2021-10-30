@@ -58,6 +58,7 @@ export default function History() {
             <th>Receiver name</th>
             <th>Item</th>
             <th>Full product id</th>
+            <th>Image</th>
             <th>Sale amount</th>
             <th>Sale cost</th>
             <th>Sale price</th>
@@ -75,6 +76,7 @@ export default function History() {
                 <td>{elt.receiver_name}</td>
                 <td>{elt.item}</td>
                 <td>{elt.full_prod_id}</td>
+                <td><img className="  mx-auto d-block  rounded-circle"  style={{width: "50px", height:"50px" }} src={elt.image_url}/></td>
                 <td>{elt.sale_amount}</td>
                 <td>{elt.sale_cost}</td>
                 <td>{elt.sale_price}</td>
