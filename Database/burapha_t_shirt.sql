@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2021 at 05:42 PM
+-- Generation Time: Oct 30, 2021 at 06:37 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -177,6 +177,7 @@ INSERT INTO `buy` (`buy_date`, `buy_id`, `buy_status`) VALUES
 ('2021-07-03', 'B0003', 'completed'),
 ('2021-07-23', 'B0004', 'completed'),
 ('2021-10-18', 'B0005', 'completed'),
+('2021-10-29', 'B0006', 'completed'),
 ('2021-10-14', 'B9999', 'buying');
 
 -- --------------------------------------------------------
@@ -303,6 +304,10 @@ INSERT INTO `buy_detail` (`buy_id`, `item`, `full_prod_id`, `buy_amount`, `buy_c
 ('B0004', 3, 'P001-BK-M', 2, 195.00),
 ('B0004', 4, 'P001-BK-XXL', 5, 195.00),
 ('B0005', 1, 'P005-Gray-L', 10, 295.00),
+('B0005', 2, 'P001-BL-M', 11, 195.00),
+('B0006', 1, 'P002-BL-L', 11, 195.00),
+('B0006', 2, 'P001-BL-M', 2, 195.00),
+('B0006', 3, 'P003-WI-M', 11, 95.00),
 ('B9999', 1, 'P001-BL-M', 3, 195.00);
 
 --
@@ -344,18 +349,18 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`cust_id`, `cust_name`, `cust_lname`, `phone_num`, `credit_card`, `email`, `role`, `profile_img`, `password`) VALUES
-('C0001', 'อนันดา', 'เนาว์แก้งใหม่', '096-864023', '6233 5560 8929 0', 'ananda@gmail.com', 'user', 'https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
+('C0001', 'อนันดา', 'เนาว์แก้งใหม่', '096-864023', '6233 5560 8929 0', 'ananda@gmail.com', 'user', 'https://i.pinimg.com/originals/05/12/20/051220ddda09ee81ad0bbf58c091b158.jpg', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
 ('C0002', 'พีรพัฒน์', 'เยียรยงค์', '084-140526', '5577 5571 1999 8', 'folk@gmail.com', 'user', 'https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
 ('C0003', 'ธนมงคล', 'เสนะวิทูรย์กิจ', '094-215325', '5236 2135 7994 7', 'bew@gmail.com', 'user', 'https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
-('C0004', 'พิชญา', 'สีแดง', '090-085632', '6231 0134 1456 8', 'bam@gmail.com', 'user', 'https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
+('C0004', 'พิชญา', 'สีแดง', '090-085632', '6231 0134 1456 8', 'bam@gmail.com', 'user', 'https://i.pinimg.com/originals/d9/e8/ef/d9e8efdf30aba891f3484c403078a238.jpg', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
 ('C0005', 'พงศ์ภรณ์', 'จันทาพูน', '095-924070', '6233 5617 5498 5', 'tom@gmail.com', 'user', 'https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
 ('C0006', 'สุทธิพงษ์', 'ชมภูมาศ', '091-235455', '5325 1486 2153 2', 'jr@gmail.com', 'user', 'https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
 ('C0007', 'เจนจิรา', 'ปิ่นแก้ว', '097-146251', '5577 2315 8596 8', 'jane@gmail.com', 'user', 'https://media.istockphoto.com/vectors/avatar-icon-of-girl-in-a-baseball-cap-vector-id542940830?k=20&m=542940830&s=170667a&w=0&h=se4mS6kwTS4RlEoaqK2H3Z0nEdqIPia7C-BtiCZ_Ays=', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
 ('C0008', 'ศิวัช', 'ทัพขวา', '096-864118', '5685 9575 4565 5', 'tane@gmail.com', 'user', 'https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
-('C0009', 'กิตติศักดิ์', 'แก้วทอง', '080-530079', '6231 4526 6985 1', 'bank2@gmail.com', 'user', 'https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
+('C0009', 'กิตติศักดิ์', 'แก้วทอง', '080-530079', '6231 4526 6985 1', 'bank2@gmail.com', 'user', 'https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/102348974/original/039aee69bface75f7440dbcefd24fe3a606f9f7c/create-profile-avatar-of-your-image.png', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
 ('C0010', 'ณัฐพงค์', 'หงษาวงค์', '095-124247', '4568 6523 4587 5', 'benz@gmail.com', 'user', 'https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
 ('C09a2', 'Tiger', 'Big', '0923345344', '2342412432143', 'tiger@gmail.com', 'user', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt7a1Kpo1zc1nxrHIO4HhGALeKh-BE3JCt5KY4Loq3Xev404278wDoXfbt2PgkQAPio00&usqp=CAU', '$2b$10$NGgNsoDq2KOaUuz32ASh3efOq.lNIq0BYMR1OhqcmFIlSawVI4wRO'),
-('C75aa', 'PJom', 'JJJ', '4354235432', '24354353454345', 'pjom@gmail.com', 'user', 'https://openclipart.org/download/294868/myAvatar.svg', '$2b$10$vZJDUUNipBk1ZHV2HUuSLeI4onn6dA1XyMNSQ4KklrklzVIIsq.Jm'),
+('C75aa', 'PJom', 'Abc', '4354235432', '24354353454345', 'pjom@gmail.com', 'user', 'https://openclipart.org/download/294868/myAvatar.svg', '$2b$10$vZJDUUNipBk1ZHV2HUuSLeI4onn6dA1XyMNSQ4KklrklzVIIsq.Jm'),
 ('C9999', 'NONT', 'Sokheng', '1234454623', '1234454623423', 'nont@gmail.com', 'admin', 'https://pbs.twimg.com/media/EYVxlOSXsAExOpX.jpg', '$2b$10$jQ6WcYyVEq29OQhuwCoYVO6VxPF4fNEv389nveez7NlCeB.RH26Cu'),
 ('Cc788', 'Ptoy', 'Jane', '0923345343', '12354654365445', 'ptoy@gmail.com', 'admin', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFjJO0hz4oD-fIlwa-zOwFpcawqEb5NHdFRszPEH9Ykr3F0vv52Dg-uZPd0gNlYb_0UWg&usqp=CAU', '$2b$10$5raO0KAW.JlwEgjH3NXDUeY54dy.irr0JNowRyhv9ksOfyPN91hZy');
 
@@ -378,8 +383,13 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`cust_id`, `message`, `message_id`, `date`, `status`) VALUES
-('C9999', 'Hello', 1, '2021-10-28 22:35:50', 'new'),
-('C9999', 'Helllo world', 2, '2021-10-28 22:41:45', 'new');
+('C9999', 'Hello', 1, '2021-10-28 22:35:50', 'Read'),
+('C9999', 'Helllo world', 2, '2021-10-28 22:41:45', 'Read'),
+('C9999', 'Test', 3, '2021-10-28 23:52:53', 'Read'),
+('C0001', 'Good night admin', 4, '2021-10-29 00:01:21', 'Read'),
+('C0007', 'I would like to buy some shirts', 5, '2021-10-29 00:07:14', 'Read'),
+('C09a2', 'Hello admin......', 7, '2021-10-29 00:08:38', 'Read'),
+('C0007', 'Good night....', 8, '2021-10-29 01:00:35', 'Read');
 
 -- --------------------------------------------------------
 
@@ -401,7 +411,8 @@ INSERT INTO `product` (`prod_id`, `prod_name`) VALUES
 ('P002', 'เสื้อยืดคอกลมDry-EX'),
 ('P003', 'เสื้อยืดคอวี Dry'),
 ('P004', 'เสื้อ AIRism คอตตอน ทรงหลวม (Unisex)'),
-('P005', 'MEN Uniqlo U เสื้อ AIRism คอตตอน ทรงหลวม');
+('P005', 'MEN Uniqlo U เสื้อ AIRism คอตตอน ทรงหลวม'),
+('P006', 'MEN เสื้อคอกลม Dry-EX Marvel');
 
 -- --------------------------------------------------------
 
@@ -438,7 +449,8 @@ INSERT INTO `prod_color` (`prod_color_id`, `prod_id`, `color`, `image_url`) VALU
 ('P003-WI', 'P003', 'WINE', 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/427916/sub/goods_427916_sub13.jpg?width=1600&impolicy=quality_75\r\n'),
 ('P004-Olive', 'P004', 'Olive', 'https://image.uniqlo.com/UQ/ST3/th/imagesgoods/425974/item/thgoods_56_425974.jpg?width=1600&impolicy=quality_75'),
 ('P004-Wine', 'P004', 'Wine', 'https://image.uniqlo.com/UQ/ST3/th/imagesgoods/425974/item/thgoods_19_425974.jpg?width=1600&impolicy=quality_75'),
-('P005-Gray', 'P005', 'Gray', 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/425974/item/goods_07_425974.jpg?width=1600&impolicy=quality_75');
+('P005-Gray', 'P005', 'Gray', 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/425974/item/goods_07_425974.jpg?width=1600&impolicy=quality_75'),
+('P006-BLACK', 'P006', 'BLACK', 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/443163/item/goods_09_443163.jpg?width=1600&impolicy=quality_75');
 
 -- --------------------------------------------------------
 
@@ -480,7 +492,7 @@ INSERT INTO `sale` (`sale_id`, `sale_date`, `cust_id`, `receiver_name`, `receive
 ('S00015', '2021-10-17', 'Cc788', 'Sokheng', '09212345678', 'new_order', NULL, NULL, NULL, NULL, 'BUU CHAN', NULL),
 ('S00016', '2021-10-17', 'Cc788', 'Sokheng', '09212345678', 'cancel', NULL, NULL, NULL, NULL, 'Burapha Chan', NULL),
 ('S00017', '2021-10-18', 'Cc788', 'Sokheng', '09212345678', 'completed', NULL, 35.00, '2021-10-18', '2021-10-19', 'Buu Chan', 'delivering'),
-('S00018', '2021-10-23', 'C9999', NULL, NULL, 'cart', NULL, NULL, NULL, NULL, NULL, NULL),
+('S00018', '2021-10-23', 'C9999', 'Sokheng', 'nont@gmail.', 'new_order', NULL, NULL, NULL, NULL, 'ewrwer', NULL),
 ('S00019', '2021-10-27', 'C0001', NULL, NULL, 'cart', NULL, NULL, NULL, NULL, NULL, NULL),
 ('S31fed', '2021-10-27', 'Cc788', NULL, NULL, 'cart', NULL, NULL, NULL, NULL, NULL, NULL),
 ('S87a6f', '2021-10-27', 'C09a2', 'Sokheng', 'tiger@gmail', 'new_order', NULL, NULL, NULL, NULL, 'Bankok', NULL),
@@ -561,9 +573,9 @@ INSERT INTO `sale_detail` (`sale_id`, `item`, `full_prod_id`, `sale_amount`, `sa
 ('S00017', 1, 'P005-Gray-L', 1, 295.00, 590.00),
 ('S00018', 1, 'P001-BK-L', 2, 195.00, 390.00),
 ('S00018', 2, 'P001-BL-L', 1, 195.00, 390.00),
-('S00018', 3, 'P001-DO-M', 1, 195.00, 390.00),
 ('S00019', 1, 'P001-BL-L', 2, 195.00, 390.00),
 ('S00019', 2, 'P001-NA-XXL', 1, 195.00, 390.00),
+('S00019', 3, 'P001-NA-L', 2, 195.00, 390.00),
 ('S31fed', 1, 'P001-BL-L', 2, 195.00, 390.00),
 ('S31fed', 2, 'P001-BK-XXL', 2, 195.00, 390.00),
 ('S31fed', 3, 'P005-Gray-L', 2, 295.00, 590.00),
@@ -679,7 +691,7 @@ INSERT INTO `warehouse` (`full_prod_id`, `prod_id`, `color`, `size`, `total_amou
 ('P001-BK-XL', 'P001', 'BLACK', 'XL', 10, 0, 195.00, 390.00, 'P001-BK'),
 ('P001-BK-XXL', 'P001', 'BLACK', 'XXL', 15, 2, 195.00, 390.00, 'P001-BK'),
 ('P001-BL-L', 'P001', 'BLUE', 'L', 10, 5, 195.00, 390.00, 'P001-BL'),
-('P001-BL-M', 'P001', 'BLUE', 'M', 15, 0, 195.00, 390.00, 'P001-BL'),
+('P001-BL-M', 'P001', 'BLUE', 'M', 28, 0, 195.00, 390.00, 'P001-BL'),
 ('P001-BL-S', 'P001', 'BLUE', 'S', 14, 0, 195.00, 390.00, 'P001-BL'),
 ('P001-BL-XL', 'P001', 'BLUE', 'XL', 13, 1, 195.00, 390.00, 'P001-BL'),
 ('P001-BL-XXL', 'P001', 'BLUE', 'XXL', 11, 0, 195.00, 390.00, 'P001-BL'),
@@ -689,11 +701,11 @@ INSERT INTO `warehouse` (`full_prod_id`, `prod_id`, `color`, `size`, `total_amou
 ('P001-BR-XL', 'P001', 'BROWN', 'XL', 10, 5, 195.00, 390.00, 'P001-BR'),
 ('P001-BR-XXL', 'P001', 'BROWN', 'XXL', 11, 0, 195.00, 390.00, 'P001-BR'),
 ('P001-DO-L', 'P001', 'DARK ORANGE', 'L', 10, 0, 195.00, 390.00, 'P001-DO'),
-('P001-DO-M', 'P001', 'DARK ORANGE', 'M', 13, 1, 195.00, 390.00, 'P001-DO'),
+('P001-DO-M', 'P001', 'DARK ORANGE', 'M', 13, 0, 195.00, 390.00, 'P001-DO'),
 ('P001-DO-S', 'P001', 'DARK ORANGE', 'S', 18, 5, 195.00, 390.00, 'P001-DO'),
 ('P001-DO-XL', 'P001', 'DARK ORANGE', 'XL', 12, 0, 195.00, 390.00, 'P001-DO'),
 ('P001-DO-XXL', 'P001', 'DARK ORANGE', 'XXL', 11, 2, 195.00, 390.00, 'P001-DO'),
-('P001-NA-L', 'P001', 'NATURAL', 'L', 11, 0, 195.00, 390.00, 'P001-NA'),
+('P001-NA-L', 'P001', 'NATURAL', 'L', 11, 2, 195.00, 390.00, 'P001-NA'),
 ('P001-NA-M', 'P001', 'NATURAL', 'M', 10, 0, 195.00, 390.00, 'P001-NA'),
 ('P001-NA-S', 'P001', 'NATURAL', 'S', 10, 0, 195.00, 390.00, 'P001-NA'),
 ('P001-NA-XL', 'P001', 'NATURAL', 'XL', 14, 2, 195.00, 390.00, 'P001-NA'),
@@ -708,7 +720,7 @@ INSERT INTO `warehouse` (`full_prod_id`, `prod_id`, `color`, `size`, `total_amou
 ('P002-BK-S', 'P002', 'BLACK', 'S', 10, 0, 295.00, 590.00, 'P002-BK'),
 ('P002-BK-XL', 'P002', 'BLACK', 'XL', 10, 1, 295.00, 590.00, 'P002-BK'),
 ('P002-BK-XXL', 'P002', 'BLACK', 'XXL', 10, 0, 295.00, 590.00, 'P002-BK'),
-('P002-BL-L', 'P002', 'BLUE', 'L', 10, 2, 295.00, 590.00, 'P002-BL'),
+('P002-BL-L', 'P002', 'BLUE', 'L', 21, 2, 195.00, 390.00, 'P002-BL'),
 ('P002-BL-M', 'P002', 'BLUE', 'M', 11, 0, 295.00, 590.00, 'P002-BL'),
 ('P002-BL-S', 'P002', 'BLUE', 'S', 10, 0, 295.00, 590.00, 'P002-BL'),
 ('P002-BL-XL', 'P002', 'BLUE', 'XL', 10, 0, 295.00, 590.00, 'P002-BL'),
@@ -744,13 +756,14 @@ INSERT INTO `warehouse` (`full_prod_id`, `prod_id`, `color`, `size`, `total_amou
 ('P003-PI-XL', 'P003', 'PINK', 'XL', 10, 0, 95.00, 190.00, 'P003-PI'),
 ('P003-PI-XXL', 'P003', 'PINK', 'XXL', 10, 0, 95.00, 190.00, 'P003-PI'),
 ('P003-WI-L', 'P003', 'WINE', 'L', 10, 0, 95.00, 190.00, 'P003-WI'),
-('P003-WI-M', 'P003', 'WINE', 'M', 10, 0, 95.00, 190.00, 'P003-WI'),
+('P003-WI-M', 'P003', 'WINE', 'M', 21, 0, 95.00, 190.00, 'P003-WI'),
 ('P003-WI-S', 'P003', 'WINE', 'S', 10, 0, 95.00, 190.00, 'P003-WI'),
 ('P003-WI-XL', 'P003', 'WINE', 'XL', 10, 0, 95.00, 190.00, 'P003-WI'),
 ('P003-WI-XXL', 'P003', 'WINE', 'XXL', 10, 0, 95.00, 190.00, 'P003-WI'),
 ('P004-Olive-L', 'P004', 'Olive', 'L', 0, 0, 295.00, 590.00, 'P004-Olive'),
 ('P004-Wine-M', 'P004', 'Wine', 'M', 0, 0, 295.00, 590.00, 'P004-Wine'),
-('P005-Gray-L', 'P005', 'Gray', 'L', 10, 3, 295.00, 590.00, 'P005-Gray');
+('P005-Gray-L', 'P005', 'Gray', 'L', 10, 3, 295.00, 590.00, 'P005-Gray'),
+('P006-BLACK-L', 'P006', 'BLACK', 'L', 0, 0, 295.00, 590.00, 'P006-BLACK');
 
 -- --------------------------------------------------------
 
@@ -858,7 +871,7 @@ ALTER TABLE `warehouse`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
