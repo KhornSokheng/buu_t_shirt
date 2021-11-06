@@ -34,6 +34,8 @@ import HeaderUser from "./components/HeaderUser";
 import ContactUs from "./components/ContactUs";
 import Profile from "./components/Profile";
 import Message from "./components/Message";
+import Table from "./components/Table";
+import Sum from "./components/Sum";
 // import MobileNav from "./components/MobileNav/MobileNav";
 
 function App() {
@@ -53,6 +55,7 @@ function App() {
             {/* <Header3/> */}
             
             {/* <Header /> */}
+            
 
             <div className="mt-5"></div><br/><br/><br/>
 
@@ -62,6 +65,7 @@ function App() {
             <Route path="/customer">
               <Customer />
             </Route>
+            
             <Route path="/customer/:id">
               <Customer />
             </Route>
